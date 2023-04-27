@@ -1,0 +1,34 @@
+<section class="container w-screen">
+
+  <div class="flex justify-end w-2/4 mx-auto">
+    <div class="flex justify-center space-x-2">
+      <a type="button" data-te-ripple-init data-te-ripple-color="light" href="/buyers/postjobs"
+        class="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
+        Post Job
+    </a>
+    </div>
+  </div>
+
+  <div class=" mx-auto w-2/4 mb-5">
+    <p class="mb-1 text-lg font-normal">Active Jobs</p>
+    <hr class="mb-2">
+
+    <!-- Active Jobs List -->
+    <div class="bg-gray-300 p-3 rounded-md mb-3" *ngFor="let job of jobs; let i = index;">
+      <!-- <h4>Job # {{ job.JOB_ID }}</h4> -->
+      <h4 class="pb-0 mb-1">{{ job.JOB_TITLE }}</h4>
+      <hr>
+      <p class="pt-2">{{ job.DESCRIPTION }}</p>
+      <div class="flex w-full flex-wrap">
+        <div data-te-chip-init data-te-ripple-init
+          class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-between rounded-[16px] border border-[#3b71ca] bg-orange-400 py-0 px-[12px] text-[13px] font-normal normal-case leading-loose text-[#010101] shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none"
+          data-te-ripple-color="dark"
+          *ngFor="let provider of providers[job.JOB_ID]">
+          {{ provider.FULL_NAME }}
+        </div>
+      </div>
+      <a href="" class="flex justify-end hover:text-blue-600">More Details</a>
+    </div>
+
+  </div>
+</section>
