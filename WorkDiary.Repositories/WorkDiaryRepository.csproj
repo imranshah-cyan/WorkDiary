@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66923DCA-4DB9-465C-9A63-C5CAB09F314F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WorkDiaryRepository</RootNamespace>
+    <AssemblyName>WorkDiaryRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\BuyerRepository.cs" />
+    <Compile Include="Classes\LogRepository.cs" />
+    <Compile Include="Dbo\ActiveJobGetByJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\AggregatedCounter.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\AspNetRole.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\AspNetUser.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\AspNetUserClaim.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\AspNetUserLogin.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\AttachFileGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ATTACH_FILE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CategoriesGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CATEGORY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CategoryClassGet_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CategoryClassTreeForJobSearch_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CategoryCountForJobOrProvider_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CHAT_USER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CheckProviderByBuyerId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CITY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CityGetByStateId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CLASS.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ClassCountForJobOrProvider_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ClassGetByCategoryIdForProviderSearch_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ClassGetByCategoryId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactAwardGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactCategoryGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactCertificationGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactFolderAndFilesGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactGetByContactId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactMessengerGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactPortfolioGet_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactPrimaryGetByUser_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactQualificationGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactRateGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactSkillsGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactTypeGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ContactWorkHistoryGetByContactId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_AWARD.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_CATEGORY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_CERTIFICATION.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_FOLDER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_MESSENGER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_PORTFOLIO.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_QUALIFICATION.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_RATES.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_SKILLS.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_TYPE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CONTACT_WORK_HISTORY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Counter.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\COUNTRY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CountryGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CsvToInt_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CSV_SPLIT_ME_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CURRENCY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\CurrencyGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\C__MigrationHistory.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\DailyScreenLogs_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\DESIGNATION.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\DesignationGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\DesignationGetById_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\DesignationInsert_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\EDUCATION.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\EducationGet_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\EDUCATION_TYPE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\EMAIL_HISTORY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\FILE_RELATED_TYPE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\FILE_TYPE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\FOLDER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\FOLDER_FILE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetActiveJobsByDays_sp1_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetActiveJobsByDays_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetActiveServiceProviders_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetAllPostProjectDetails_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetBuyerProviders_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetImagesInGivenTime_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetJobsByBuyerId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetMonthlyWorkSummary_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetProjectSummary_sp1_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetProjectSummary_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetProjectTeamJobs_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetProvidersByJobId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetProviderTimeLogDatesByJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetTimeSheetCalendar_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetTodayWorkSummaryByProvider_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetTodayWorkSummaryImagesByProvider_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetTodayWorkSummaryImages_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetTodayWorkSummary_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GettUserLog_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetUserTimeLog_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetWorkStatusReportDetails_sp1_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\GetWorkStatusReportDetails_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Hash.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ImageStoreGetByImageId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ImageStoreGetByJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\IMAGE_STORE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\InsertUserLog_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Job1.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobAwardedGetAllByUserId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobAwardedGetByJobAwardedId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobAwardedGetByJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobCounterOffersGetByJobOfferId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobGetAllByBuyerIdForProviderInvitation_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobGetAllByUserId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobGetByJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobInProgressByUserId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobOffersGetByJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobOffersGetByJobOfferId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobOffersGetByProviderId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobOffersGetLastOfferJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobOffersNegotiatingByProviderId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobParameter.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobProjectTeam_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobProvidersByJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobQueue.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobSkillsGetByJobId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobTasksById_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobTasksByJobId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobTasks_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobTypeGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JobUsers_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_AWARDED.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_FEEDBACK.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_FOLDER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_OFFER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_OFFER_FOLDER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_SKILL.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_STATUS.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_TASK.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_TASKS_TIME_LOG.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_TYPE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_USERS.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\JOB_USER_ROLE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\List.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MAIL.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MailsGetByJobOfferId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MailsGetByMailId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MailsGetByUserId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MAIL_STATUS.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MAIL_TYPE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MEMO.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MemoGet_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MENU.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MenuGet_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\MESSENGER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\PAYMENT_TRANSACTION.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\PERMISSION.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\PermissionGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\PermissionGetUserPermission_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ProjectSummary_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ProjectTeamGetAllTeamMember_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ProjectTeamGetAllUserName_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ProjectTeamGetAllUser_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ProjectTeamGetTeamMember_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ProjectTeamInsertMember_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\PROJECT_TEAM.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\RateTypeGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\RATE_TYPE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\RejectedJobOffersGetByProviderId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ROLE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\RoleList_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\RolePermissionList_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ROLE_PERMISSION.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Schema.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ScreenLogsGet_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ScreenLogsInsert_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ScreenshotGetByDate_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ScreenshotGetById_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ScreenshotGetByTimeSheetId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ScreenShotsByProviderAndJob_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ScreenShots_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SCREEN_CATEGORY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SCREEN_CLASS.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SCREEN_LOGS.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SearchingJobsList_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Server.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ServiceDotNetEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceDotNetEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ServiceDotNetEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\ServiceDotNetEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceDotNetEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Set.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SKILL.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SkillsGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SkillsGetByClassId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SP_GetProviderLogsByJob_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SP_GetProviderLogs_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SP_WorkDiaryAppLogs_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\STATE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\State1.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\StateGetByCountryId_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SysConfigEntryGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SysEmailTemplateGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SYS_CONFIG_ENTRY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SYS_EMAIL_TEMPLATE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\SYS_MESSAGE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TaskPriorityGetAll_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TaskStatusGetAll_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TaskTypeGetAll_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TASK_PRIORITY.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TASK_STATUS.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TASK_TYPE.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TimeSheetGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TimeSheetGetByJob_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TIME_SHEET.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TOKEN.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TokenSearchByValue_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\TokenSearchFromUserID_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\USER.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\UserFeedBackHistory_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\UserGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\UserGetByEmail_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\UserInfoGetById_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\UserLoginInfo_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\UserLogsGetByHours_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\UserValidateLogin_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\USER_LOG.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\USER_PERMISSION.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WD_JobTasksByJobId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WD_Job_GetDetails_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WD_TimeSheetGetAll_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WidgetBuyerBusinessInfo_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WidgetBuyerJobActivity_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WidgetBuyerUserActivity_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WidgetProviderBusinessInfo_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WidgetProviderJobActivity_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WidgetProviderUserActivity_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WorkDiaryGetLoginTimeAndLogOutTime_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WorkDiaryGetMinTimeAndMaxTime_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WorkDiaryGetMinTimeMaxTimeAndTotalTime_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WorkDiaryScreenshotsGetByDate_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\WorkDiaryScreenshotsGet_sp_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ImageStore.cs" />
+    <Compile Include="Entities\Job.cs" />
+    <Compile Include="Entities\Log.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Helpers\Crypto.cs" />
+    <Compile Include="Interfaces\IBuyerRepository.cs" />
+    <Compile Include="Interfaces\IJobRepository.cs" />
+    <Compile Include="Interfaces\ILogRepository.cs" />
+    <Compile Include="Interfaces\IProviderLogRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Classes\JobRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\ProviderLog.cs" />
+    <Compile Include="Base\RepositoryBase.cs" />
+    <Compile Include="Entities\UserLogModel.cs" />
+    <Compile Include="Classes\ProviderLogRepository.cs" />
+    <Compile Include="Classes\UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Dbo\ServiceDotNetEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ServiceDotNetEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Dbo\ServiceDotNetEntities.edmx.diagram">
+      <DependentUpon>ServiceDotNetEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Dbo\ServiceDotNetEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ServiceDotNetEntities.edmx</DependentUpon>
+      <LastGenOutput>ServiceDotNetEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Dbo\ServiceDotNetEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ServiceDotNetEntities.edmx</DependentUpon>
+      <LastGenOutput>ServiceDotNetEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
