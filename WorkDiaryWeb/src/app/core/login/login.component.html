@@ -1,0 +1,39 @@
+<section class="w-full items-center justify-center">
+  <div class="fixed">
+    <p class="pl-4 pt-2">
+      <img src="../../../assets/images/logo.png" alt="" width="35%">
+    </p>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div class="flex items-center h-full min-h-screen justify-center">
+        <img src="../../../assets/svg/Tablet login-amico.svg" alt="" width="50%">
+
+    </div>
+    <div class="flex items-center w-3/4">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="w-full">
+        <h2 class="heading">Login to Work Diary</h2>
+        <p class="pt-2">
+          <input type="text" placeholder="Username" class="p-3 rounded w-full bg-transparent border-1 border-gray-400" formControlName="username">
+        </p>
+        <p class="relative">
+          <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password"
+            class="p-3 rounded w-full bg-transparent border-1 border-gray-400" formControlName="password">
+          <mat-icon class="absolute right-0 top-0 mt-3 mr-4" [ngClass]="showPassword ? 'icon-eye-slash' : 'icon-eye'"
+            (click)="toggleShowPassword()">
+            {{ showPassword ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+        </p>
+        <p class="pt-2">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white p-3 rounded w-full">
+            Sign in
+          </button>
+        </p>
+
+        <p class="w-full text-center mt-3">
+Don't have an account? <a [routerLink]="['/register']" class="register-link text-blue-700">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+

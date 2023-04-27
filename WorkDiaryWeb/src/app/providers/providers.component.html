@@ -1,0 +1,27 @@
+<section class="grid grid-cols-6 items-center p-3 px-4">
+  <div class="col-span-1">
+    <img src="../../assets/images/logo.png" alt="logo" width="200">
+  </div>
+  <div class="text-sm col-span-4 mx-auto ">
+    <ol class="inline-flex gap-5 ">
+      <li><a routerLink="/providers" [routerLinkActive]="'active'">Home</a></li>
+      <li><a routerLink="jobs" [routerLinkActive]="'active'">Job Offers</a></li>
+    </ol>
+  </div>
+  <div class="col-span-1 w-full flex items-start justify-end">
+    <button mat-button [matMenuTriggerFor]="belowMenu" class="flex items-center font-bold">
+      Username
+      <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+
+    </button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button mat-menu-item routerLink="settings">Settings</button>
+      <button mat-menu-item>About Work Diary</button>
+      <button mat-menu-item routerLink="">Logout</button>
+    </mat-menu>
+  </div>
+</section>
+<router-outlet></router-outlet>
