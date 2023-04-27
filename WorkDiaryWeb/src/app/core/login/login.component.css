@@ -1,0 +1,33 @@
+form .heading {
+  margin-bottom: 25px;
+  font-size: 32px;
+}
+
+form p {
+  color: rgb(123, 123, 123);
+  padding: 0px;
+  margin: 0px;
+  margin-top: 5px;
+}
+
+form p a {
+  color: rgb(49, 132, 247);
+  text-decoration: none;
+}
+
+form mat-form-field {
+  width: 100%;
+}
+
+form .login-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+form .registerBtn {
+  width: 100%;
+  font-size: 18px;
+  padding: 25px;
+}
+
+/*# sourceMappingURL=register.component.css.map *//*# sourceMappingURL=login.component.css.map */
