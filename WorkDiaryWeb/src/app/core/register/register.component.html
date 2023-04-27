@@ -1,0 +1,88 @@
+<section class="w-full items-center justify-center text-blacksdfad">
+  <div class="fixed">
+    <p class="pl-4 pt-2">
+      <img src="../../../assets/images/logo.png" alt="" width="35%">
+    </p>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div class="flex items-center h-full min-h-screen justify-center">
+      <img src="../../../assets/images/Sign up-amico.png" alt="" width="50%">
+    </div>
+    <div class="flex items-center w-3/4">
+      <form [formGroup]="myForm" (ngSubmit)="register()" class="w-full">
+        <h2 class="heading">Register into Work Diary</h2>
+
+        <div class="grid grid-cols-2">
+          <div class="flex pt-2">
+            <div class="flex items-center h-5">
+              <input name="usertype" type="radio" value="3" id="buyer" formControlName="usertype"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            </div>
+            <div class="flex">
+              <div class="ml-2 text-sm">
+                <label for="buyer" class="font-medium text-gray-900">Buyer</label>
+                <br>
+                <label for="buyer" class="text-xs font-normal text-gray-500">
+                  Post projects and get the developers
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="flex pt-2">
+            <div class="flex items-center h-5">
+              <input name="usertype" type="radio" value="2" id="provider" formControlName="usertype"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            </div>
+            <div class="flex">
+              <div class="ml-2 text-sm">
+                <label for="provider" class="font-medium text-gray-900">Provider</label>
+                <br>
+                <label for="provider" class="text-xs font-normal text-gray-500 ">
+                  Get offers, build, design the projects
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="pt-2">
+          <input type="text" placeholder="Name" class="p-3 rounded w-full bg-transparent border-1 border-gray-400" formControlName="name">
+        </p>
+        <p class="pt-2">
+          <input type="text" placeholder="Email" class="p-3 rounded w-full bg-transparent border-1 border-gray-400" formControlName="email">
+        </p>
+        <p class="pt-2">
+          <input type="email" placeholder="Username" class="p-3 rounded w-full bg-transparent border-1 border-gray-400" formControlName="username">
+        </p>
+        <p class="relative pt-2">
+          <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password"
+            class="p-3 rounded w-full bg-transparent border-1 border-gray-400" formControlName="password">
+          <mat-icon class="absolute right-0 top-0 mt-4 mr-4" [ngClass]="showPassword ? 'icon-eye-slash' : 'icon-eye'"
+            (click)="toggleShowPassword()">
+            {{ showPassword ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+        </p>
+        <p class="pt-2">
+          <input type="text" placeholder="Security Question" class="p-3 rounded w-full bg-transparent border-1 border-gray-400"
+            formControlName="security_question">
+        </p>
+        <p class="relative pt-2">
+          <input type="{{ security_answer ? 'text' : 'password' }}" placeholder="Security Answer"
+            class="p-3 rounded w-full bg-transparent border-1 border-gray-400" formControlName="security_answer">
+          <mat-icon class="absolute right-0 top-0 mt-4 mr-4" [ngClass]="security_answer ? 'icon-eye-slash' : 'icon-eye'"
+            (click)="toggleSecurity_answer()">
+            {{ security_answer ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+        </p>
+        <p class="pt-2">
+          <button type="submit" class="bg-green-600 hover:bg-green-700 text-white p-3 rounded w-full">
+            Register
+          </button>
+        </p>
+        <p class="w-full text-center mt-3">
+          Already have an account? <a [routerLink]="['/login']" class="text-blue-700">Sign in</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
