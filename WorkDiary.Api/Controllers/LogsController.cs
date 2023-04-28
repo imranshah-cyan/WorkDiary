@@ -29,7 +29,7 @@ namespace ServiceDotNet.Api.Controllers
             return result;
         }
     
-        [HttpPost]
+        [HttpGet]
         [Route("webLogs")]
         public WebLogs GetWebLogs(DateTime start_date, DateTime end_date, int provider_id, int job_id)
         {
