@@ -27,3 +27,15 @@ G:\ServiceDotNet-master\ServiceDotNet-master\WorkDiaryRepository\obj\Debug\WorkD
 G:\ServiceDotNet-master\ServiceDotNet-master\WorkDiaryRepository\obj\Debug\WorkDiaryRepository.csproj.CopyComplete
 G:\ServiceDotNet-master\ServiceDotNet-master\WorkDiaryRepository\obj\Debug\WorkDiaryRepository.dll
 G:\ServiceDotNet-master\ServiceDotNet-master\WorkDiaryRepository\obj\Debug\WorkDiaryRepository.pdb
+F:\Github\WorkDiary\WorkDiary.Repositories\bin\Debug\WorkDiaryRepository.dll.config
+F:\Github\WorkDiary\WorkDiary.Repositories\bin\Debug\WorkDiaryRepository.dll
+F:\Github\WorkDiary\WorkDiary.Repositories\bin\Debug\WorkDiaryRepository.pdb
+F:\Github\WorkDiary\WorkDiary.Repositories\bin\Debug\EntityFramework.dll
+F:\Github\WorkDiary\WorkDiary.Repositories\bin\Debug\EntityFramework.SqlServer.dll
+F:\Github\WorkDiary\WorkDiary.Repositories\bin\Debug\EntityFramework.xml
+F:\Github\WorkDiary\WorkDiary.Repositories\bin\Debug\EntityFramework.SqlServer.xml
+F:\Github\WorkDiary\WorkDiary.Repositories\obj\Debug\WorkDiaryRepository.csproj.AssemblyReference.cache
+F:\Github\WorkDiary\WorkDiary.Repositories\obj\Debug\WorkDiaryRepository.csproj.CoreCompileInputs.cache
+F:\Github\WorkDiary\WorkDiary.Repositories\obj\Debug\WorkDiaryRepository.csproj.CopyComplete
+F:\Github\WorkDiary\WorkDiary.Repositories\obj\Debug\WorkDiaryRepository.dll
+F:\Github\WorkDiary\WorkDiary.Repositories\obj\Debug\WorkDiaryRepository.pdb

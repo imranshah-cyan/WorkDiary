@@ -48,6 +48,7 @@
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -62,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Classes\BuyerRepository.cs" />
     <Compile Include="Classes\LogRepository.cs" />
+    <Compile Include="Classes\WebLogsRepository.cs" />
     <Compile Include="Dbo\ActiveJobGetByJobId_sp_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
@@ -722,6 +724,15 @@
     <Compile Include="Dbo\WD_TimeSheetGetAll_sp_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dbo\Web_GetWorkSummaryImagesByProviderAndJob_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_ScreenLogs_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_ScreenShotsByProviderAndJob_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dbo\WidgetBuyerBusinessInfo_sp_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
@@ -766,6 +777,7 @@
     <Compile Include="Interfaces\IProviderLogRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Classes\JobRepository.cs" />
+    <Compile Include="Interfaces\IWebLogsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\ProviderLog.cs" />
     <Compile Include="Base\RepositoryBase.cs" />

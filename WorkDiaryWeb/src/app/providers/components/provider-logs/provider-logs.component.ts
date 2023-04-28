@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { WorkDiaryLogsService } from '../../services/WorkDiaryLogs.service';
+import { Logs, WebLogs } from '../../models/WorkDiaryLogs';
+import { DatePipe } from '@angular/common';
+import { Jobs } from '../../models/Jobs';
 
 interface Food {
   value: string;
@@ -36,5 +40,68 @@ export class ProviderLogsComponent {
     food: this.foodControl,
     time: this.timeControl,
   });
+
+  StartDate: string | undefined;
+  EndDate: string | undefined;
+  HourLogs: Logs[] = [];
+  Jobs: Jobs[] = [];
+
+  constructor(private workDiaryLogsService: WorkDiaryLogsService,
+              private datePipe: DatePipe) {
+
+              this.getWorkDiaryLogs(35194, 7131, 1);
+
+              const userId = sessionStorage.getItem('User');
+              console.log(userId);
+              this.getJobsByProvider(35194);
+  }
+
+
+  getWorkDiaryLogs(providerId:number, job_id:number, period:number) {
+    this.workDiaryLogsService.getScreenLogs(providerId, job_id, period).subscribe(
+      (response: WebLogs) => {
+        if (response != null) {
+          console.log(response);
+
+          // Get Start Date
+          const StartDate = this.datePipe.transform(response.StartDate, 'EEEE d MMMM yyyy hh:mm a');
+          this.StartDate = StartDate ? StartDate : undefined;
+
+          // Get End Date
+          const EndDate = this.datePipe.transform(response.EndDate, 'EEEE d MMMM yyyy hh:mm a');
+          this.EndDate = EndDate ? EndDate : undefined;
+
+          // Get Hourly Logs
+          this.HourLogs = response.Logs;
+          // console.log(this.HourLogs);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getJobsByProvider(providerId:number) {
+    this.workDiaryLogsService.getJobsByProvider(providerId).subscribe(
+      (response:Jobs[]) => {
+
+        // Get
+        const jobs: Jobs[] = [];
+        for (const res of response) {
+          const job: Jobs = {
+            JOB_ID: res.JOB_ID,
+            JOB_TITLE: res.JOB_TITLE
+          };
+          jobs.push(job);
+        }
+        this.Jobs = jobs;
+      },
+      (error) => {
+        console.error(error);
+      }
+
+    )
+  }
 
 }

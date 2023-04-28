@@ -6,6 +6,7 @@ using WorkDiaryRepository;
 using WorkDiaryRepository.Dbo;
 using WorkDiaryRepository.Entities;
 using WorkDiaryServices.Classes;
+using WorkDiaryServices.models;
 
 namespace ServiceDotNet.Api.Controllers
 {
@@ -27,5 +28,14 @@ namespace ServiceDotNet.Api.Controllers
             }
             return result;
         }
+    
+        [HttpGet]
+        [Route("webLogs")]
+        public WebLogs GetWebLogs(DateTime start_date, DateTime end_date, int provider_id, int job_id)
+        {
+            var result = new WebLogsService().WebLogs(start_date, end_date, provider_id, job_id);
+            return result;
+        }
     }
+
 }

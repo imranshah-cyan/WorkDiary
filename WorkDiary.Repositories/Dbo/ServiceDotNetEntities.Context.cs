@@ -3639,5 +3639,83 @@ namespace WorkDiaryRepository.Dbo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_WorkDiaryAppLogs_Result>("SP_WorkDiaryAppLogs", provider_idParameter, job_idParameter, start_timeParameter, end_timeParameter);
         }
+    
+        [DbFunction("ServiceDotNetEntities", "SplitString")]
+        public virtual IQueryable<string> SplitString(string @string, string delimiter)
+        {
+            var stringParameter = @string != null ?
+                new ObjectParameter("string", @string) :
+                new ObjectParameter("string", typeof(string));
+    
+            var delimiterParameter = delimiter != null ?
+                new ObjectParameter("delimiter", delimiter) :
+                new ObjectParameter("delimiter", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<string>("[ServiceDotNetEntities].[SplitString](@string, @delimiter)", stringParameter, delimiterParameter);
+        }
+    
+        public virtual ObjectResult<Web_GetWorkSummaryImagesByProviderAndJob_Result> Web_GetWorkSummaryImagesByProviderAndJob(Nullable<System.DateTime> sTART_DATE, Nullable<System.DateTime> eND_DATE, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
+        {
+            var sTART_DATEParameter = sTART_DATE.HasValue ?
+                new ObjectParameter("START_DATE", sTART_DATE) :
+                new ObjectParameter("START_DATE", typeof(System.DateTime));
+    
+            var eND_DATEParameter = eND_DATE.HasValue ?
+                new ObjectParameter("END_DATE", eND_DATE) :
+                new ObjectParameter("END_DATE", typeof(System.DateTime));
+    
+            var pROVIDER_IDParameter = pROVIDER_ID.HasValue ?
+                new ObjectParameter("PROVIDER_ID", pROVIDER_ID) :
+                new ObjectParameter("PROVIDER_ID", typeof(int));
+    
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetWorkSummaryImagesByProviderAndJob_Result>("Web_GetWorkSummaryImagesByProviderAndJob", sTART_DATEParameter, eND_DATEParameter, pROVIDER_IDParameter, jOB_IDParameter);
+        }
+    
+        public virtual ObjectResult<Web_ScreenLogs_Result> Web_ScreenLogs(Nullable<System.DateTime> sTART_ON, Nullable<System.DateTime> eND_ON, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
+        {
+            var sTART_ONParameter = sTART_ON.HasValue ?
+                new ObjectParameter("START_ON", sTART_ON) :
+                new ObjectParameter("START_ON", typeof(System.DateTime));
+    
+            var eND_ONParameter = eND_ON.HasValue ?
+                new ObjectParameter("END_ON", eND_ON) :
+                new ObjectParameter("END_ON", typeof(System.DateTime));
+    
+            var pROVIDER_IDParameter = pROVIDER_ID.HasValue ?
+                new ObjectParameter("PROVIDER_ID", pROVIDER_ID) :
+                new ObjectParameter("PROVIDER_ID", typeof(int));
+    
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_ScreenLogs_Result>("Web_ScreenLogs", sTART_ONParameter, eND_ONParameter, pROVIDER_IDParameter, jOB_IDParameter);
+        }
+    
+        [DbFunction("ServiceDotNetEntities", "Web_ScreenShotsByProviderAndJob")]
+        public virtual IQueryable<Web_ScreenShotsByProviderAndJob_Result> Web_ScreenShotsByProviderAndJob(Nullable<System.DateTime> sTART_DATE, Nullable<System.DateTime> eND_DATE, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
+        {
+            var sTART_DATEParameter = sTART_DATE.HasValue ?
+                new ObjectParameter("START_DATE", sTART_DATE) :
+                new ObjectParameter("START_DATE", typeof(System.DateTime));
+    
+            var eND_DATEParameter = eND_DATE.HasValue ?
+                new ObjectParameter("END_DATE", eND_DATE) :
+                new ObjectParameter("END_DATE", typeof(System.DateTime));
+    
+            var pROVIDER_IDParameter = pROVIDER_ID.HasValue ?
+                new ObjectParameter("PROVIDER_ID", pROVIDER_ID) :
+                new ObjectParameter("PROVIDER_ID", typeof(int));
+    
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Web_ScreenShotsByProviderAndJob_Result>("[ServiceDotNetEntities].[Web_ScreenShotsByProviderAndJob](@START_DATE, @END_DATE, @PROVIDER_ID, @JOB_ID)", sTART_DATEParameter, eND_DATEParameter, pROVIDER_IDParameter, jOB_IDParameter);
+        }
     }
 }

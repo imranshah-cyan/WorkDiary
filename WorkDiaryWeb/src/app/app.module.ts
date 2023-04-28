@@ -26,7 +26,7 @@ import { BuyersRoutingModule } from './buyers/buyers-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProvidersRoutingModule } from './providers/providers-routing.module';
 import { ProvidersModule } from './providers/providers.module';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,7 @@ import { CommonModule } from '@angular/common';
     ProvidersModule,
     ProvidersRoutingModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })

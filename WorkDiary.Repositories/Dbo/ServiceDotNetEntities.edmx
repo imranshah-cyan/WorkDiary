@@ -2693,6 +2693,17 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
           <Parameter Name="start_time" Type="date" Mode="In" />
           <Parameter Name="end_time" Type="date" Mode="In" />
         </Function>
+        <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="string" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="delimiter" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="value" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="StateGetByCountryId_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="COUNTRY_ID" Type="int" Mode="In" />
         </Function>
@@ -2877,6 +2888,38 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
           <Parameter Name="JOB_ID" Type="int" Mode="In" />
           <Parameter Name="USER_ID" Type="int" Mode="In" />
           <Parameter Name="TIME_SHEET_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_GetWorkSummaryImagesByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_ScreenLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="START_ON" Type="datetime" Mode="In" />
+          <Parameter Name="END_ON" Type="datetime" Mode="In" />
+          <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_ScreenShotsByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_ID" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="SessionStart" Type="datetime" />
+                <Property Name="SessionEnd" Type="datetime" />
+                <Property Name="Hour" Type="int" />
+                <Property Name="ProviderID" Type="int" />
+                <Property Name="KeyStrokes" Type="int" />
+                <Property Name="MouseClicks" Type="int" />
+                <Property Name="WindowsSwitched" Type="int" />
+                <Property Name="AggregatedImageIds" Type="varchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
         </Function>
         <Function Name="WidgetBuyerBusinessInfo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BUYER_ID" Type="int" Mode="In" />
@@ -6184,6 +6227,28 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(String)">
+            <Parameter Name="string" Mode="In" Type="String" />
+            <Parameter Name="delimiter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Web_GetWorkSummaryImagesByProviderAndJob" ReturnType="Collection(ServiceDotNet.Web_GetWorkSummaryImagesByProviderAndJob_Result)">
+            <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_ScreenLogs" ReturnType="Collection(ServiceDotNet.Web_ScreenLogs_Result)">
+            <Parameter Name="START_ON" Mode="In" Type="DateTime" />
+            <Parameter Name="END_ON" Mode="In" Type="DateTime" />
+            <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_ScreenShotsByProviderAndJob" IsComposable="true" ReturnType="Collection(ServiceDotNet.Web_ScreenShotsByProviderAndJob_Result)">
+            <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ActiveJobGetByJobId_sp_Result">
           <Property Type="Int32" Name="USER_ID" Nullable="true" />
@@ -8611,6 +8676,39 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
           <End Type="ServiceDotNet.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ServiceDotNet.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <ComplexType Name="Web_GetWorkSummaryImagesByProviderAndJob_Result">
+          <Property Type="Int32" Name="IMAGE_ID" Nullable="false" />
+          <Property Type="String" Name="WORKING_ON" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="ACTIVE_WINDOW_TITLE" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="KEY_STROKE_LEVEL" Nullable="false" />
+          <Property Type="Int32" Name="MOUSE_CLICK" Nullable="false" />
+          <Property Type="Int32" Name="WINDOWS_SWITCHED" Nullable="false" />
+          <Property Type="Int32" Name="ACTIVITY_LEVEL" Nullable="true" />
+          <Property Type="Int32" Name="IMAGE_BINARY" Nullable="true" />
+          <Property Type="String" Name="IMAGE_NAME" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="START_TIME" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="END_TIME" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="TOTAL_MINUTES" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DISPLAY_TIME" Nullable="true" MaxLength="9" />
+        </ComplexType>
+        <ComplexType Name="Web_ScreenLogs_Result">
+          <Property Type="Int32" Name="PROVIDER_ID" Nullable="true" />
+          <Property Type="DateTime" Name="START_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="JOB_ID" Nullable="true" />
+          <Property Type="String" Name="CLASS_DESCRIPTION" Nullable="true" MaxLength="300" />
+          <Property Type="Double" Name="TIME_SPENT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Web_ScreenShotsByProviderAndJob_Result">
+          <Property Type="DateTime" Name="SessionStart" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SessionEnd" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Hour" Nullable="true" />
+          <Property Type="Int32" Name="ProviderID" Nullable="true" />
+          <Property Type="Int32" Name="KeyStrokes" Nullable="true" />
+          <Property Type="Int32" Name="MouseClicks" Nullable="true" />
+          <Property Type="Int32" Name="WindowsSwitched" Nullable="true" />
+          <Property Type="String" Name="AggregatedImageIds" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12714,6 +12812,52 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="SplitString" FunctionName="ServiceDotNet.Store.SplitString" />
+          <FunctionImportMapping FunctionImportName="Web_GetWorkSummaryImagesByProviderAndJob" FunctionName="ServiceDotNet.Store.Web_GetWorkSummaryImagesByProviderAndJob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetWorkSummaryImagesByProviderAndJob_Result">
+                <ScalarProperty Name="IMAGE_ID" ColumnName="IMAGE_ID" />
+                <ScalarProperty Name="WORKING_ON" ColumnName="WORKING_ON" />
+                <ScalarProperty Name="ACTIVE_WINDOW_TITLE" ColumnName="ACTIVE_WINDOW_TITLE" />
+                <ScalarProperty Name="KEY_STROKE_LEVEL" ColumnName="KEY_STROKE_LEVEL" />
+                <ScalarProperty Name="MOUSE_CLICK" ColumnName="MOUSE_CLICK" />
+                <ScalarProperty Name="WINDOWS_SWITCHED" ColumnName="WINDOWS_SWITCHED" />
+                <ScalarProperty Name="ACTIVITY_LEVEL" ColumnName="ACTIVITY_LEVEL" />
+                <ScalarProperty Name="IMAGE_BINARY" ColumnName="IMAGE_BINARY" />
+                <ScalarProperty Name="IMAGE_NAME" ColumnName="IMAGE_NAME" />
+                <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+                <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
+                <ScalarProperty Name="TOTAL_MINUTES" ColumnName="TOTAL_MINUTES" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="DISPLAY_TIME" ColumnName="DISPLAY_TIME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_ScreenLogs" FunctionName="ServiceDotNet.Store.Web_ScreenLogs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_ScreenLogs_Result">
+                <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
+                <ScalarProperty Name="START_ON" ColumnName="START_ON" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="CLASS_DESCRIPTION" ColumnName="CLASS_DESCRIPTION" />
+                <ScalarProperty Name="TIME_SPENT" ColumnName="TIME_SPENT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_ScreenShotsByProviderAndJob" FunctionName="ServiceDotNet.Store.Web_ScreenShotsByProviderAndJob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_ScreenShotsByProviderAndJob_Result">
+                <ScalarProperty Name="SessionStart" ColumnName="SessionStart" />
+                <ScalarProperty Name="SessionEnd" ColumnName="SessionEnd" />
+                <ScalarProperty Name="Hour" ColumnName="Hour" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="KeyStrokes" ColumnName="KeyStrokes" />
+                <ScalarProperty Name="MouseClicks" ColumnName="MouseClicks" />
+                <ScalarProperty Name="WindowsSwitched" ColumnName="WindowsSwitched" />
+                <ScalarProperty Name="AggregatedImageIds" ColumnName="AggregatedImageIds" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
