@@ -4144,5 +4144,51 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_ForgotUserCheck" FunctionName="ServiceDotNet.Store.Web_ForgotUserCheck">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_ForgotUserCheck_Result">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+          <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+          <ScalarProperty Name="MNAME" ColumnName="MNAME" />
+          <ScalarProperty Name="INITIALS" ColumnName="INITIALS" />
+          <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
+          <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
+          <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
+          <ScalarProperty Name="STATE_ID" ColumnName="STATE_ID" />
+          <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+          <ScalarProperty Name="ZIP_POSTAL" ColumnName="ZIP_POSTAL" />
+          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+          <ScalarProperty Name="PAYPAL_ACCOUNT_ID" ColumnName="PAYPAL_ACCOUNT_ID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="PRIMARY_PHONE" ColumnName="PRIMARY_PHONE" />
+          <ScalarProperty Name="SECONDARY_PHONE" ColumnName="SECONDARY_PHONE" />
+          <ScalarProperty Name="OTHER_PHONE" ColumnName="OTHER_PHONE" />
+          <ScalarProperty Name="SECURITY_QUESTION" ColumnName="SECURITY_QUESTION" />
+          <ScalarProperty Name="SECURITY_QUESTION_ANSWER" ColumnName="SECURITY_QUESTION_ANSWER" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="PWD_CHANGED_ON" ColumnName="PWD_CHANGED_ON" />
+          <ScalarProperty Name="LAST_LOGIN_DATE" ColumnName="LAST_LOGIN_DATE" />
+          <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
+          <ScalarProperty Name="NUM_FAILED_LOGIN" ColumnName="NUM_FAILED_LOGIN" />
+          <ScalarProperty Name="IS_LOGGED_IN" ColumnName="IS_LOGGED_IN" />
+          <ScalarProperty Name="ACTIVATED_ON" ColumnName="ACTIVATED_ON" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+          <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+          <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
+          <ScalarProperty Name="MATTERMOST_USER_PASSWORD" ColumnName="MATTERMOST_USER_PASSWORD" />
+          <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

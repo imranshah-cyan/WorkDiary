@@ -14,6 +14,7 @@ namespace WorkDiaryServices.Interfaces
         int? InsertUser(User entity);
         UserValidateLogin_sp_Result ValidateUser(USER model);
         UserGetByEmail_sp_Result UserGetByEmail(string Email);
+        Web_ForgotUserCheck_Result Web_ForgotUserCheck(User user);
         bool UserExists(string altCandidate);
         string UserExistsByEmailOrUserName(string email, string userName);
         bool UserEmailExists(string Email);

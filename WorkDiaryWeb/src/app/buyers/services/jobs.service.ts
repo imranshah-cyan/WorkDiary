@@ -12,8 +12,13 @@ export class JobsService {
 
   constructor(private http: HttpClient) { }
 
-  getJobs(providerId:number): Observable<any> {
-    const url = `${this.baseUrl}/job/GetJobsbyBuyerId?Buyer_Id=${providerId}`;
+  getJobs(Buyer_Id:number): Observable<any> {
+    const url = `${this.baseUrl}/job/GetJobsbyBuyerId?Buyer_Id=${Buyer_Id}`;
+    return this.http.get(url);
+  }
+
+  getTotalActiveJobsByBuyer(Buyer_Id:number): Observable<any> {
+    const url = `${this.baseUrl}/job/?Buyer_Id=${Buyer_Id}`;
     return this.http.get(url);
   }
 

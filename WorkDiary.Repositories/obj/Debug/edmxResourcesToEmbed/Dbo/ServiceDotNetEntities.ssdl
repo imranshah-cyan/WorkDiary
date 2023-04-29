@@ -1149,11 +1149,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <Property Name="CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Data" Type="nvarchar(max)" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="vRandColor">
-          <Property Name="RANDOM_COLOR" Type="varchar" MaxLength="11" />
-        </EntityType>-->
   <Association Name="FK_CLASS_CATEGORY_CAT_ID">
     <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
     <End Role="CLASS" Type="Self.CLASS" Multiplicity="*" />
@@ -2883,6 +2878,11 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
     <Parameter Name="JOB_ID" Type="int" Mode="In" />
     <Parameter Name="USER_ID" Type="int" Mode="In" />
     <Parameter Name="TIME_SHEET_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_ForgotUserCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERNAME" Type="varchar" Mode="In" />
+    <Parameter Name="SECURITY_QUESTION" Type="varchar" Mode="In" />
+    <Parameter Name="ANSWER" Type="varchar" Mode="In" />
   </Function>
   <Function Name="Web_GetWorkSummaryImagesByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="START_DATE" Type="datetime" Mode="In" />

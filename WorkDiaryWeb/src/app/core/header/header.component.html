@@ -1,23 +1,25 @@
-<section class="grid grid-cols-6 items-center">
+
+<section [ngClass]="{'bg-transparent': !isScrolled, 'bg-white': isScrolled, 'border-b-2': isScrolled}"
+        class="grid grid-cols-6 items-center fixed-top px-5 py-2">
   <div class="col-span-1">
     <img src="../../assets/images/logo.png" alt="logo" width="200">
   </div>
-  <div class="text-sm col-span-4 mx-auto">
+  <div class="text-lg col-span-4 mx-auto">
     <ol class="inline-flex gap-5 ">
-      <li><a routerLink="" [routerLinkActive]="'active'">Home</a></li>
-      <li><a routerLink="#howitworks">How it works</a></li>
-      <li><a routerLink="#benefits">Benefits</a></li>
-      <li><a routerLink="#contactus">Contact Us</a></li>
-      <li><a routerLink="#help">Help</a></li>
+      <li [ngClass]="{'active': activeSection === 'home'}"><a href="#home" [routerLinkActive]="'active'">Home</a></li>
+      <li [ngClass]="{'active': activeSection === 'benefits'}"><a href="#benefits" [routerLinkActive]="'active'">Benefits</a></li>
+      <li [ngClass]="{'active': activeSection === 'howitworks'}"><a href="#howitworks">How it works</a></li>
+      <li [ngClass]="{'active': activeSection === 'download'}"><a href="#download">Download</a></li>
+      <li [ngClass]="{'active': activeSection === 'contactus'}"><a href="#contactus">Contact Us</a></li>
     </ol>
   </div>
   <div class="col-span-1 w-full flex items-center justify-end">
-    <p class=""><button
+    <p class="m-0"><button
         class="hover:bg-orange-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
         routerLink="login">
         Login
       </button></p>
-    <p class="pl-3">
+    <p class="pl-3 m-0">
       <button
         class="hover:bg-orange-500 text-blue-700 font- hover:text-black py-2 px-4 border border-blue-500 hover:border-transparent rounded"
         routerLink="register">

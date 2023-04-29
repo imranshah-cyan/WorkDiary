@@ -63,8 +63,15 @@
           </mat-icon>
         </p>
         <p class="pt-2">
-          <input type="text" placeholder="Security Question" class="p-3 rounded w-full bg-transparent border-1 border-gray-400"
-            formControlName="security_question">
+          <select name="security_question" formControlName="security_question"
+            class="p-3 rounded w-full bg-transparent border-1 border-gray-400">
+            <option value="">Select a security question</option>
+            <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+            <option value="What is the name of your first pet?">What is the name of your first pet?</option>
+            <option value="In what city were you born?">In what city were you born?</option>
+            <option value="What is your favorite movie or book?">What is your favorite movie or book?</option>
+            <option value="What was the name of your first school?">What was the name of your first school?</option>
+          </select>
         </p>
         <p class="relative pt-2">
           <input type="{{ security_answer ? 'text' : 'password' }}" placeholder="Security Answer"

@@ -24,6 +24,11 @@ namespace WorkDiaryServices
             return new UserRepository().UserGetByEmail(Email);
         }
 
+        public Web_ForgotUserCheck_Result Web_ForgotUserCheck(User user)
+        {
+            return new UserRepository().Web_ForgotUserCheck(user);
+        }
+
         public bool UserExists(string altCandidate)
         {
             return new UserRepository().UserExists(altCandidate);

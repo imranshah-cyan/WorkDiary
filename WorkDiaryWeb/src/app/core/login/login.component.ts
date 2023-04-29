@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   showPassword = false;
+  loginError = false;
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
@@ -45,6 +46,7 @@ export class LoginComponent {
         }
         else {
           console.log("Incorrect Username & Password");
+          this.loginError = true;
         }
       },
       error => {

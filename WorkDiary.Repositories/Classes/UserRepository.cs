@@ -46,6 +46,11 @@ namespace WorkDiaryRepository
             return _db.UserGetByEmail_sp(email).FirstOrDefault();
         }
 
+        public Web_ForgotUserCheck_Result Web_ForgotUserCheck(User entity)
+        {
+            return _db.Web_ForgotUserCheck(entity.USER_NAME, entity.SECURITY_QUESTION, entity.SECURITY_QUESTION_ANSWER).FirstOrDefault();
+        }
+
         public GetTodayWorkSummaryByProvider_Result GetTodayWorkSummaryByProvider(int userId, int currentJobId, DateTime dateTime)
         {
             return _db.GetTodayWorkSummaryByProvider(dateTime, userId, currentJobId).FirstOrDefault();

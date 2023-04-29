@@ -3717,5 +3717,22 @@ namespace WorkDiaryRepository.Dbo
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Web_ScreenShotsByProviderAndJob_Result>("[ServiceDotNetEntities].[Web_ScreenShotsByProviderAndJob](@START_DATE, @END_DATE, @PROVIDER_ID, @JOB_ID)", sTART_DATEParameter, eND_DATEParameter, pROVIDER_IDParameter, jOB_IDParameter);
         }
+    
+        public virtual ObjectResult<Web_ForgotUserCheck_Result> Web_ForgotUserCheck(string uSERNAME, string sECURITY_QUESTION, string aNSWER)
+        {
+            var uSERNAMEParameter = uSERNAME != null ?
+                new ObjectParameter("USERNAME", uSERNAME) :
+                new ObjectParameter("USERNAME", typeof(string));
+    
+            var sECURITY_QUESTIONParameter = sECURITY_QUESTION != null ?
+                new ObjectParameter("SECURITY_QUESTION", sECURITY_QUESTION) :
+                new ObjectParameter("SECURITY_QUESTION", typeof(string));
+    
+            var aNSWERParameter = aNSWER != null ?
+                new ObjectParameter("ANSWER", aNSWER) :
+                new ObjectParameter("ANSWER", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_ForgotUserCheck_Result>("Web_ForgotUserCheck", uSERNAMEParameter, sECURITY_QUESTIONParameter, aNSWERParameter);
+        }
     }
 }
