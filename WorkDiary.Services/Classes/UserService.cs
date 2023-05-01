@@ -19,9 +19,19 @@ namespace WorkDiaryServices
             return new UserRepository().ValidateUser(model);
         }
 
+        public UserInfoGetById_sp_Result UserInfoGetById(int User_id)
+        {
+            return new UserRepository().UserInfoGetById(User_id);
+        }
+
         public UserGetByEmail_sp_Result UserGetByEmail(string Email)
         {
             return new UserRepository().UserGetByEmail(Email);
+        }
+
+        public Web_ForgotUserCheck_Result Web_ForgotUserCheck(User user)
+        {
+            return new UserRepository().Web_ForgotUserCheck(user);
         }
 
         public bool UserExists(string altCandidate)

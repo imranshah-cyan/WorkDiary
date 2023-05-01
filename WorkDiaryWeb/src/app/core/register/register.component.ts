@@ -38,6 +38,7 @@ export class RegisterComponent {
   }
 
   register() {
+    console.log(this.myForm.value);
     this.registerService.register(this.myForm.value)
       .subscribe(
         response => {
@@ -46,7 +47,7 @@ export class RegisterComponent {
 
           // Route to the comp accoding to user_type
           if (response.ROLE_ID == 2)
-            this.router.navigate(['/providerlogs']);
+            this.router.navigate(['/providers']);
           else if (response.ROLE_ID == 3)
             this.router.navigate(['/buyers']);
           else

@@ -1,4 +1,34 @@
 export interface Provider {
-  USER_ID: number;
-  FULL_NAME: string;
+  USER_ID: number
+  ROLE_ID: number
+  FULL_NAME: string
+  FNAME: any
+  LNAME: any
+  MNAME: any
+  INITIALS: any
+  EMAIL: string
+  USER_NAME: string
+  PASSWORD: string
+  PRIMARY_PHONE: any
+  SECONDARY_PHONE: any
+  OTHER_PHONE: any
+  SECURITY_QUESTION: string
+  SECURITY_QUESTION_ANSWER: string
+  NOTES: any
+  PWD_CHANGED_ON: string
+  LAST_LOGIN_DATE: string
+  IS_LOCKED: boolean
+  NUM_FAILED_LOGIN: number
+  ACTIVATED_ON: string
+  CREATED_ON: string
+  CREATED_ON_DISPLAY: string
+  CREATED_BY: any
+  MODIFIED_ON: any
+  MODIFIED_BY: any
+  IS_ARCHIVED: boolean
+  ARCHIVED_ON: any
+  ARCHIVED_BY: any
+  MATTERMOST_USER_ID: string
+  MATTERMOST_ACCESS_TOKEN: any
+  PAYPAL_ACCOUNT_ID: any
 }

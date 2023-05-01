@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CacheStorageService } from '../Shared/services/CacheStorage.service';
 
 @Component({
   selector: 'app-providers',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class ProvidersComponent {
 
+  currentUserName: string = "";
+
+  constructor(private cacheStorage: CacheStorageService) { }
+
+  ngOnInit() {
+    this.currentUserName = this.cacheStorage.get("User").USER_NAME;
+  }
 }

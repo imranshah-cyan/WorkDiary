@@ -15,6 +15,11 @@ namespace WorkDiaryServices.Classes
         {
             return new BuyerRepository().BuyerProviders(buyer_Id);
         }
+
+        public int BuyerProvidersCount(int? buyer_Id)
+        {
+            return new BuyerRepository().BuyerProvidersCount(buyer_Id);
+        }
     }
 }
 

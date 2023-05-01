@@ -48,6 +48,12 @@ namespace WorkDiaryRepository
                 throw e;
             }
         }
+
+        public int? TotalJobsByBuyer(int buyerId)
+        {
+            return _db.Web_TotalJobsByBuyer(buyerId).FirstOrDefault();
+        }
+
         public List<GetProvidersByJobId_Result> GetProviderByJobId(int Job_Id, int Buyer_Id)
         {
             try

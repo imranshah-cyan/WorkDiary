@@ -724,6 +724,9 @@
     <Compile Include="Dbo\WD_TimeSheetGetAll_sp_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dbo\Web_ForgotUserCheck_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dbo\Web_GetWorkSummaryImagesByProviderAndJob_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>

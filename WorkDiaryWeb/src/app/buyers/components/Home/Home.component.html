@@ -1,3 +1,104 @@
-<p>
-  Home works!
-</p>
+<section class="">
+<hr>
+<p class="text-lg px-4 my-3">Dashboard</p>
+<hr>
+
+<div class="px-4">
+
+  <!-- Stats -->
+  <div class="grid grid-cols-4 gap-10 my-3">
+
+    <div class="p-10 rounded shadow bg-gray-100 hover:shadow-lg hover:scale-105 hover:bg-gray-700 hover:text-white transition duration-500">
+      <p>Active Jobs</p>
+      <hr class="my-2">
+      <p class="text-6xl">{{ TotalJobs }}</p>
+    </div>
+
+    <div class="p-10 rounded shadow bg-gray-100 hover:shadow-lg hover:scale-105 hover:bg-gray-700 hover:text-white transition duration-500">
+      <p>Active Providers Working</p>
+      <hr class="my-2">
+      <p class="text-6xl">{{ TotalProviders }}</p>
+    </div>
+    <div class="p-10 rounded shadow bg-gray-100 hover:shadow-lg hover:scale-105 hover:bg-gray-700 hover:text-white transition duration-500">
+      <p>Job Offers Sent</p>
+      <hr class="my-2">
+      <p class="text-6xl">23</p>
+    </div>
+    <div class="p-10 rounded shadow bg-gray-100 hover:shadow-lg hover:scale-105 hover:bg-gray-700 hover:text-white transition duration-500">
+      <p>Job Offers Received</p>
+      <hr class="my-2">
+      <p class="text-6xl">100</p>
+    </div>
+  </div>
+
+  <!-- List of Jobs And Providers -->
+  <div class="grid grid-cols-4 gap-10">
+    <div class="col-span-3 p-10 rounded shadow">
+      <p>Active Jobs</p>
+      <hr class="my-2">
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="height: 400px;">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Project Name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Description
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Created On
+              </th>
+              <th scope="col" class="px-6 py-3 text-right">
+                Details
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white border-b " *ngFor="let job of jobs">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                {{ job.JOB_TITLE }}
+              </th>
+              <td class="px-6 py-4 text-gray-900 ">
+                description 1
+              </td>
+              <td>
+                {{ job.CREATED_ON }}
+              </td>
+              <td class="px-6 py-4 text-right">
+                <a (click)="JobDetails(job.JOB_ID)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="p-10 rounded shadow w-full" >
+      <p>Active Providers</p>
+      <hr class="my-2">
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg " style="height: 400px;">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" >
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Provider Name
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white border-b " *ngFor="let provider of ServiceProviders">
+              <td class="py-4">
+                <a (click)="viewProfile(provider.USER_ID)" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap  hover:underline">{{provider.FULL_NAME}}</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</section>

@@ -9,25 +9,25 @@
     </div>
   </div>
 
-  <div class=" mx-auto w-2/4 mb-5">
+  <div class=" mx-auto w-2/4 mb-5 pb-5">
     <p class="mb-1 text-lg font-normal">Active Jobs</p>
     <hr class="mb-2">
 
     <!-- Active Jobs List -->
-    <div class="bg-gray-300 p-3 rounded-md mb-3" *ngFor="let job of jobs; let i = index;">
+    <div class="bg-gray-50 border-1 p-3 rounded-md mb-3" *ngFor="let job of jobs; let i = index;">
       <!-- <h4>Job # {{ job.JOB_ID }}</h4> -->
       <h4 class="pb-0 mb-1">{{ job.JOB_TITLE }}</h4>
       <hr>
       <p class="pt-2">{{ job.DESCRIPTION }}</p>
       <div class="flex w-full flex-wrap">
         <div data-te-chip-init data-te-ripple-init
-          class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-between rounded-[16px] border border-[#3b71ca] bg-orange-400 py-0 px-[12px] text-[13px] font-normal normal-case leading-loose text-[#010101] shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none"
+          class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-between rounded-[16px] border border-[#3b71ca]  bg-blue-100 py-0 px-[12px] text-[13px] font-normal normal-case leading-loose text-[#010101] shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none"
           data-te-ripple-color="dark"
           *ngFor="let provider of providers[job.JOB_ID]">
           {{ provider.FULL_NAME }}
         </div>
       </div>
-      <a href="" class="flex justify-end hover:text-blue-600">More Details</a>
+      <a (click)="JobDetails(job.JOB_ID)" class="flex justify-end hover:text-blue-600">More Details</a>
     </div>
 
   </div>

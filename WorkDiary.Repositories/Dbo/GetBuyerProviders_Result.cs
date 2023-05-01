@@ -52,14 +52,5 @@ namespace WorkDiaryRepository.Dbo
         public string MATTERMOST_USER_ID { get; set; }
         public string MATTERMOST_USER_PASSWORD { get; set; }
         public string MATTERMOST_ACCESS_TOKEN { get; set; }
-        public int JOB_AWARDED_ID { get; set; }
-        public Nullable<int> JOB_OFFER_ID { get; set; }
-        public Nullable<int> JOB_ID { get; set; }
-        public Nullable<int> CURRENCY_ID { get; set; }
-        public Nullable<decimal> AMOUNT { get; set; }
-        public Nullable<System.DateTime> DATE_AWARDED { get; set; }
-        public Nullable<System.DateTime> DATE_COMPLETED { get; set; }
-        public string BUYER_REVIEW { get; set; }
-        public string PROVIDER_REVIEW { get; set; }
     }
 }

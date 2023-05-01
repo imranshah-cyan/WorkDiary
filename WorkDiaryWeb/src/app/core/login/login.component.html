@@ -11,7 +11,10 @@
     </div>
     <div class="flex items-center w-3/4">
       <form [formGroup]="loginForm" (ngSubmit)="login()" class="w-full">
-        <h2 class="heading">Login to Work Diary</h2>
+        <h2 class="heading">Login into Work Diary</h2>
+        <p class="alert alert-danger p-3 text-black rounded w-full" *ngIf="loginError">
+          Incorrect Username or Password
+        </p>
         <p class="pt-2">
           <input type="text" placeholder="Username" class="p-3 rounded w-full bg-transparent border-1 border-gray-400" formControlName="username">
         </p>
@@ -22,6 +25,9 @@
             (click)="toggleShowPassword()">
             {{ showPassword ? 'visibility' : 'visibility_off' }}
           </mat-icon>
+        </p>
+        <p class="w-full text-right mt-3">
+          <a [routerLink]="['/forgot']" class="register-link text-blue-700">Forgot Password?</a>
         </p>
         <p class="pt-2">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white p-3 rounded w-full">

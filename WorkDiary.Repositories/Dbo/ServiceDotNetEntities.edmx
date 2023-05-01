@@ -1154,11 +1154,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
           <Property Name="Data" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="vRandColor">
-          <Property Name="RANDOM_COLOR" Type="varchar" MaxLength="11" />
-        </EntityType>-->
         <Association Name="FK_CLASS_CATEGORY_CAT_ID">
           <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
           <End Role="CLASS" Type="Self.CLASS" Multiplicity="*" />
@@ -2889,6 +2884,11 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
           <Parameter Name="USER_ID" Type="int" Mode="In" />
           <Parameter Name="TIME_SHEET_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Web_ForgotUserCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USERNAME" Type="varchar" Mode="In" />
+          <Parameter Name="SECURITY_QUESTION" Type="varchar" Mode="In" />
+          <Parameter Name="ANSWER" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Web_GetWorkSummaryImagesByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="START_DATE" Type="datetime" Mode="In" />
           <Parameter Name="END_DATE" Type="datetime" Mode="In" />
@@ -2920,6 +2920,12 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
               </RowType>
             </CollectionType>
           </ReturnType>
+        </Function>
+        <Function Name="Web_TotalJobsByBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="buyer_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_TotalProvidersByBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="buyer_id" Type="int" Mode="In" />
         </Function>
         <Function Name="WidgetBuyerBusinessInfo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BUYER_ID" Type="int" Mode="In" />
@@ -5478,9 +5484,6 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
           <FunctionImport Name="GetAllPostProjectDetails_sp" ReturnType="Collection(ServiceDotNet.GetAllPostProjectDetails_sp_Result)">
           <Parameter Name="jobId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetBuyerProviders" ReturnType="Collection(ServiceDotNet.GetBuyerProviders_Result)">
-          <Parameter Name="buyer_id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetImagesInGivenTime" ReturnType="Collection(ServiceDotNet.GetImagesInGivenTime_Result)">
             <Parameter Name="START_TIME" Mode="In" Type="DateTime" />
             <Parameter Name="END_TIME" Mode="In" Type="DateTime" />
@@ -6249,6 +6252,20 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
             <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
             <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Web_ForgotUserCheck" ReturnType="Collection(ServiceDotNet.Web_ForgotUserCheck_Result)">
+            <Parameter Name="USERNAME" Mode="In" Type="String" />
+            <Parameter Name="SECURITY_QUESTION" Mode="In" Type="String" />
+            <Parameter Name="ANSWER" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Web_TotalProvidersByBuyer" ReturnType="Collection(Int32)">
+          <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_TotalJobsByBuyer" ReturnType="Collection(Int32)">
+          <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetBuyerProviders" ReturnType="Collection(ServiceDotNet.GetBuyerProviders_Result)">
+            <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ActiveJobGetByJobId_sp_Result">
           <Property Type="Int32" Name="USER_ID" Nullable="true" />
@@ -6621,56 +6638,6 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
           <Property Type="String" Name="SKILL_NAME" Nullable="true" MaxLength="300" />
           <Property Type="String" Name="NAME" Nullable="true" MaxLength="300" />
           <Property Type="Int32" Name="CAT_ID" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetBuyerProviders_Result">
-          <Property Type="Int32" Name="USER_ID" Nullable="false" />
-          <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
-          <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
-          <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
-          <Property Type="Int32" Name="CITY_ID" Nullable="true" />
-          <Property Type="Int32" Name="STATE_ID" Nullable="true" />
-          <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
-          <Property Type="String" Name="ZIP_POSTAL" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="IMAGE_URL" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
-          <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
-          <Property Type="String" Name="NOTES" Nullable="true" />
-          <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
-          <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
-          <Property Type="Boolean" Name="IS_LOGGED_IN" Nullable="true" />
-          <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
-          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
-          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
-          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
-          <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="JOB_AWARDED_ID" Nullable="false" />
-          <Property Type="Int32" Name="JOB_OFFER_ID" Nullable="true" />
-          <Property Type="Int32" Name="JOB_ID" Nullable="true" />
-          <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
-          <Property Type="Decimal" Name="AMOUNT" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="DateTime" Name="DATE_AWARDED" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="DATE_COMPLETED" Nullable="true" Precision="23" />
-          <Property Type="String" Name="BUYER_REVIEW" Nullable="true" MaxLength="1500" />
-          <Property Type="String" Name="PROVIDER_REVIEW" Nullable="true" MaxLength="1500" />
         </ComplexType>
         <ComplexType Name="GetImagesInGivenTime_Result">
           <Property Type="Int32" Name="IMAGE_ID" Nullable="false" />
@@ -8709,6 +8676,89 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
           <Property Type="Int32" Name="WindowsSwitched" Nullable="true" />
           <Property Type="String" Name="AggregatedImageIds" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="Web_ForgotUserCheck_Result">
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+          <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+          <Property Type="Int32" Name="STATE_ID" Nullable="true" />
+          <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
+          <Property Type="String" Name="ZIP_POSTAL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="IMAGE_URL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="NOTES" Nullable="true" />
+          <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
+          <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
+          <Property Type="Boolean" Name="IS_LOGGED_IN" Nullable="true" />
+          <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+          <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="GetBuyerProviders_Result">
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+          <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+          <Property Type="Int32" Name="STATE_ID" Nullable="true" />
+          <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
+          <Property Type="String" Name="ZIP_POSTAL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="IMAGE_URL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="NOTES" Nullable="true" />
+          <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
+          <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
+          <Property Type="Boolean" Name="IS_LOGGED_IN" Nullable="true" />
+          <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10350,60 +10400,6 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
                 <ScalarProperty Name="SKILL_NAME" ColumnName="SKILL_NAME" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="CAT_ID" ColumnName="CAT_ID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetBuyerProviders" FunctionName="ServiceDotNet.Store.GetBuyerProviders">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ServiceDotNet.GetBuyerProviders_Result">
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
-                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
-                <ScalarProperty Name="FNAME" ColumnName="FNAME" />
-                <ScalarProperty Name="LNAME" ColumnName="LNAME" />
-                <ScalarProperty Name="MNAME" ColumnName="MNAME" />
-                <ScalarProperty Name="INITIALS" ColumnName="INITIALS" />
-                <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
-                <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
-                <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
-                <ScalarProperty Name="STATE_ID" ColumnName="STATE_ID" />
-                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
-                <ScalarProperty Name="ZIP_POSTAL" ColumnName="ZIP_POSTAL" />
-                <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
-                <ScalarProperty Name="PAYPAL_ACCOUNT_ID" ColumnName="PAYPAL_ACCOUNT_ID" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="PRIMARY_PHONE" ColumnName="PRIMARY_PHONE" />
-                <ScalarProperty Name="SECONDARY_PHONE" ColumnName="SECONDARY_PHONE" />
-                <ScalarProperty Name="OTHER_PHONE" ColumnName="OTHER_PHONE" />
-                <ScalarProperty Name="SECURITY_QUESTION" ColumnName="SECURITY_QUESTION" />
-                <ScalarProperty Name="SECURITY_QUESTION_ANSWER" ColumnName="SECURITY_QUESTION_ANSWER" />
-                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
-                <ScalarProperty Name="PWD_CHANGED_ON" ColumnName="PWD_CHANGED_ON" />
-                <ScalarProperty Name="LAST_LOGIN_DATE" ColumnName="LAST_LOGIN_DATE" />
-                <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
-                <ScalarProperty Name="NUM_FAILED_LOGIN" ColumnName="NUM_FAILED_LOGIN" />
-                <ScalarProperty Name="IS_LOGGED_IN" ColumnName="IS_LOGGED_IN" />
-                <ScalarProperty Name="ACTIVATED_ON" ColumnName="ACTIVATED_ON" />
-                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
-                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
-                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
-                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
-                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
-                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
-                <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
-                <ScalarProperty Name="MATTERMOST_USER_PASSWORD" ColumnName="MATTERMOST_USER_PASSWORD" />
-                <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
-                <ScalarProperty Name="JOB_AWARDED_ID" ColumnName="JOB_AWARDED_ID" />
-                <ScalarProperty Name="JOB_OFFER_ID" ColumnName="JOB_OFFER_ID" />
-                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
-                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
-                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
-                <ScalarProperty Name="DATE_AWARDED" ColumnName="DATE_AWARDED" />
-                <ScalarProperty Name="DATE_COMPLETED" ColumnName="DATE_COMPLETED" />
-                <ScalarProperty Name="BUYER_REVIEW" ColumnName="BUYER_REVIEW" />
-                <ScalarProperty Name="PROVIDER_REVIEW" ColumnName="PROVIDER_REVIEW" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -12855,6 +12851,99 @@ warning 6013: The table/view 'ServiceDotNet.dbo.vRandColor' does not have a prim
                 <ScalarProperty Name="MouseClicks" ColumnName="MouseClicks" />
                 <ScalarProperty Name="WindowsSwitched" ColumnName="WindowsSwitched" />
                 <ScalarProperty Name="AggregatedImageIds" ColumnName="AggregatedImageIds" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_ForgotUserCheck" FunctionName="ServiceDotNet.Store.Web_ForgotUserCheck">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_ForgotUserCheck_Result">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+                <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+                <ScalarProperty Name="MNAME" ColumnName="MNAME" />
+                <ScalarProperty Name="INITIALS" ColumnName="INITIALS" />
+                <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
+                <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
+                <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
+                <ScalarProperty Name="STATE_ID" ColumnName="STATE_ID" />
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+                <ScalarProperty Name="ZIP_POSTAL" ColumnName="ZIP_POSTAL" />
+                <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+                <ScalarProperty Name="PAYPAL_ACCOUNT_ID" ColumnName="PAYPAL_ACCOUNT_ID" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PRIMARY_PHONE" ColumnName="PRIMARY_PHONE" />
+                <ScalarProperty Name="SECONDARY_PHONE" ColumnName="SECONDARY_PHONE" />
+                <ScalarProperty Name="OTHER_PHONE" ColumnName="OTHER_PHONE" />
+                <ScalarProperty Name="SECURITY_QUESTION" ColumnName="SECURITY_QUESTION" />
+                <ScalarProperty Name="SECURITY_QUESTION_ANSWER" ColumnName="SECURITY_QUESTION_ANSWER" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+                <ScalarProperty Name="PWD_CHANGED_ON" ColumnName="PWD_CHANGED_ON" />
+                <ScalarProperty Name="LAST_LOGIN_DATE" ColumnName="LAST_LOGIN_DATE" />
+                <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
+                <ScalarProperty Name="NUM_FAILED_LOGIN" ColumnName="NUM_FAILED_LOGIN" />
+                <ScalarProperty Name="IS_LOGGED_IN" ColumnName="IS_LOGGED_IN" />
+                <ScalarProperty Name="ACTIVATED_ON" ColumnName="ACTIVATED_ON" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+                <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+                <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
+                <ScalarProperty Name="MATTERMOST_USER_PASSWORD" ColumnName="MATTERMOST_USER_PASSWORD" />
+                <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_TotalProvidersByBuyer" FunctionName="ServiceDotNet.Store.Web_TotalProvidersByBuyer" />
+          <FunctionImportMapping FunctionImportName="Web_TotalJobsByBuyer" FunctionName="ServiceDotNet.Store.Web_TotalJobsByBuyer" />
+          <FunctionImportMapping FunctionImportName="GetBuyerProviders" FunctionName="ServiceDotNet.Store.GetBuyerProviders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.GetBuyerProviders_Result">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+                <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+                <ScalarProperty Name="MNAME" ColumnName="MNAME" />
+                <ScalarProperty Name="INITIALS" ColumnName="INITIALS" />
+                <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
+                <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
+                <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
+                <ScalarProperty Name="STATE_ID" ColumnName="STATE_ID" />
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+                <ScalarProperty Name="ZIP_POSTAL" ColumnName="ZIP_POSTAL" />
+                <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+                <ScalarProperty Name="PAYPAL_ACCOUNT_ID" ColumnName="PAYPAL_ACCOUNT_ID" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PRIMARY_PHONE" ColumnName="PRIMARY_PHONE" />
+                <ScalarProperty Name="SECONDARY_PHONE" ColumnName="SECONDARY_PHONE" />
+                <ScalarProperty Name="OTHER_PHONE" ColumnName="OTHER_PHONE" />
+                <ScalarProperty Name="SECURITY_QUESTION" ColumnName="SECURITY_QUESTION" />
+                <ScalarProperty Name="SECURITY_QUESTION_ANSWER" ColumnName="SECURITY_QUESTION_ANSWER" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+                <ScalarProperty Name="PWD_CHANGED_ON" ColumnName="PWD_CHANGED_ON" />
+                <ScalarProperty Name="LAST_LOGIN_DATE" ColumnName="LAST_LOGIN_DATE" />
+                <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
+                <ScalarProperty Name="NUM_FAILED_LOGIN" ColumnName="NUM_FAILED_LOGIN" />
+                <ScalarProperty Name="IS_LOGGED_IN" ColumnName="IS_LOGGED_IN" />
+                <ScalarProperty Name="ACTIVATED_ON" ColumnName="ACTIVATED_ON" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+                <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
+                <ScalarProperty Name="MATTERMOST_USER_PASSWORD" ColumnName="MATTERMOST_USER_PASSWORD" />
+                <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

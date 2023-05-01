@@ -27,12 +27,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProvidersRoutingModule } from './providers/providers-routing.module';
 import { ProvidersModule } from './providers/providers.module';
 import { CommonModule, DatePipe } from '@angular/common';
+import { ForgotPasswordComponent } from './core/forgotPassword/forgotPassword.component';
+import { ResetPasswordComponent } from './core/resetPassword/resetPassword.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
     HomeComponent,
     ProviderHeaderComponent,
     HeaderComponent,

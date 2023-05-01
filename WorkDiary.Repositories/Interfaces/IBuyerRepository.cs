@@ -10,5 +10,7 @@ namespace WorkDiaryRepository.Interfaces
     public interface IBuyerRepository
     {
         List<GetBuyerProviders_Result> BuyerProviders(int? buyer_Id);
+        int BuyerProvidersCount(int? buyer_Id);
     }
+
 }

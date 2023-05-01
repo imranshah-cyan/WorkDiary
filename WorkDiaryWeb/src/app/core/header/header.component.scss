@@ -1,4 +1,9 @@
 .active {
   font-weight: 400;
-  color: black;
+  color: green;
+}
+
+li.active a {
+  color: rgb(10, 132, 181);
+  font-weight: 600;
 }

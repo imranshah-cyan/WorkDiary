@@ -11,6 +11,9 @@ import { WorkdiaryComponent } from './components/workdiary/workdiary.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ProfileComponentComponent } from '../Shared/components/profileComponent/profileComponent.component';
 import { UpdatePasswordComponent } from '../Shared/components/UpdatePassword/UpdatePassword.component';
+import { ProviderProfileComponent } from './components/provider-profile/provider-profile.component';
+import { JobDetailsComponent } from './components/job-details/job-details.component';
+import { JobOffersComponent } from './components/job-offers/job-offers.component';
 
 const routes: Routes = [
   {
@@ -19,7 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent1,
+        component: HomeComponent1
       },
       {
         path: 'home',
@@ -40,6 +43,10 @@ const routes: Routes = [
       {
         path: 'providercard',
         component: ProviderCardComponent
+      },
+      {
+        path: 'offers',
+        component: JobOffersComponent
       },
       {
         path: 'workdiary',
@@ -63,6 +70,14 @@ const routes: Routes = [
             component: UpdatePasswordComponent
           }
         ]
+      },
+      {
+        path: 'provProfile',
+        component: ProviderProfileComponent
+      },
+      {
+        path: 'jobDetails',
+        component: JobDetailsComponent
       }
     ]
   }

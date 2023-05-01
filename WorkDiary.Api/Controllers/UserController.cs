@@ -33,6 +33,13 @@ namespace ServiceDotNet.Api.Controllers
             return new UserRepository().GetUserList(-1,-1,-1,-1,-1,null,null);
         }
 
+        [Route("{user_id}")]
+        [HttpGet]
+        public UserInfoGetById_sp_Result GetUserById(int user_id)
+        {
+            return new UserService().UserInfoGetById(user_id);
+        }
+
         // Insert New User
         [Route("insert")]
         [System.Web.Http.HttpPost]
@@ -55,27 +62,38 @@ namespace ServiceDotNet.Api.Controllers
                 return Json(new { message = "Failed to Insert User" }); ;
         }
 
+        // Forgot Password
+        [Route("forgotPassword")]
+        [HttpGet]
+        public IHttpActionResult forgotPass(string username, string question, string answer)
+        {
+            var user = new User { USER_NAME = username, SECURITY_QUESTION = question, SECURITY_QUESTION_ANSWER = answer };
+            
+            if (question != null || answer != null)
+            {
+                var result = new UserService().Web_ForgotUserCheck(user);
+                if (result == null)
+                    return Json(new { message = "User Not Found" });
+                return Json(result);
+            }
+            return Json(new { message = "Enter question and Answer" });
+        }
+
         // Change Password
         [Route("updatePassword")]
         [System.Web.Http.HttpPost]
-        public IHttpActionResult UpdatePass([FromBody]User user)
+        public IHttpActionResult UpdatePass(int userId, string password)
         {
-            //First check the user exists or not
-            if (new UserService().UserExists(user.USER_NAME))
-            {
-                int? res = new UserService().UserChangePassword(user);
-                if(res.HasValue)
-                {
-                    return Json(res);
-                }
-                return Json(new { message = "Failed to Update User Password" });
-            }
+            var user = new User { USER_ID = userId, PASSWORD = password};
 
+            int? res = new UserService().UserChangePassword(user);
+            if (res.HasValue)
+            {
+                return Json(res);
+            }
+            
             return Json(new { message = "User not exists" }); ;
         }
-
-
-
-
+        
     }
 }

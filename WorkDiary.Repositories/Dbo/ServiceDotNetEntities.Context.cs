@@ -1184,15 +1184,6 @@ namespace WorkDiaryRepository.Dbo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllPostProjectDetails_sp_Result>("GetAllPostProjectDetails_sp", jobIdParameter);
         }
     
-        public virtual ObjectResult<GetBuyerProviders_Result> GetBuyerProviders(Nullable<int> buyer_id)
-        {
-            var buyer_idParameter = buyer_id.HasValue ?
-                new ObjectParameter("buyer_id", buyer_id) :
-                new ObjectParameter("buyer_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBuyerProviders_Result>("GetBuyerProviders", buyer_idParameter);
-        }
-    
         public virtual ObjectResult<GetImagesInGivenTime_Result> GetImagesInGivenTime(Nullable<System.DateTime> sTART_TIME, Nullable<System.DateTime> eND_TIME, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
         {
             var sTART_TIMEParameter = sTART_TIME.HasValue ?
@@ -3716,6 +3707,50 @@ namespace WorkDiaryRepository.Dbo
                 new ObjectParameter("JOB_ID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Web_ScreenShotsByProviderAndJob_Result>("[ServiceDotNetEntities].[Web_ScreenShotsByProviderAndJob](@START_DATE, @END_DATE, @PROVIDER_ID, @JOB_ID)", sTART_DATEParameter, eND_DATEParameter, pROVIDER_IDParameter, jOB_IDParameter);
+        }
+    
+        public virtual ObjectResult<Web_ForgotUserCheck_Result> Web_ForgotUserCheck(string uSERNAME, string sECURITY_QUESTION, string aNSWER)
+        {
+            var uSERNAMEParameter = uSERNAME != null ?
+                new ObjectParameter("USERNAME", uSERNAME) :
+                new ObjectParameter("USERNAME", typeof(string));
+    
+            var sECURITY_QUESTIONParameter = sECURITY_QUESTION != null ?
+                new ObjectParameter("SECURITY_QUESTION", sECURITY_QUESTION) :
+                new ObjectParameter("SECURITY_QUESTION", typeof(string));
+    
+            var aNSWERParameter = aNSWER != null ?
+                new ObjectParameter("ANSWER", aNSWER) :
+                new ObjectParameter("ANSWER", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_ForgotUserCheck_Result>("Web_ForgotUserCheck", uSERNAMEParameter, sECURITY_QUESTIONParameter, aNSWERParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_TotalProvidersByBuyer(Nullable<int> buyer_id)
+        {
+            var buyer_idParameter = buyer_id.HasValue ?
+                new ObjectParameter("buyer_id", buyer_id) :
+                new ObjectParameter("buyer_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_TotalProvidersByBuyer", buyer_idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_TotalJobsByBuyer(Nullable<int> buyer_id)
+        {
+            var buyer_idParameter = buyer_id.HasValue ?
+                new ObjectParameter("buyer_id", buyer_id) :
+                new ObjectParameter("buyer_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_TotalJobsByBuyer", buyer_idParameter);
+        }
+    
+        public virtual ObjectResult<GetBuyerProviders_Result> GetBuyerProviders(Nullable<int> buyer_id)
+        {
+            var buyer_idParameter = buyer_id.HasValue ?
+                new ObjectParameter("buyer_id", buyer_id) :
+                new ObjectParameter("buyer_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBuyerProviders_Result>("GetBuyerProviders", buyer_idParameter);
         }
     }
 }

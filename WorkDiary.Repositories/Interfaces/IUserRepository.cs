@@ -12,7 +12,9 @@ namespace WorkDiaryRepository.Interfaces
     {
         int? InsertUser(User entity);
         UserValidateLogin_sp_Result ValidateUser(USER entity);
+        UserInfoGetById_sp_Result UserInfoGetById(int user_id);
         UserGetByEmail_sp_Result UserGetByEmail(string email);
+        Web_ForgotUserCheck_Result Web_ForgotUserCheck(User entity);
         GetTodayWorkSummaryByProvider_Result GetTodayWorkSummaryByProvider(int userId, int currentJobId, DateTime dateTime);
         bool UserExists(string altCandidate);
         string UserExistsByEmailOrUserName(string email, string userName);

@@ -14,6 +14,11 @@ namespace WorkDiaryServices.Classes
             return new JobRepository().InsertJob(job);
         }
 
+        public int? TotalJobsByBuyer(int buyerId)
+        {
+            return new JobRepository().TotalJobsByBuyer(buyerId);
+        }
+
         public List<GetProvidersByJobId_Result> GetProvidersByJobId(int Job_Id, int Buyer_Id)
         {
             return new JobRepository().GetProviderByJobId(Job_Id, Buyer_Id);
