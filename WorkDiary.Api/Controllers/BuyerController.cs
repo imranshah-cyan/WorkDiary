@@ -19,5 +19,19 @@ namespace ServiceDotNet.Api.Controllers
         {
             return new BuyerService().BuyerProviders(buyer_Id);
         }
+
+        [HttpGet]
+        [Route("totalJobs/{buyer_Id}")]
+        public int? BuyerProvidersCount(int buyer_Id)
+        {
+            return new JobService().TotalJobsByBuyer(buyer_Id);
+        }
+        
+        [HttpGet]
+        [Route("totalProviders/{buyer_Id}")]
+        public int BuyerProvidersCount(int? buyer_Id)
+        {
+            return new BuyerService().BuyerProvidersCount(buyer_Id);
+        }
     }
 }

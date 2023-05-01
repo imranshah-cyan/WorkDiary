@@ -2196,9 +2196,6 @@
     <FunctionImport Name="GetAllPostProjectDetails_sp" ReturnType="Collection(ServiceDotNet.GetAllPostProjectDetails_sp_Result)">
       <Parameter Name="jobId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetBuyerProviders" ReturnType="Collection(ServiceDotNet.GetBuyerProviders_Result)">
-      <Parameter Name="buyer_id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="GetImagesInGivenTime" ReturnType="Collection(ServiceDotNet.GetImagesInGivenTime_Result)">
       <Parameter Name="START_TIME" Mode="In" Type="DateTime" />
       <Parameter Name="END_TIME" Mode="In" Type="DateTime" />
@@ -2972,6 +2969,15 @@
       <Parameter Name="SECURITY_QUESTION" Mode="In" Type="String" />
       <Parameter Name="ANSWER" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="Web_TotalProvidersByBuyer" ReturnType="Collection(Int32)">
+      <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_TotalJobsByBuyer" ReturnType="Collection(Int32)">
+      <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetBuyerProviders" ReturnType="Collection(ServiceDotNet.GetBuyerProviders_Result)">
+      <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ActiveJobGetByJobId_sp_Result">
     <Property Type="Int32" Name="USER_ID" Nullable="true" />
@@ -3344,56 +3350,6 @@
     <Property Type="String" Name="SKILL_NAME" Nullable="true" MaxLength="300" />
     <Property Type="String" Name="NAME" Nullable="true" MaxLength="300" />
     <Property Type="Int32" Name="CAT_ID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="GetBuyerProviders_Result">
-    <Property Type="Int32" Name="USER_ID" Nullable="false" />
-    <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
-    <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
-    <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
-    <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
-    <Property Type="Int32" Name="CITY_ID" Nullable="true" />
-    <Property Type="Int32" Name="STATE_ID" Nullable="true" />
-    <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
-    <Property Type="String" Name="ZIP_POSTAL" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="IMAGE_URL" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="NOTES" Nullable="true" />
-    <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
-    <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
-    <Property Type="Boolean" Name="IS_LOGGED_IN" Nullable="true" />
-    <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
-    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
-    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
-    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
-    <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
-    <Property Type="Int32" Name="JOB_AWARDED_ID" Nullable="false" />
-    <Property Type="Int32" Name="JOB_OFFER_ID" Nullable="true" />
-    <Property Type="Int32" Name="JOB_ID" Nullable="true" />
-    <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
-    <Property Type="Decimal" Name="AMOUNT" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="DateTime" Name="DATE_AWARDED" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="DATE_COMPLETED" Nullable="true" Precision="23" />
-    <Property Type="String" Name="BUYER_REVIEW" Nullable="true" MaxLength="1500" />
-    <Property Type="String" Name="PROVIDER_REVIEW" Nullable="true" MaxLength="1500" />
   </ComplexType>
   <ComplexType Name="GetImagesInGivenTime_Result">
     <Property Type="Int32" Name="IMAGE_ID" Nullable="false" />
@@ -5470,6 +5426,47 @@
     <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
     <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+    <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="GetBuyerProviders_Result">
+    <Property Type="Int32" Name="USER_ID" Nullable="false" />
+    <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+    <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
+    <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+    <Property Type="Int32" Name="STATE_ID" Nullable="true" />
+    <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
+    <Property Type="String" Name="ZIP_POSTAL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="IMAGE_URL" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="NOTES" Nullable="true" />
+    <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
+    <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
+    <Property Type="Boolean" Name="IS_LOGGED_IN" Nullable="true" />
+    <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
     <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />

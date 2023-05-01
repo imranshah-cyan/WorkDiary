@@ -12,6 +12,7 @@ namespace WorkDiaryServices.Interfaces
     public interface IJobService
     {
         int? InsertJob(Job job);
+        int? TotalJobsByBuyer(int buyerId);
         List<GetProvidersByJobId_Result> GetProvidersByJobId(int Job_Id, int Buyer_Id);
         List<GetJobsByBuyerId_Result> GetJobsByBuyerId(int Buyer_Id);
         int? InsertScreenShot(IMAGE_STORE entity);

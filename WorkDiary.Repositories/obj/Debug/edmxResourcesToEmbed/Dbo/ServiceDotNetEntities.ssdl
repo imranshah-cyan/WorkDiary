@@ -2916,6 +2916,12 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="Web_TotalJobsByBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="buyer_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_TotalProvidersByBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="buyer_id" Type="int" Mode="In" />
+  </Function>
   <Function Name="WidgetBuyerBusinessInfo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="BUYER_ID" Type="int" Mode="In" />
   </Function>

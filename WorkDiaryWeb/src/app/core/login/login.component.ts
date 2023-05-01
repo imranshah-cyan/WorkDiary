@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/Shared/services/Storage.service';
+import { CacheStorageService } from 'src/app/Shared/services/CacheStorage.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,8 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,
               private loginService: LoginService,
-              private router: Router) {
+              private router: Router,
+              private cacheStorage: CacheStorageService) {
     this.loginForm = this.fb.group({
       username: '',
       password: ''
@@ -34,13 +37,13 @@ export class LoginComponent {
       response => {
         if (response != null) {
           // Save the user details in localstorage
-          this.localstorageObject("User", response);
+          this.cacheStorage.set("User", response);
 
           // Route to the comp accoding to user_type
           if (response.ROLE_ID == 2)
             this.router.navigate(['/providers']);
           else if (response.ROLE_ID == 3)
-            this.router.navigate(['/buyers']);
+            this.router.navigate(['/buyers/home']);
           else
             console.log("Navigate to the NOT Found Component");
         }
@@ -56,8 +59,4 @@ export class LoginComponent {
     console.log(this.loginForm.value);
   }
 
-  // Add Session Variables
-  localstorageObject(key: string, object: Object) {
-    localStorage.setItem(key, JSON.stringify(object));
-  }
 }

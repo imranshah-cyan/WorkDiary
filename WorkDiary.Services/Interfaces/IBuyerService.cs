@@ -10,5 +10,6 @@ namespace WorkDiaryServices.Interfaces
     public interface IBuyerService
     {
         List<GetBuyerProviders_Result> BuyerProviders(int? buyer_Id);
+        int BuyerProvidersCount(int? buyer_Id);
     }
 }

@@ -14,5 +14,13 @@ namespace WorkDiaryRepository.Classes
         {
             return _db.GetBuyerProviders(buyer_Id).ToList();
         }
+
+        public int BuyerProvidersCount(int? buyer_Id)
+        {
+            object result = _db.Web_TotalProvidersByBuyer(buyer_Id).FirstOrDefault();
+            
+            int count = Convert.ToInt32(result);
+            return count;
+        }
     }
 }

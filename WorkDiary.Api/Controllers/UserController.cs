@@ -33,6 +33,13 @@ namespace ServiceDotNet.Api.Controllers
             return new UserRepository().GetUserList(-1,-1,-1,-1,-1,null,null);
         }
 
+        [Route("{user_id}")]
+        [HttpGet]
+        public UserInfoGetById_sp_Result GetUserById(int user_id)
+        {
+            return new UserService().UserInfoGetById(user_id);
+        }
+
         // Insert New User
         [Route("insert")]
         [System.Web.Http.HttpPost]

@@ -1,18 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { WorkDiaryLogsService } from '../../services/WorkDiaryLogs.service';
 import { Logs, WebLogs } from '../../models/WorkDiaryLogs';
 import { DatePipe } from '@angular/common';
 import { Jobs } from '../../models/Jobs';
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
-interface time {
-  value: string;
-  viewValue: string;
-}
+import { CacheStorageService } from 'src/app/Shared/services/CacheStorage.service';
 
 @Component({
   selector: 'app-provider-logs',
@@ -21,59 +13,59 @@ interface time {
 })
 export class ProviderLogsComponent {
 
-  time: time[] = [
-    { value: 'steak-0', viewValue: 'Today' },
-    { value: 'pizza-1', viewValue: 'Yesterday' },
-    { value: 'tacos-2', viewValue: 'Last Week' },
-    { value: 'tacos-2', viewValue: 'Last Month' },
-  ];
+  defaultDuration = 1;
 
-  foods: Food[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-  ];
-
-  foodControl = new FormControl(this.foods[2].value);
-  timeControl = new FormControl(this.time[0].value);
-  form = new FormGroup({
-    food: this.foodControl,
-    time: this.timeControl,
-  });
-
+  CurrentUserId: number = 0;
   StartDate: string | undefined;
   EndDate: string | undefined;
   HourLogs: Logs[] = [];
   Jobs: Jobs[] = [];
+  LogsFound: boolean = false;
+
+  searchData = {
+    jobId: 0,
+    duration: 1,
+  };
 
   constructor(private workDiaryLogsService: WorkDiaryLogsService,
-              private datePipe: DatePipe) {
-
-              this.getWorkDiaryLogs(35194, 7131, 1);
-
-              const userId = sessionStorage.getItem('User');
-              console.log(userId);
-              this.getJobsByProvider(35194);
+    private datePipe: DatePipe,
+    private cacheStorage: CacheStorageService) {
   }
 
+  ngOnInit() {
+    const userId = this.cacheStorage.get('User').USER_ID;
+    this.CurrentUserId = userId;
+    this.getJobsByProvider(userId);
 
-  getWorkDiaryLogs(providerId:number, job_id:number, period:number) {
+  }
+
+  search(form:NgForm) {
+    this.getWorkDiaryLogs(this.CurrentUserId, form.value.jobId, form.value.duration);
+  }
+
+  getWorkDiaryLogs(providerId: number, job_id: number, period: number) {
     this.workDiaryLogsService.getScreenLogs(providerId, job_id, period).subscribe(
       (response: WebLogs) => {
-        if (response != null) {
-          console.log(response);
+        this.StartDate = this.workDiaryLogsService.start_date;
+        this.EndDate = this.workDiaryLogsService.end_date;
 
+        if (response != null) {
+          // console.log(response);
+          this.LogsFound = true;
           // Get Start Date
           const StartDate = this.datePipe.transform(response.StartDate, 'EEEE d MMMM yyyy hh:mm a');
-          this.StartDate = StartDate ? StartDate : undefined;
+          // this.StartDate = StartDate ? StartDate : undefined;
 
           // Get End Date
           const EndDate = this.datePipe.transform(response.EndDate, 'EEEE d MMMM yyyy hh:mm a');
-          this.EndDate = EndDate ? EndDate : undefined;
+          // this.EndDate = EndDate ? EndDate : undefined;
 
           // Get Hourly Logs
           this.HourLogs = response.Logs;
           // console.log(this.HourLogs);
+        }
+        else {
+          this.LogsFound = false;
         }
       },
       (error) => {
@@ -82,9 +74,9 @@ export class ProviderLogsComponent {
     );
   }
 
-  getJobsByProvider(providerId:number) {
+  getJobsByProvider(providerId: number) {
     this.workDiaryLogsService.getJobsByProvider(providerId).subscribe(
-      (response:Jobs[]) => {
+      (response: Jobs[]) => {
 
         // Get
         const jobs: Jobs[] = [];

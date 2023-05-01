@@ -9,11 +9,22 @@ import { environment } from 'src/environments/environment';
 export class JobsService {
 
   private baseUrl = environment.API_URL;
+  JobId: number = 0;
 
   constructor(private http: HttpClient) { }
 
   getJobs(Buyer_Id:number): Observable<any> {
     const url = `${this.baseUrl}/job/GetJobsbyBuyerId?Buyer_Id=${Buyer_Id}`;
+    return this.http.get(url);
+  }
+
+  getJobById(Job_Id: number) {
+    const url = `${this.baseUrl}/job/detail/${Job_Id}`;
+    return this.http.get(url);
+  }
+
+  getTotalJobs(Buyer_Id:number): Observable<any> {
+    const url = `${this.baseUrl}/buyer/totalJobs/${Buyer_Id}`;
     return this.http.get(url);
   }
 

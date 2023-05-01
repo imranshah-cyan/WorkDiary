@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JobsService } from '../../services/jobs.service';
 import { Job } from '../../models/Job';
 import { Provider } from '../../models/Provider';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-Jobs',
@@ -13,11 +14,17 @@ export class JobsComponent implements OnInit {
   public jobs:Job[] = [];
   providers: { [key: number]: Provider[] } = {};
 
-  constructor(private jobsService:JobsService) { }
+  constructor(private jobsService:JobsService,
+              private router: Router) { }
 
   ngOnInit() {
     const currentUser = this.getObjectFromLocalStorage('User');
     this.getJobs(currentUser.USER_ID);
+  }
+
+  JobDetails(Job_Id: number) {
+    this.jobsService.JobId = Job_Id;
+    this.router.navigate(['/buyers/jobDetails']);
   }
 
   getJobs(USER_ID: number) {

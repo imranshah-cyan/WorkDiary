@@ -1,0 +1,73 @@
+<!-- component -->
+<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+<link rel="stylesheet"
+  href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
+<main class="profile-page">
+
+  <section class="relative py-16 bg-blueGray-200">
+    <div class="container mx-auto px-4">
+      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg">
+        <div class="px-6">
+          <div class="mt-12">
+            <p class="text-2xl font-semibold leading-normal text-blueGray-700 mb-2">
+              {{ jobDetails.JOB_TITLE }}
+            </p>
+            <p>
+              {{ jobDetails.DESCRIPTION }}
+            </p>
+          </div>
+          <div class="border-t border-blueGray-200">
+            <div class="py-2">
+              <p><b>Job Status:</b> {{ jobDetails.JOB_STATUS_NAME }}</p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+              <div>
+                <p><b>Approximate Duration:</b> {{ jobDetails.APPROXIMATE_DURATION }}</p>
+              </div>
+              <div>
+                <p><b>Duration:</b> {{ jobDetails.DURATION }}</p>
+              </div>
+              <div>
+                <p><b>Job Category:</b> {{ jobDetails.CATEGORY_NAME}}</p>
+              </div><div>
+                <p><b>Job Class Name:</b> {{ jobDetails.CLASS_NAME}}</p>
+              </div>
+            </div>
+
+            <div class="pt-5">
+              <p class="font-bold text-lg pt-2">Skills</p>
+              <hr>
+              <div class="grid grid-cols-3 gap-4 mt-3">
+                <div>
+                  <p><b>Skill Needed:</b> {{ jobDetails.SKILL_NAME }}</p>
+                </div>
+                <div>
+                  <p><b>Total Members working on Job:</b> {{ jobDetails.JOB_AWARDED_COUNT}}</p>
+                </div>
+                <div>
+                  <p><b>Total Offers Received:</b> {{ jobDetails.JOB_OFFER_COUNT }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="py-5">
+              <p class="font-bold text-lg pt-2">Team</p>
+              <hr>
+              <div class="flex w-full flex-wrap mt-3">
+                <div data-te-chip-init data-te-ripple-init
+                  class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-between rounded-[16px] border border-[#3b71ca] bg-orange-400 py-0 px-[12px] text-[13px] font-normal normal-case leading-loose text-[#010101] shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none"
+                  data-te-ripple-color="dark" *ngFor="let provider of providers[jobDetails.JOB_ID]">
+                  {{ provider.FULL_NAME }}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</main>

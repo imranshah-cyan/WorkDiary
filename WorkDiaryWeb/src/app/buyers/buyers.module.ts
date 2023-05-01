@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { RouterModule } from '@angular/router';
 
@@ -13,20 +13,34 @@ import { AppLogSessionComponent } from './components/app-log-session/app-log-ses
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { JobsComponent } from './components/Jobs/Jobs.component';
+import { HomeComponent1 } from './components/Home/Home.component';
+import { ProviderProfileComponent } from './components/provider-profile/provider-profile.component';
+import { ProvidersComponent } from './components/providers/providers.component';
+import { JobDetailsComponent } from './components/job-details/job-details.component';
+import { JobOffersComponent } from './components/job-offers/job-offers.component';
+import { WorkdiaryComponent } from './components/workdiary/workdiary.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     BuyersComponent,
     ProviderCardComponent,
     AppLogSessionComponent,
-    JobsComponent
+    JobsComponent,
+    HomeComponent1,
+    ProviderProfileComponent,
+    ProvidersComponent,
+    JobDetailsComponent,
+    JobOffersComponent,
+    WorkdiaryComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    FormsModule,
     BuyersRoutingModule,
     MatMenuModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
   exports: [

@@ -10,6 +10,8 @@ import { ProvidersComponent } from './providers.component';
 import { ProviderLogsComponent } from './components/provider-logs/provider-logs.component';
 import { LogSessionComponent } from './components/log-session/log-session.component';
 import { SettingsComponent } from '../buyers/components/settings/settings.component';
+import { FormsModule } from '@angular/forms';
+import { AppLogSessionComponent } from '../buyers/components/app-log-session/app-log-session.component';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { SettingsComponent } from '../buyers/components/settings/settings.compon
     RouterModule,
     ProvidersRoutingModule,
     MatMenuModule,
+    FormsModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
   exports: [
