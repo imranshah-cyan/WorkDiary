@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0ed2b77c76054efba3e2bd519049d812" Name="Diagram1">
+        <EntityTypeShape EntityType="ServiceDotNet.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.AspNetRole" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.AspNetUser" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.ATTACH_FILE" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CATEGORY" Width="1.5" PointX="8.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CITY" Width="1.5" PointX="10.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CLASS" Width="1.5" PointX="11.25" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_AWARD" Width="1.5" PointX="7.5" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_CATEGORY" Width="1.5" PointX="10.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_CERTIFICATION" Width="1.5" PointX="12.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_FOLDER" Width="1.5" PointX="15.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_MESSENGER" Width="1.5" PointX="12.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_PORTFOLIO" Width="1.5" PointX="10.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_QUALIFICATION" Width="1.5" PointX="12.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_RATES" Width="1.5" PointX="15.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_SKILLS" Width="1.5" PointX="15.75" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_TYPE" Width="1.5" PointX="3" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CONTACT_WORK_HISTORY" Width="1.5" PointX="7.5" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.COUNTRY" Width="1.5" PointX="20.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CURRENCY" Width="1.5" PointX="11.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.DESIGNATION" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.EDUCATION" Width="1.5" PointX="7.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.EDUCATION_TYPE" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.EMAIL_HISTORY" Width="1.5" PointX="13.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.FILE_RELATED_TYPE" Width="1.5" PointX="9.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.FILE_TYPE" Width="1.5" PointX="13.5" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.FOLDER" Width="1.5" PointX="13.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.FOLDER_FILE" Width="1.5" PointX="15.75" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.IMAGE_STORE" Width="1.5" PointX="20.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB" Width="1.5" PointX="15.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_AWARDED" Width="1.5" PointX="18" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_FEEDBACK" Width="1.5" PointX="17.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_FOLDER" Width="1.5" PointX="18" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_OFFER" Width="1.5" PointX="18" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_OFFER_FOLDER" Width="1.5" PointX="20.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_SKILL" Width="1.5" PointX="18" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_STATUS" Width="1.5" PointX="13.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_TASK" Width="1.5" PointX="19.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_TASKS_TIME_LOG" Width="1.5" PointX="21.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_TYPE" Width="1.5" PointX="13.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_USER_ROLE" Width="1.5" PointX="15.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JOB_USERS" Width="1.5" PointX="22.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.MAIL" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.MAIL_STATUS" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.MAIL_TYPE" Width="1.5" PointX="5.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.MEMO" Width="1.5" PointX="22.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.MENU" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.MESSENGER" Width="1.5" PointX="10.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.PAYMENT_TRANSACTION" Width="1.5" PointX="22.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.PERMISSION" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.PROJECT_TEAM" Width="1.5" PointX="21" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.RATE_TYPE" Width="1.5" PointX="13.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.ROLE" Width="1.5" PointX="0.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.ROLE_PERMISSION" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.SCREEN_CATEGORY" Width="1.5" PointX="22.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.SCREEN_CLASS" Width="1.5" PointX="23.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.SCREEN_LOGS" Width="1.5" PointX="23.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.SKILL" Width="1.5" PointX="13.5" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.STATE" Width="1.5" PointX="24.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.SYS_CONFIG_ENTRY" Width="1.5" PointX="7.75" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.SYS_EMAIL_TEMPLATE" Width="1.5" PointX="24.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.SYS_MESSAGE" Width="1.5" PointX="24.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.TASK_PRIORITY" Width="1.5" PointX="24.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.TASK_STATUS" Width="1.5" PointX="21.75" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.TASK_TYPE" Width="1.5" PointX="23.75" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.TIME_SHEET" Width="1.5" PointX="9.75" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.TOKEN" Width="1.5" PointX="25.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.USER" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.USER_LOG" Width="1.5" PointX="25.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.USER_PERMISSION" Width="1.5" PointX="25.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.AggregatedCounter" Width="1.5" PointX="25.75" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.Counter" Width="1.5" PointX="26.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.Hash" Width="1.5" PointX="26.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.Job1" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JobParameter" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.JobQueue" Width="1.5" PointX="26.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.List" Width="1.5" PointX="26.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.Schema" Width="1.5" PointX="17.75" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.Server" Width="1.5" PointX="27.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.Set" Width="1.5" PointX="27.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.State1" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceDotNet.CHAT_USER" Width="1.5" PointX="27.75" PointY="20" IsExpanded="true" />
+        <AssociationConnector Association="ServiceDotNet.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CLASS_CATEGORY_CAT_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_CATEGORY_CATEGORY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_SKILLS_CLASS_CLASS_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_AWARD_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_CATEGORY_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_CERTIFICATION_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_CONTACT_TYPE_CONTACT_TYPE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_FOLDER_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_MESSENGER_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_QUALIFICATION_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_RATES_CONTACT_CONTACT_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_SKILLS_CONTACT_CONTACT_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_USER_USER_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_WORK_HISTORY_CONTACT" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_AWARD_CONTACT_CATEGORY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_CERTIFICATION_CONTACT_CATEGORY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_FOLDER_CONTACT_CATEGORY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_MESSENGER_CONTACT_CATEGORY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_QUALIFICATION_CONTACT_CATEGORY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_RATES_CONTACT_CATEGORY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_SKILLS_CONTACT_CATEGORY" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_FOLDER_FOLDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_MESSENGER_MESSENGER" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_RATES_RATE_TYPE_RATE_TYPE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_CONTACT_SKILLS_SKILLS_SKILL_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_PROJECT_TEAM_DESIGNATION" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_FOLDER_FILE_FILE_TYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_FOLDER_FILE_FOLDER" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_JOB_AWARDED_JOB" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_JOB_FOLDER_JOB" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_JOB_JOB_STATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_JOB_JOB_TYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_JOB_OFFER_JOB" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_JOB_RATE_TYPE_RATE_TYPE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_JOB_SKILL_JOB" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_PROJECT_TEAM_JOB" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_JOB_OFFER_FOLDER_JOB_OFFER" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_MAIL_MAIL_STATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_MAIL_MAIL_TYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_MENU_PERMISSION_PERMISSION_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_ROLE_PERMISSION_PERMISSION_PERMISSION_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_ROLE_PERMISSION_ROLE_ROLE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_USER_ROLE_ROLE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_HangFire_JobParameter_Job" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.FK_HangFire_State_Job" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceDotNet.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

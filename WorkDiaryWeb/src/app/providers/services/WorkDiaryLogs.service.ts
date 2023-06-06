@@ -16,53 +16,56 @@ export class WorkDiaryLogsService {
 
   }
 
+  getTotalTime(providerId: number, jobId: number, period: number): Observable<any> {
+    const url = `${this.baseUrl}/workDiaryApp/TotalTimeinSec`;
+    console.log(url);
+    const data = {
+      BUYER_ID: 0,
+      PROVIDER_ID: providerId,
+      JOB_ID: jobId,
+      Period: period
+    };
+
+    return this.http.post(url, data);
+  }
+
+  getTotalLogs(providerId: number, jobId: number, period: number): Observable<any> {
+    const url = `${this.baseUrl}/workDiaryApp/TotalLogs`;
+    // console.log(url);
+    const data = {
+      BUYER_ID: 0,
+      PROVIDER_ID: providerId,
+      JOB_ID: jobId,
+      Period: period
+    };
+
+    return this.http.post(url, data);
+  }
+
   getScreenLogs(providerId:number, JobId:number, period:number): Observable<any> {
 
-    var url = ``;
-    const currentDate = new Date();
-    const today = this.formatDate(currentDate);
-
-    if(period == 1)
-    {
-      this.start_date = today;
-      this.end_date = today;
-      url = `${this.baseUrl}/workDiaryApp/webLogs?start_date=${today}&end_date=${today}&provider_id=${providerId}&job_id=${JobId}`;
+    var url = `${this.baseUrl}/workDiaryApp/webLogs`;
+    const data = {
+      BUYER_ID: 0,
+      PROVIDER_ID: providerId,
+      JOB_ID: JobId,
+      Period: period
     }
-    else if(period == -1)
-    {
-      const yesterday = new Date(today);
-      yesterday.setDate(yesterday.getDate() - 1);
-      const start_date = this.formatDate(yesterday);
 
-      this.start_date = start_date;
-      this.end_date = today;
+    return this.http.post(url, data);
+  }
 
-      url = `${this.baseUrl}/workDiaryApp/webLogs?start_date=${start_date}&end_date=${today}&provider_id=${providerId}&job_id=${JobId}`;
+  getTotalScreenLogs(providerId: number, JobId: number, period: number): Observable<any> {
+    const url = `${this.baseUrl}/workDiaryApp/TotalScreenLogs`
+    console.log(url);
+    const data = {
+      BUYER_ID: 0,
+      PROVIDER_ID: providerId,
+      JOB_ID: JobId,
+      Period: period
     }
-    else if(period == -7){
-      const lastWeekDate = new Date(today);
-      lastWeekDate.setDate(lastWeekDate.getDate() - 7);
-      const start_date = this.formatDate(lastWeekDate);
 
-      this.start_date = start_date;
-      this.end_date = today;
-
-      url = `${this.baseUrl}/workDiaryApp/webLogs?start_date=${start_date}&end_date=${today}&provider_id=${providerId}&job_id=${JobId}`;
-    }
-    else if(period == -30){
-      const lastMonthDate = new Date(today);
-      lastMonthDate.setDate(lastMonthDate.getDate() - 30);
-      const start_date = this.formatDate(lastMonthDate);
-
-      this.start_date = start_date;
-      this.end_date = today;
-
-      url = `${this.baseUrl}/workDiaryApp/webLogs?start_date=${start_date}&end_date=${today}&provider_id=${providerId}&job_id=${JobId}`;
-    }
-    else
-      url = `${this.baseUrl}/workDiaryApp/webLogs?start_date=${today}&end_date=${today}&provider_id=${providerId}&job_id=${JobId}`;
-
-    return this.http.get(url);
+    return this.http.post(url, data);
   }
 
   formatDate(date:Date) {

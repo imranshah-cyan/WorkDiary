@@ -1,0 +1,176 @@
+﻿@model EmailPlugin.Models.vmDailyWork
+@{
+  ViewBag.Title = "WorkSummary";
+  Layout = null;
+}
+
+<tr style="border-top: solid 2px #696969;">
+  <td style="padding:5px; background-color:#f4f4f4;">
+    <div style="padding: 10px; float:left;">
+      <img src="https://sgstorageaccount4682.blob.core.windows.net/workdiaryuserprofileimages/@(Model.Log.PROVIDER_ID).jpg" width="40" height="40" class="CToWUd">
+    </div>
+    <div style="padding: 10px; float:left;">
+      <strong>@Model.Log.PROVIDER_FULL_NAME</strong><br />
+      @Model.Log.JOB_TITLE
+    </div>
+    <div style="padding: 10px; float:left; margin-left:40px;">
+      <b>Time In:</b>
+      <h4>@Convert.ToDateTime(Model.Log.WORK_STARTED_ON).ToString("hh:mm:ss tt")</h4>
+    </div>
+    <div style="padding:10px; float:left; margin-left:40px;">
+      <b>Time Out:</b>
+      <h4>@Convert.ToDateTime(Model.Log.WORK_ENDED_ON).ToString("hh:mm:ss tt")</h4>
+    </div>
+    <div style="padding:10px; float:left; margin-left:40px;">
+      <b>Validated By Screenshots</b>
+      <h3 style="color:#326EBB;">@Model.Log.TOTAL_SCREEN_SHOT_TIME_TRACKED</h3>
+    </div>
+    <div style="padding: 10px; float:left; margin-left:40px;">
+      <b>Time Logged</b>
+      <br />
+      <h3 style="color:#326EBB;">
+        @Model.Log.TOTAL_WORKED_TIME
+      </h3>
+    </div>
+
+  </td>
+</tr>
+
+<tr>
+  <td>
+    @if (Model.Images.Any())
+    {
+      <table>
+        <tr>
+          @for (int i = 0; i < 6; i++)
+          {
+            if (Model.Images.ElementAtOrDefault(i) != null)
+            {
+              <td>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a; background-color: #90EE90 !important; width: 200px; height: 13px; overflow: hidden;'>@Model.Images[i].ACTIVE_WINDOW_TITLE</div>
+                <img src="https://sgstorageaccount4682.blob.core.windows.net/images/@Model.Images[i].IMAGE_NAME" width="200" height="100" />
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a; text-align: right;'>@Model.Images[i].DISPLAY_TIME</div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a'>
+                  Activity Level:
+                  <div style='height: 15px; max-width: 100px; border: solid 1px #C1C0C0;' title="Key Strokes:'@Model.Images[i].KEY_STROKE_LEVEL' - Mouse Clicks: '@Model.Images[i].MOUSE_CLICK'">
+                    <div style='height: 14px; width: @Model.Images[i].ACTIVITY_LEVEL%; background-color:#47c117;'></div>
+                  </div>
+                </div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>@Model.Images[i].START_TIME - @Model.Images[i].END_TIME (@Model.Images[i].TOTAL_MINUTES min)</div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                  Key Strokes: <span style="font-weight: bold;">@Model.Images[i].KEY_STROKE_LEVEL</span>
+                </div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                  Mouse Clicks: <span style="font-weight: bold;">@Model.Images[i].MOUSE_CLICK</span>
+                </div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                  Windows Switched <span style="font-weight: bold;">@Model.Images[i].WINDOWS_SWITCHED</span>
+                </div>
+                <br />
+              </td>
+            }
+          }
+        </tr>
+        <tr>
+          @for (int i = 6; i < 12; i++)
+          {
+            if (Model.Images.ElementAtOrDefault(i) != null)
+            {
+              <td>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a; background-color: #90EE90 !important; width: 200px; height: 13px; overflow: hidden;'>@Model.Images[i].ACTIVE_WINDOW_TITLE</div>
+                <img src="https://servicedotnet.blob.core.windows.net/images/@Model.Images[i].IMAGE_NAME" width="200" height="100" />
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a; text-align: right;'>@Model.Images[i].DISPLAY_TIME</div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a'>
+                  Activity Level:
+                  <div style='height: 15px; max-width: 100px; border: solid 1px #C1C0C0;' title="Key Strokes:'@Model.Images[i].KEY_STROKE_LEVEL' - Mouse Clicks: '@Model.Images[i].MOUSE_CLICK'">
+                    <div style='height: 14px; width: @Model.Images[i].ACTIVITY_LEVEL%; background-color:#47c117;'></div>
+                  </div>
+                </div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>@Model.Images[i].START_TIME - @Model.Images[i].END_TIME (@Model.Images[i].TOTAL_MINUTES min)</div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                  Key Strokes: <span style="font-weight: bold;">@Model.Images[i].KEY_STROKE_LEVEL</span>
+                </div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                  Mouse Clicks: <span style="font-weight: bold;">@Model.Images[i].MOUSE_CLICK</span>
+                </div>
+                <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                  Windows Switched <span style="font-weight: bold;">@Model.Images[i].WINDOWS_SWITCHED</span>
+                </div>
+                <br />
+              </td>
+            }
+          }
+        </tr>
+      </table>
+    }
+  </td>
+</tr>
+
+<tr>
+  <td style="vertical-align: top; padding:10px;">
+    @if (Model.ScreenLogs.Any())
+    {
+        <h5><u>Screen Logs:</u></h5>
+        <table>
+          <tr>
+            <td style="vertical-align: top;">
+              <div style="-webkit-column-count: 3; -moz-column-count: 3; column-count: 3;">
+                @{
+                  var logs = Model.ScreenLogs;
+                  for (var logIndex = 0; logIndex < logs.Count - 1; logIndex++)
+                  {
+                    TimeSpan time = TimeSpan.FromSeconds(Convert.ToDouble(logs[logIndex].TIME_SPENT));
+                    var todayTotalSeconds = TimeSpan.Parse(Model.Log.TOTAL_WORKED_TIME).TotalSeconds;
+                    var percent = time.TotalSeconds / todayTotalSeconds;
+
+                    if (logs.ElementAtOrDefault(logIndex) != null)
+                    {
+                      <div>
+                        @logs[logIndex].CLASS_DESCRIPTION
+                        <span style="font-size:12px; color:#326EBB; font-weight:bold;">@time.ToString(@"hh\h\:mm\m\:ss\s")</span>
+                        <span style="font-size:12px; color:#ff6a00; font-weight:bold;">
+                          @String.Format("{0:P2}", percent)
+                        </span>
+                      </div>
+                    }
+                  }
+                }
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+              <script type="text/javascript">
+      function drawChart() {
+        $.get(
+          '/EmailTemplates/GetScreenLogs?providerId=@Model.Log.PROVIDER_ID&jobId=@Model.Log.JOB_ID&createdOn=@Model.CreatedOn',
+          {},
+          function(data) {
+            var tdata = new google.visualization.DataTable();
+            tdata.addColumn('string', 'CLASS_DESCRIPTION');
+            tdata.addColumn('number', 'TIME_SPENT');
+            for (var i = 0; i < data.length; i++) {
+              tdata.addRow([data[i].CLASS_DESCRIPTION, data[i].TIME_SPENT]);
+            }
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_@Model.Log.PROVIDER_ID'));
+            chart.draw(tdata, { pieHole: 0.025, width: 450, height: 350, });
+          });
+      };
+      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+              </script>
+              <div id="piechart_@Model.Log.PROVIDER_ID" style="width:450px;"></div>
+            </td>
+          </tr>
+        </table>
+    }
+  </td>
+
+</tr>
+<tr>
+  <td>
+    <hr />
+  </td>
+</tr>

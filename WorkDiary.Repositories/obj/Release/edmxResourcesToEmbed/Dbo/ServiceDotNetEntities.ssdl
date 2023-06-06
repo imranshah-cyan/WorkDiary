@@ -1,5 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ServiceDotNet.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
   <EntityType Name="ATTACH_FILE">
     <Key>
       <PropertyRef Name="ATTACH_FILE_ID" />
@@ -986,6 +1047,108 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <Property Name="CAN_EDIT" Type="bit" Nullable="false" />
     <Property Name="CAN_VIEW" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="AggregatedCounter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="bigint" Nullable="false" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Counter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="smallint" Nullable="false" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Hash">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Field" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="ExpireAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Job1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="20" />
+    <Property Name="InvocationData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Arguments" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="JobParameter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="JobQueue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobId" Type="int" Nullable="false" />
+    <Property Name="Queue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FetchedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="List">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Schema">
+    <Key>
+      <PropertyRef Name="Version" />
+    </Key>
+    <Property Name="Version" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Server">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Data" Type="nvarchar(max)" />
+    <Property Name="LastHeartbeat" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Set">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Score" Type="float" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ExpireAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="State1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Data" Type="nvarchar(max)" />
+  </EntityType>
   <Association Name="FK_CLASS_CATEGORY_CAT_ID">
     <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
     <End Role="CLASS" Type="Self.CLASS" Multiplicity="*" />
@@ -1294,6 +1457,62 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_FOLDER_FILE_FILE_TYPE">
     <End Role="FILE_TYPE" Type="Self.FILE_TYPE" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -1319,6 +1538,34 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
       </Principal>
       <Dependent Role="FOLDER_FILE">
         <PropertyRef Name="FOLDER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HangFire_JobParameter_Job">
+    <End Role="Job1" Type="Self.Job1" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JobParameter" Type="Self.JobParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobParameter">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HangFire_State_Job">
+    <End Role="Job1" Type="Self.Job1" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="State1" Type="Self.State1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State1">
+        <PropertyRef Name="JobId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2436,6 +2683,17 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <Parameter Name="start_time" Type="date" Mode="In" />
     <Parameter Name="end_time" Type="date" Mode="In" />
   </Function>
+  <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="string" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="delimiter" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="value" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="StateGetByCountryId_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="COUNTRY_ID" Type="int" Mode="In" />
   </Function>
@@ -2621,6 +2879,135 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <Parameter Name="USER_ID" Type="int" Mode="In" />
     <Parameter Name="TIME_SHEET_ID" Type="int" Mode="In" />
   </Function>
+  <Function Name="Web_AddProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JOB_ID" Type="int" Mode="In" />
+    <Parameter Name="DESIGNATION_ID" Type="int" Mode="In" />
+    <Parameter Name="NAME" Type="varchar" Mode="In" />
+    <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Web_DeleteProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PROJECT_TEAM_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_ForgotUserCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERNAME" Type="varchar" Mode="In" />
+    <Parameter Name="SECURITY_QUESTION" Type="varchar" Mode="In" />
+    <Parameter Name="ANSWER" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Web_GetAllJobStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Web_GetJobByStatusId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_GetJobByStatusIdBuyerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="Buyer_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_GetProjectTeamByBuyerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BUYER_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_GetWorkSummaryImagesByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_JobsByStatusForProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="Provider_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_Offer_AcceptOffer_AwardJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Web_Offer_AcceptOffer&amp;AwardJob">
+    <Parameter Name="Job_Offer_Id" Type="int" Mode="In" />
+    <Parameter Name="Job_Id" Type="int" Mode="In" />
+    <Parameter Name="Provider_Id" Type="int" Mode="In" />
+    <Parameter Name="Buyer_Id" Type="int" Mode="In" />
+    <Parameter Name="Currency_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_Offer_GetActiveByBuyerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Buyer_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_Offer_GetRejectedByBuyerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Buyer_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_Offer_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JOB_ID" Type="int" Mode="In" />
+    <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+    <Parameter Name="BUYER_ID" Type="int" Mode="In" />
+    <Parameter Name="CURRENCY_ID" Type="int" Mode="In" />
+    <Parameter Name="OFFER_AMOUNT" Type="decimal" Mode="In" />
+    <Parameter Name="SERVICE_FEE" Type="decimal" Mode="In" />
+    <Parameter Name="CLIENT_CHARGED" Type="decimal" Mode="In" />
+    <Parameter Name="UPFRONT_PAYMENT" Type="decimal" Mode="In" />
+    <Parameter Name="TIME_REQUIRED" Type="varchar" Mode="In" />
+    <Parameter Name="IS_FIRST_OFFER" Type="bit" Mode="In" />
+    <Parameter Name="IS_AWARDED" Type="bit" Mode="In" />
+    <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+    <Parameter Name="TERMS" Type="varchar" Mode="In" />
+    <Parameter Name="CREATED_BY" Type="int" Mode="In" />
+    <Parameter Name="IS_OFFER_BUYER" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Web_Offer_Reject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Job_Offer_Id" Type="int" Mode="In" />
+    <Parameter Name="Buyer_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_OffersSentAwardedRejected" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Provider_Id" Type="int" Mode="In" />
+    <Parameter Name="Is_Awarded" Type="int" Mode="In" />
+    <Parameter Name="Is_Rejected" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_ScreenLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_ScreenShotsByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_ID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="SessionStart" Type="datetime" />
+          <Property Name="SessionEnd" Type="datetime" />
+          <Property Name="Hour" Type="int" />
+          <Property Name="ProviderID" Type="int" />
+          <Property Name="KeyStrokes" Type="int" />
+          <Property Name="MouseClicks" Type="int" />
+          <Property Name="WindowsSwitched" Type="int" />
+          <Property Name="AggregatedImageIds" Type="varchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="Web_TotalJobsByBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="buyer_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_TotalLogsByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_TotalProvidersByBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="buyer_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_TotalTimeInSecondsByProviderJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+    <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_UpdateJobStatusByJobId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
+    <Parameter Name="Job_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_UpdateProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PROJECT_TEAM_ID" Type="int" Mode="In" />
+    <Parameter Name="Job_id" Type="int" Mode="In" />
+    <Parameter Name="Designation_Id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="WidgetBuyerBusinessInfo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="BUYER_ID" Type="int" Mode="In" />
   </Function>
@@ -2685,6 +3072,12 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="ServiceDotNetStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ATTACH_FILE" EntityType="Self.ATTACH_FILE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CITY" EntityType="Self.CITY" Schema="dbo" store:Type="Tables" />
@@ -2753,6 +3146,17 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USER_LOG" EntityType="Self.USER_LOG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USER_PERMISSION" EntityType="Self.USER_PERMISSION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Counter" EntityType="Self.Counter" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Hash" EntityType="Self.Hash" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Job1" EntityType="Self.Job1" Schema="HangFire" Table="Job" store:Type="Tables" />
+    <EntitySet Name="JobParameter" EntityType="Self.JobParameter" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="JobQueue" EntityType="Self.JobQueue" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="List" EntityType="Self.List" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Schema" EntityType="Self.Schema" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Server" EntityType="Self.Server" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="Set" EntityType="Self.Set" Schema="HangFire" store:Type="Tables" />
+    <EntitySet Name="State1" EntityType="Self.State1" Schema="HangFire" Table="State" store:Type="Tables" />
     <EntitySet Name="CHAT_USER" EntityType="Self.CHAT_USER" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [CHAT_USER].[ID] AS [ID], 
@@ -2860,6 +3264,22 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
       <End Role="CONTACT" EntitySet="CONTACT" />
       <End Role="CONTACT_WORK_HISTORY" EntitySet="CONTACT_WORK_HISTORY" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
     <AssociationSet Name="FK_FOLDER_FILE_FILE_TYPE" Association="Self.FK_FOLDER_FILE_FILE_TYPE">
       <End Role="FILE_TYPE" EntitySet="FILE_TYPE" />
       <End Role="FOLDER_FILE" EntitySet="FOLDER_FILE" />
@@ -2867,6 +3287,14 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <AssociationSet Name="FK_FOLDER_FILE_FOLDER" Association="Self.FK_FOLDER_FILE_FOLDER">
       <End Role="FOLDER" EntitySet="FOLDER" />
       <End Role="FOLDER_FILE" EntitySet="FOLDER_FILE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HangFire_JobParameter_Job" Association="Self.FK_HangFire_JobParameter_Job">
+      <End Role="Job1" EntitySet="Job1" />
+      <End Role="JobParameter" EntitySet="JobParameter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HangFire_State_Job" Association="Self.FK_HangFire_State_Job">
+      <End Role="Job1" EntitySet="Job1" />
+      <End Role="State1" EntitySet="State1" />
     </AssociationSet>
     <AssociationSet Name="FK_JOB_AWARDED_JOB" Association="Self.FK_JOB_AWARDED_JOB">
       <End Role="JOB" EntitySet="JOB" />

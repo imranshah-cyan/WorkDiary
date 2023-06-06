@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\OfferRepository.cs" />
+    <Compile Include="Classes\ProjectTeamRepository.cs" />
     <Compile Include="Classes\BuyerRepository.cs" />
     <Compile Include="Classes\LogRepository.cs" />
     <Compile Include="Classes\WebLogsRepository.cs" />
@@ -727,13 +729,43 @@
     <Compile Include="Dbo\Web_ForgotUserCheck_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dbo\Web_GetAllJobStatus_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_GetJobByStatusIdBuyerId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_GetJobByStatusId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_GetJobStatus_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_GetProjectTeamByBuyerId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dbo\Web_GetWorkSummaryImagesByProviderAndJob_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_JobsByStatusForProvider_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_OffersSentAwardedRejected_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_Offer_GetActiveByBuyerId_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_Offer_GetRejectedByBuyerId_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Dbo\Web_ScreenLogs_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Dbo\Web_ScreenShotsByProviderAndJob_Result.cs">
+      <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dbo\Web_TotalLogsByProviderAndJob_Result.cs">
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Dbo\WidgetBuyerBusinessInfo_sp_Result.cs">
@@ -770,10 +802,14 @@
       <DependentUpon>ServiceDotNetEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ImageStore.cs" />
+    <Compile Include="Entities\Offer.cs" />
     <Compile Include="Entities\Job.cs" />
     <Compile Include="Entities\Log.cs" />
+    <Compile Include="Entities\ProjectTeamMember.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Helpers\Crypto.cs" />
+    <Compile Include="Interfaces\IOfferRepository.cs" />
+    <Compile Include="Interfaces\IProjectTeamRepository.cs" />
     <Compile Include="Interfaces\IBuyerRepository.cs" />
     <Compile Include="Interfaces\IJobRepository.cs" />
     <Compile Include="Interfaces\ILogRepository.cs" />

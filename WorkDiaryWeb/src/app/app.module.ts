@@ -29,6 +29,9 @@ import { ProvidersModule } from './providers/providers.module';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ForgotPasswordComponent } from './core/forgotPassword/forgotPassword.component';
 import { ResetPasswordComponent } from './core/resetPassword/resetPassword.component';
+import { ToastrModule } from 'ngx-toastr';
+import { UpdatePasswordComponent } from './Shared/components/UpdatePassword/UpdatePassword.component';
+import { JobOffersComponent } from './providers/components/JobOffers/JobOffers.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { ResetPasswordComponent } from './core/resetPassword/resetPassword.compo
     ProviderHeaderComponent,
     HeaderComponent,
     FooterComponent,
+    UpdatePasswordComponent,
+    JobOffersComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,7 @@ import { ResetPasswordComponent } from './core/resetPassword/resetPassword.compo
     HttpClientModule,
     ProvidersModule,
     ProvidersRoutingModule,
+    ToastrModule
   ],
   providers: [DatePipe],
   schemas: [NO_ERRORS_SCHEMA],

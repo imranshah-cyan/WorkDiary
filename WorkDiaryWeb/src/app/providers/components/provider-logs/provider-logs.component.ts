@@ -22,6 +22,14 @@ export class ProviderLogsComponent {
   Jobs: Jobs[] = [];
   LogsFound: boolean = false;
 
+  TotalTime: string = "0h 0m 00s";
+  TotalLogs = {
+    Total_Key_Strokes: 0,
+    Total_Mouse_Clicks: 0,
+    Total_Windows_Switched: 0,
+    image_count: 0
+  };
+
   searchData = {
     jobId: 0,
     duration: 1,
@@ -40,7 +48,38 @@ export class ProviderLogsComponent {
   }
 
   search(form:NgForm) {
+    this.getTotalLogs(this.CurrentUserId, form.value.jobId, form.value.duration);
+    this.getTotalTimeinSecs(this.CurrentUserId, form.value.jobId, form.value.duration);
     this.getWorkDiaryLogs(this.CurrentUserId, form.value.jobId, form.value.duration);
+    console.log(form.value);
+  }
+
+  getTotalTimeinSecs(providerId: number, jobId: number, period: number) {
+    this.workDiaryLogsService.getTotalTime(providerId, jobId, period)
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+          const formattedTime = this.convertSecondsToTime(response);
+          // console.log(formattedTime); // Output: "1h 1m 5s"
+          this.TotalTime = formattedTime;
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
+  }
+
+  getTotalLogs(providerId: number, jobId: number, period: number) {
+    this.workDiaryLogsService.getTotalLogs(providerId, jobId, period)
+      .subscribe(
+        (response: any) => {
+          this.TotalLogs = response;
+          // console.log(this.TotalLogs);
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
   }
 
   getWorkDiaryLogs(providerId: number, job_id: number, period: number) {
@@ -96,4 +135,12 @@ export class ProviderLogsComponent {
     )
   }
 
+  convertSecondsToTime(seconds: number): string {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    const formattedTime = `${hours}h ${minutes}m ${remainingSeconds}s`;
+    return formattedTime;
+  }
 }

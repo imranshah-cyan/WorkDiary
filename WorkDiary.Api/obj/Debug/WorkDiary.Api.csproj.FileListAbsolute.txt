@@ -1,6 +1,3 @@
-F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\WorkDiary.Api.csproj.App.config
-F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\WorkDiary.Api.csproj.AssemblyReference.cache
-F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\WorkDiary.Api.csproj.CoreCompileInputs.cache
 F:\Github\WorkDiary\WorkDiary.Api\bin\credentials.json
 F:\Github\WorkDiary\WorkDiary.Api\bin\ServiceDotNet.Api.dll.config
 F:\Github\WorkDiary\WorkDiary.Api\bin\ServiceDotNet.Api.dll
@@ -71,6 +68,9 @@ F:\Github\WorkDiary\WorkDiary.Api\bin\System.Web.Razor.xml
 F:\Github\WorkDiary\WorkDiary.Api\bin\System.Web.WebPages.xml
 F:\Github\WorkDiary\WorkDiary.Api\bin\System.Web.WebPages.Deployment.xml
 F:\Github\WorkDiary\WorkDiary.Api\bin\System.Web.WebPages.Razor.xml
+F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\WorkDiary.Api.csproj.App.config
+F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\WorkDiary.Api.csproj.AssemblyReference.cache
+F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\WorkDiary.Api.csproj.CoreCompileInputs.cache
 F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\WorkDiary.Api.csproj.CopyComplete
 F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\ServiceDotNet.Api.dll
 F:\Github\WorkDiary\WorkDiary.Api\obj\Debug\ServiceDotNet.Api.pdb

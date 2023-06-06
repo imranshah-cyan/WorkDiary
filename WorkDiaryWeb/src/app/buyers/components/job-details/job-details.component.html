@@ -10,8 +10,15 @@
       <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg">
         <div class="px-6">
           <div class="mt-12">
-            <p class="text-2xl font-semibold leading-normal text-blueGray-700 mb-2">
-              {{ jobDetails.JOB_TITLE }}
+            <p>
+              <span class="text-2xl font-semibold leading-normal text-blueGray-700 mb-2">{{ jobDetails.JOB_TITLE }}</span>
+              <span>
+                <select name="" id="">
+                  <option value="">Active</option>
+                  <option value="">Offers</option>
+                  <option value="">Completed</option>
+                </select>
+              </span>
             </p>
             <p>
               {{ jobDetails.DESCRIPTION }}
@@ -22,7 +29,7 @@
               <p><b>Job Status:</b> {{ jobDetails.JOB_STATUS_NAME }}</p>
             </div>
 
-            <div class="grid grid-cols-3 gap-4">
+            <!-- <div class="grid grid-cols-3 gap-4">
               <div>
                 <p><b>Approximate Duration:</b> {{ jobDetails.APPROXIMATE_DURATION }}</p>
               </div>
@@ -34,9 +41,9 @@
               </div><div>
                 <p><b>Job Class Name:</b> {{ jobDetails.CLASS_NAME}}</p>
               </div>
-            </div>
+            </div> -->
 
-            <div class="pt-5">
+            <!-- <div class="pt-5">
               <p class="font-bold text-lg pt-2">Skills</p>
               <hr>
               <div class="grid grid-cols-3 gap-4 mt-3">
@@ -50,7 +57,7 @@
                   <p><b>Total Offers Received:</b> {{ jobDetails.JOB_OFFER_COUNT }}</p>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="py-5">
               <p class="font-bold text-lg pt-2">Team</p>
@@ -61,6 +68,13 @@
                   data-te-ripple-color="dark" *ngFor="let provider of providers[jobDetails.JOB_ID]">
                   {{ provider.FULL_NAME }}
                 </div>
+              </div>
+            </div>
+
+            <div class="py-5">
+              <div class="flex w-full flex-wrap mt-3 space-x-2">
+                <button class="p-2 px-4 text-white bg-blue-500 rounded-lg">Update</button>
+                <button class="p-2 px-4 text-white bg-red-500 rounded-lg">Delete</button>
               </div>
             </div>
 

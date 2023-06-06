@@ -11,5 +11,8 @@ namespace WorkDiaryServices.Interfaces
     public interface ILogService
     {
         SP_WorkDiaryAppLogs_Result GetLogs(Log log);
+        int? GetTotalTime(Log log);
+        Web_TotalLogsByProviderAndJob_Result GetTotalLogs(Log log);
+        List<Web_ScreenLogs_Result> GetTotalScreenLogs(Log entity);
     }
 }

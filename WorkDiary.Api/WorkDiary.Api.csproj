@@ -170,6 +170,8 @@
     <Compile Include="Classes\Crypto.cs" />
     <Compile Include="Classes\GoogleDrive.cs" />
     <Compile Include="Classes\UserLogs.cs" />
+    <Compile Include="Controllers\OffersController.cs" />
+    <Compile Include="Controllers\ProjectTeamController.cs" />
     <Compile Include="Controllers\BuyerController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\ImageController.cs" />

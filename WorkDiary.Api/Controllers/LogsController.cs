@@ -29,11 +29,61 @@ namespace ServiceDotNet.Api.Controllers
             return result;
         }
     
-        [HttpGet]
+        [HttpPost]
         [Route("webLogs")]
-        public WebLogs GetWebLogs(DateTime start_date, DateTime end_date, int provider_id, int job_id)
+        public WebLogs GetWebLogs([FromBody] ProviderLog pLog)
         {
-            var result = new WebLogsService().WebLogs(start_date, end_date, provider_id, job_id);
+            if (pLog.Period == 1)
+            {
+                pLog.Start_Time = DateTime.Now.Date;
+                pLog.End_Time = DateTime.Now.Date.AddDays(1);
+            }
+            else if (pLog.Period == -1)
+            {
+                pLog.Start_Time = DateTime.Now.Date.AddDays(-1);
+                pLog.End_Time = DateTime.Now.Date;
+            }
+            else if (pLog.Period == -7)
+            {
+                pLog.Start_Time = DateTime.Now.Date.AddDays(-7);
+                pLog.End_Time = DateTime.Now.Date;
+            }
+            else if (pLog.Period == -30)
+            {
+                pLog.Start_Time = DateTime.Now.Date.AddMonths(-1);
+                pLog.End_Time = DateTime.Now.Date;
+            }
+            else
+            {
+                pLog.Start_Time = pLog.Start_Time;
+                pLog.End_Time = pLog.End_Time;
+            }
+
+            var result = new WebLogsService().WebLogs(pLog.Start_Time, pLog.End_Time, pLog.PROVIDER_ID, pLog.JOB_ID);
+            return result;
+        }
+
+        [HttpPost]
+        [Route("TotalTimeinSec")]
+        public int? TotalTimeinSec(Log log)
+        {
+            var result = new LogService().GetTotalTime(log);
+            return result;
+        }
+
+        [HttpPost]
+        [Route("TotalLogs")]
+        public Web_TotalLogsByProviderAndJob_Result TotalLogs(Log log)
+        {
+            var result = new LogService().GetTotalLogs(log);
+            return result;
+        }
+
+        [HttpPost]
+        [Route("TotalScreenLogs")]
+        public List<Web_ScreenLogs_Result> TotalScreenLogs(Log log)
+        {
+            var result = new LogService().GetTotalScreenLogs(log);
             return result;
         }
     }

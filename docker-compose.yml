@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  workdiary.emailplugin:
+    image: ${DOCKER_REGISTRY-}workdiaryemailplugin
+    build:
+      context: .\WorkDiary.EmailPlugin
+      dockerfile: Dockerfile

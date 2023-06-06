@@ -26,7 +26,7 @@
       </label>
 
 
-      <div date-rangepicker class="flex items-center">
+      <!-- <div date-rangepicker class="flex items-center">
         <div class="relative">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
@@ -54,7 +54,7 @@
             class="bg-gray-50 border py-3 border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5"
             placeholder="Select date end">
         </div>
-      </div>
+      </div> -->
 
       <label for="button">
         <button type="submit" class="bg-green-600 text-white py-3 px-4 border rounded-lg">
@@ -71,19 +71,19 @@
       <div class="bg-light flex items-center p-4 rounded-lg border border-gray-600 shadow-sm">
         <div>
           <h4 class="">Total time spent</h4>
-          <p class="text-3xl">20 Hours 20 mins</p>
+          <p class="text-3xl">{{ this.TotalTime }}</p>
         </div>
       </div>
       <div class="bg-light flex items-center  p-4 rounded-lg border border-gray-600 shadow-sm">
         <div>
           <h4 class="">Total Logs</h4>
-          <p><b>Key strokes:</b> 13450</p>
-          <p><b>Screenshots:</b> 14</p>
-          <p><b>Mouse Clicks:</b> 2000</p>
-          <p><b>Windows Switched:</b> 20</p>
+          <p><b>Key strokes:</b> {{ this.TotalLogs.Total_Key_Strokes }}</p>
+          <p><b>Screenshots:</b> {{ this.TotalLogs.image_count }}</p>
+          <p><b>Mouse Clicks:</b> {{ this.TotalLogs.Total_Mouse_Clicks }}</p>
+          <p><b>Windows Switched:</b> {{ this.TotalLogs.Total_Windows_Switched }}</p>
         </div>
       </div>
-      <div class="bg-light flex items-center p-4 rounded-lg border border-gray-600 shadow-sm">
+      <!-- <div class="bg-light flex items-center p-4 rounded-lg border border-gray-600 shadow-sm">
         <div>
           <h4 class="">Average time per day</h4>
           <p class="text-3xl">2 Hours 10 mins</p>
@@ -97,7 +97,7 @@
           <p><b>Mouse Clicks:</b> 2000</p>
           <p><b>Windows Switched:</b> 20</p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -114,7 +114,7 @@
         <div *ngFor="let session of logs.Sessions">
           <app-log-session [ActiveWindowTitle]="session.ACTIVE_WINDOW_TITLE" [Start_Time]="session.START_TIME"
             [End_Time]="session.END_TIME" [Key_Stroke_Level]="session.KEY_STROKE_LELVE"
-            [Mouse_Click]="session.MOUSE_CLICK" [WindowsSwitched]="session.WINDOWS_SWITCHED"
+            [Mouse_Click]="session.MOUSE_CLICK" [ACTIVITY_LEVEL]="session.ACTIVITY_LEVEL" [WindowsSwitched]="session.WINDOWS_SWITCHED"
             [Image_Name]="session.IMAGE_NAME"></app-log-session>
 
         </div>

@@ -2196,9 +2196,6 @@
     <FunctionImport Name="GetAllPostProjectDetails_sp" ReturnType="Collection(ServiceDotNet.GetAllPostProjectDetails_sp_Result)">
       <Parameter Name="jobId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="GetBuyerProviders" ReturnType="Collection(ServiceDotNet.GetBuyerProviders_Result)">
-      <Parameter Name="buyer_id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="GetImagesInGivenTime" ReturnType="Collection(ServiceDotNet.GetImagesInGivenTime_Result)">
       <Parameter Name="START_TIME" Mode="In" Type="DateTime" />
       <Parameter Name="END_TIME" Mode="In" Type="DateTime" />
@@ -2909,6 +2906,165 @@
       <Parameter Name="start_time" Mode="In" Type="DateTime" />
       <Parameter Name="end_time" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <EntitySet Name="C__MigrationHistory" EntityType="ServiceDotNet.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="ServiceDotNet.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="ServiceDotNet.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="ServiceDotNet.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="ServiceDotNet.AspNetUser" />
+    <EntitySet Name="AggregatedCounters" EntityType="ServiceDotNet.AggregatedCounter" />
+    <EntitySet Name="Counters" EntityType="ServiceDotNet.Counter" />
+    <EntitySet Name="Hashes" EntityType="ServiceDotNet.Hash" />
+    <EntitySet Name="Job1" EntityType="ServiceDotNet.Job1" />
+    <EntitySet Name="JobParameters" EntityType="ServiceDotNet.JobParameter" />
+    <EntitySet Name="JobQueues" EntityType="ServiceDotNet.JobQueue" />
+    <EntitySet Name="Lists" EntityType="ServiceDotNet.List" />
+    <EntitySet Name="Schemata" EntityType="ServiceDotNet.Schema" />
+    <EntitySet Name="Servers" EntityType="ServiceDotNet.Server" />
+    <EntitySet Name="Sets" EntityType="ServiceDotNet.Set" />
+    <EntitySet Name="State1" EntityType="ServiceDotNet.State1" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ServiceDotNet.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ServiceDotNet.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HangFire_JobParameter_Job" Association="ServiceDotNet.FK_HangFire_JobParameter_Job">
+      <End Role="Job1" EntitySet="Job1" />
+      <End Role="JobParameter" EntitySet="JobParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HangFire_State_Job" Association="ServiceDotNet.FK_HangFire_State_Job">
+      <End Role="Job1" EntitySet="Job1" />
+      <End Role="State1" EntitySet="State1" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="ServiceDotNet.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="SplitString" IsComposable="true" ReturnType="Collection(String)">
+      <Parameter Name="string" Mode="In" Type="String" />
+      <Parameter Name="delimiter" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Web_GetWorkSummaryImagesByProviderAndJob" ReturnType="Collection(ServiceDotNet.Web_GetWorkSummaryImagesByProviderAndJob_Result)">
+      <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_ScreenShotsByProviderAndJob" IsComposable="true" ReturnType="Collection(ServiceDotNet.Web_ScreenShotsByProviderAndJob_Result)">
+      <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_ForgotUserCheck" ReturnType="Collection(ServiceDotNet.Web_ForgotUserCheck_Result)">
+      <Parameter Name="USERNAME" Mode="In" Type="String" />
+      <Parameter Name="SECURITY_QUESTION" Mode="In" Type="String" />
+      <Parameter Name="ANSWER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Web_TotalProvidersByBuyer" ReturnType="Collection(Int32)">
+      <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_TotalJobsByBuyer" ReturnType="Collection(Int32)">
+      <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetBuyerProviders" ReturnType="Collection(ServiceDotNet.GetBuyerProviders_Result)">
+      <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_TotalLogsByProviderAndJob" ReturnType="Collection(ServiceDotNet.Web_TotalLogsByProviderAndJob_Result)">
+      <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_TotalTimeInSecondsByProviderJob" ReturnType="Collection(Double)">
+      <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_ScreenLogs" ReturnType="Collection(ServiceDotNet.Web_ScreenLogs_Result)">
+      <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_GetAllJobStatus" ReturnType="Collection(ServiceDotNet.Web_GetAllJobStatus_Result)" />
+    <FunctionImport Name="Web_GetJobByStatusId" ReturnType="Collection(ServiceDotNet.Web_GetJobByStatusId_Result)">
+      <Parameter Name="Job_Status_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_AddProjectTeamMember" ReturnType="Collection(Decimal)">
+      <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+      <Parameter Name="DESIGNATION_ID" Mode="In" Type="Int32" />
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="EMAIL" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Web_DeleteProjectTeamMember" ReturnType="Collection(Int32)">
+      <Parameter Name="PROJECT_TEAM_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_GetProjectTeamByBuyerId" ReturnType="Collection(ServiceDotNet.Web_GetProjectTeamByBuyerId_Result)">
+      <Parameter Name="BUYER_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_UpdateProjectTeamMember" ReturnType="Collection(Int32)">
+      <Parameter Name="PROJECT_TEAM_ID" Mode="In" Type="Int32" />
+      <Parameter Name="Job_id" Mode="In" Type="Int32" />
+      <Parameter Name="Designation_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Web_Offer_GetActiveByBuyerId" ReturnType="Collection(ServiceDotNet.Web_Offer_GetActiveByBuyerId_Result)">
+      <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_Offer_GetRejectedByBuyerId" ReturnType="Collection(ServiceDotNet.Web_Offer_GetRejectedByBuyerId_Result)">
+      <Parameter Name="Buyer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_Offer_Insert" ReturnType="Collection(Int32)">
+      <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+      <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="BUYER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="CURRENCY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="OFFER_AMOUNT" Mode="In" Type="Decimal" />
+      <Parameter Name="SERVICE_FEE" Mode="In" Type="Decimal" />
+      <Parameter Name="CLIENT_CHARGED" Mode="In" Type="Decimal" />
+      <Parameter Name="UPFRONT_PAYMENT" Mode="In" Type="Decimal" />
+      <Parameter Name="TIME_REQUIRED" Mode="In" Type="String" />
+      <Parameter Name="IS_FIRST_OFFER" Mode="In" Type="Boolean" />
+      <Parameter Name="IS_AWARDED" Mode="In" Type="Boolean" />
+      <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="TERMS" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="Int32" />
+      <Parameter Name="IS_OFFER_BUYER" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Web_Offer_AcceptOffer_AwardJob" ReturnType="Collection(Decimal)">
+      <Parameter Name="Job_Offer_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Job_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Currency_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_Offer_Reject" ReturnType="Collection(Int32)">
+      <Parameter Name="Job_Offer_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_GetJobStatus" ReturnType="Collection(ServiceDotNet.Web_GetJobStatus_Result)" />
+    <FunctionImport Name="Web_UpdateJobStatusByJobId" ReturnType="Collection(Int32)">
+      <Parameter Name="Job_Status_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Job_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_GetJobByStatusIdBuyerId" ReturnType="Collection(ServiceDotNet.Web_GetJobByStatusIdBuyerId_Result)">
+      <Parameter Name="Job_Status_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_OffersSentAwardedRejected" ReturnType="Collection(ServiceDotNet.Web_OffersSentAwardedRejected_Result)">
+      <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Is_Awarded" Mode="In" Type="Int32" />
+      <Parameter Name="Is_Rejected" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_JobsByStatusForProvider" ReturnType="Collection(ServiceDotNet.Web_JobsByStatusForProvider_Result)">
+      <Parameter Name="Job_Status_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ActiveJobGetByJobId_sp_Result">
     <Property Type="Int32" Name="USER_ID" Nullable="true" />
@@ -3281,56 +3437,6 @@
     <Property Type="String" Name="SKILL_NAME" Nullable="true" MaxLength="300" />
     <Property Type="String" Name="NAME" Nullable="true" MaxLength="300" />
     <Property Type="Int32" Name="CAT_ID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="GetBuyerProviders_Result">
-    <Property Type="Int32" Name="USER_ID" Nullable="false" />
-    <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
-    <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
-    <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
-    <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
-    <Property Type="Int32" Name="CITY_ID" Nullable="true" />
-    <Property Type="Int32" Name="STATE_ID" Nullable="true" />
-    <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
-    <Property Type="String" Name="ZIP_POSTAL" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="IMAGE_URL" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="NOTES" Nullable="true" />
-    <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
-    <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
-    <Property Type="Boolean" Name="IS_LOGGED_IN" Nullable="true" />
-    <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
-    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
-    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
-    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
-    <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
-    <Property Type="Int32" Name="JOB_AWARDED_ID" Nullable="false" />
-    <Property Type="Int32" Name="JOB_OFFER_ID" Nullable="true" />
-    <Property Type="Int32" Name="JOB_ID" Nullable="true" />
-    <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
-    <Property Type="Decimal" Name="AMOUNT" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="DateTime" Name="DATE_AWARDED" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="DATE_COMPLETED" Nullable="true" Precision="23" />
-    <Property Type="String" Name="BUYER_REVIEW" Nullable="true" MaxLength="1500" />
-    <Property Type="String" Name="PROVIDER_REVIEW" Nullable="true" MaxLength="1500" />
   </ComplexType>
   <ComplexType Name="GetImagesInGivenTime_Result">
     <Property Type="Int32" Name="IMAGE_ID" Nullable="false" />
@@ -5101,6 +5207,8 @@
   <ComplexType Name="GetJobsByBuyerId_Result">
     <Property Type="Int32" Name="JOB_ID" Nullable="false" />
     <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="SP_WorkDiaryAppLogs_Result">
     <Property Type="Int32" Name="TotalTime" Nullable="true" />
@@ -5108,5 +5216,576 @@
     <Property Type="Int32" Name="KeyStrokes" Nullable="true" />
     <Property Type="Int32" Name="WindowsSwitched" Nullable="true" />
     <Property Type="Int32" Name="TotalScreenShots" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ServiceDotNet.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ServiceDotNet.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="ServiceDotNet.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="ServiceDotNet.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="ServiceDotNet.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="ServiceDotNet.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="AggregatedCounter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="Int64" Nullable="false" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Counter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="Int16" Nullable="false" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Hash">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Field" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="Job1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="StateName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="InvocationData" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Arguments" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="JobParameters" Relationship="ServiceDotNet.FK_HangFire_JobParameter_Job" FromRole="Job1" ToRole="JobParameter" />
+    <NavigationProperty Name="State1" Relationship="ServiceDotNet.FK_HangFire_State_Job" FromRole="Job1" ToRole="State1" />
+  </EntityType>
+  <EntityType Name="JobParameter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Job1" Relationship="ServiceDotNet.FK_HangFire_JobParameter_Job" FromRole="JobParameter" ToRole="Job1" />
+  </EntityType>
+  <EntityType Name="JobQueue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobId" Type="Int32" Nullable="false" />
+    <Property Name="Queue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FetchedAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="List">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Schema">
+    <Key>
+      <PropertyRef Name="Version" />
+    </Key>
+    <Property Name="Version" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Server">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastHeartbeat" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Set">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Score" Type="Double" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="State1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Job1" Relationship="ServiceDotNet.FK_HangFire_State_Job" FromRole="State1" ToRole="Job1" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="ServiceDotNet.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ServiceDotNet.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="ServiceDotNet.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ServiceDotNet.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HangFire_JobParameter_Job">
+    <End Type="ServiceDotNet.Job1" Role="Job1" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ServiceDotNet.JobParameter" Role="JobParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobParameter">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HangFire_State_Job">
+    <End Type="ServiceDotNet.Job1" Role="Job1" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ServiceDotNet.State1" Role="State1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="State1">
+        <PropertyRef Name="JobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="ServiceDotNet.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="ServiceDotNet.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <ComplexType Name="Web_GetWorkSummaryImagesByProviderAndJob_Result">
+    <Property Type="Int32" Name="IMAGE_ID" Nullable="false" />
+    <Property Type="String" Name="WORKING_ON" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="ACTIVE_WINDOW_TITLE" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="KEY_STROKE_LEVEL" Nullable="false" />
+    <Property Type="Int32" Name="MOUSE_CLICK" Nullable="false" />
+    <Property Type="Int32" Name="WINDOWS_SWITCHED" Nullable="false" />
+    <Property Type="Int32" Name="ACTIVITY_LEVEL" Nullable="true" />
+    <Property Type="Int32" Name="IMAGE_BINARY" Nullable="true" />
+    <Property Type="String" Name="IMAGE_NAME" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="START_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="END_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="TOTAL_MINUTES" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+    <Property Type="String" Name="DISPLAY_TIME" Nullable="true" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="Web_ScreenShotsByProviderAndJob_Result">
+    <Property Type="DateTime" Name="SessionStart" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="SessionEnd" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Hour" Nullable="true" />
+    <Property Type="Int32" Name="ProviderID" Nullable="true" />
+    <Property Type="Int32" Name="KeyStrokes" Nullable="true" />
+    <Property Type="Int32" Name="MouseClicks" Nullable="true" />
+    <Property Type="Int32" Name="WindowsSwitched" Nullable="true" />
+    <Property Type="String" Name="AggregatedImageIds" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Web_ForgotUserCheck_Result">
+    <Property Type="Int32" Name="USER_ID" Nullable="false" />
+    <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+    <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
+    <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+    <Property Type="Int32" Name="STATE_ID" Nullable="true" />
+    <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
+    <Property Type="String" Name="ZIP_POSTAL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="IMAGE_URL" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="NOTES" Nullable="true" />
+    <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
+    <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
+    <Property Type="Boolean" Name="IS_LOGGED_IN" Nullable="true" />
+    <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+    <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="GetBuyerProviders_Result">
+    <Property Type="Int32" Name="USER_ID" Nullable="false" />
+    <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+    <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
+    <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+    <Property Type="Int32" Name="STATE_ID" Nullable="true" />
+    <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
+    <Property Type="String" Name="ZIP_POSTAL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="IMAGE_URL" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="NOTES" Nullable="true" />
+    <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
+    <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
+    <Property Type="Boolean" Name="IS_LOGGED_IN" Nullable="true" />
+    <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Web_TotalLogsByProviderAndJob_Result">
+    <Property Type="Int32" Name="Total_Key_Strokes" Nullable="true" />
+    <Property Type="Int32" Name="Total_Mouse_Clicks" Nullable="true" />
+    <Property Type="Int32" Name="Total_Windows_Switched" Nullable="true" />
+    <Property Type="Int32" Name="image_count" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Web_ScreenLogs_Result">
+    <Property Type="Int32" Name="PROVIDER_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_ID" Nullable="true" />
+    <Property Type="String" Name="CLASS_DESCRIPTION" Nullable="true" MaxLength="300" />
+    <Property Type="Double" Name="TIME_SPENT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Web_GetAllJobStatus_Result">
+    <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="300" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Web_GetJobByStatusId_Result">
+    <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+    <Property Type="Int32" Name="USER_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_TYPE_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="true" />
+    <Property Type="Int32" Name="CLASS_ID" Nullable="true" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="String" Name="APPROXIMATE_DURATION" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="APPROXIMATE_BUDGET" Nullable="true" Precision="19" />
+    <Property Type="String" Name="DURATION" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="HOURLY_RATE" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="HOURS_PER_WEEK" Nullable="true" />
+    <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+    <Property Type="Int32" Name="RATE_TYPE_ID" Nullable="true" />
+    <Property Type="Decimal" Name="RATE" Nullable="true" Precision="19" />
+    <Property Type="Boolean" Name="ON_SITE_WORK" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_COUNTRY_ID" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_REGION_ID" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_CITY_ID" Nullable="true" />
+    <Property Type="String" Name="SITE_LOCATION_POSTCODE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="OFFER_SUBMIT_DAYS" Nullable="true" />
+    <Property Type="String" Name="WORK_START" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="WORK_START_IMMIDIATELY" Nullable="true" />
+    <Property Type="DateTime" Name="WORK_START_ON_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="JOB_VIEW_IS_PUBLIC" Nullable="true" />
+    <Property Type="Boolean" Name="OFFER_AMOUNT_IS_PUBLIC" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+    <Property Type="String" Name="MATTERMOST_TEAM_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_TEAM_NAME" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Web_GetProjectTeamByBuyerId_Result">
+    <Property Type="Int32" Name="PROJECT_TEAM_ID" Nullable="false" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="DESIGNATION_NAME" Nullable="false" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="Web_Offer_GetActiveByBuyerId_Result">
+    <Property Type="Int32" Name="JOB_OFFER_ID" Nullable="false" />
+    <Property Type="Int32" Name="JOB_ID" Nullable="true" />
+    <Property Type="Int32" Name="PROVIDER_ID" Nullable="true" />
+    <Property Type="Int32" Name="BUYER_ID" Nullable="true" />
+    <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+    <Property Type="Decimal" Name="OFFER_AMOUNT" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="SERVICE_FEE" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="CLIENT_CHARGED" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="UPFRONT_PAYMENT" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="TIME_REQUIRED" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IS_FIRST_OFFER" Nullable="true" />
+    <Property Type="Boolean" Name="IS_OFFER_BY_BUYER" Nullable="true" />
+    <Property Type="Boolean" Name="IS_AWARDED" Nullable="true" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="String" Name="TERMS" Nullable="true" MaxLength="1500" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_VIEWED" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+    <Property Type="String" Name="TERMS_AND_CONDITIONS" Nullable="true" MaxLength="1500" />
+    <Property Type="Boolean" Name="IS_REJECTED" Nullable="true" />
+    <Property Type="Boolean" Name="OFFER_WITH_DRAWN" Nullable="true" />
+    <Property Type="Boolean" Name="OFFER_WITH_DRAWN_BY_PROVIDER" Nullable="true" />
+    <Property Type="Int32" Name="OFFER_WITH_DRAWN_USER_ID" Nullable="true" />
+    <Property Type="DateTime" Name="OFFER_WITH_DRAWN_DATE" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Web_Offer_GetRejectedByBuyerId_Result">
+    <Property Type="Int32" Name="JOB_OFFER_ID" Nullable="false" />
+    <Property Type="Int32" Name="JOB_ID" Nullable="true" />
+    <Property Type="Int32" Name="PROVIDER_ID" Nullable="true" />
+    <Property Type="Int32" Name="BUYER_ID" Nullable="true" />
+    <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+    <Property Type="Decimal" Name="OFFER_AMOUNT" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="SERVICE_FEE" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="CLIENT_CHARGED" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="UPFRONT_PAYMENT" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="TIME_REQUIRED" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="IS_FIRST_OFFER" Nullable="true" />
+    <Property Type="Boolean" Name="IS_OFFER_BY_BUYER" Nullable="true" />
+    <Property Type="Boolean" Name="IS_AWARDED" Nullable="true" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="String" Name="TERMS" Nullable="true" MaxLength="1500" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_VIEWED" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+    <Property Type="String" Name="TERMS_AND_CONDITIONS" Nullable="true" MaxLength="1500" />
+    <Property Type="Boolean" Name="IS_REJECTED" Nullable="true" />
+    <Property Type="Boolean" Name="OFFER_WITH_DRAWN" Nullable="true" />
+    <Property Type="Boolean" Name="OFFER_WITH_DRAWN_BY_PROVIDER" Nullable="true" />
+    <Property Type="Int32" Name="OFFER_WITH_DRAWN_USER_ID" Nullable="true" />
+    <Property Type="DateTime" Name="OFFER_WITH_DRAWN_DATE" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Web_GetJobStatus_Result">
+    <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="300" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Web_GetJobByStatusIdBuyerId_Result">
+    <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+    <Property Type="Int32" Name="USER_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_TYPE_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="true" />
+    <Property Type="Int32" Name="CLASS_ID" Nullable="true" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="String" Name="APPROXIMATE_DURATION" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="APPROXIMATE_BUDGET" Nullable="true" Precision="19" />
+    <Property Type="String" Name="DURATION" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="HOURLY_RATE" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="HOURS_PER_WEEK" Nullable="true" />
+    <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+    <Property Type="Int32" Name="RATE_TYPE_ID" Nullable="true" />
+    <Property Type="Decimal" Name="RATE" Nullable="true" Precision="19" />
+    <Property Type="Boolean" Name="ON_SITE_WORK" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_COUNTRY_ID" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_REGION_ID" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_CITY_ID" Nullable="true" />
+    <Property Type="String" Name="SITE_LOCATION_POSTCODE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="OFFER_SUBMIT_DAYS" Nullable="true" />
+    <Property Type="String" Name="WORK_START" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="WORK_START_IMMIDIATELY" Nullable="true" />
+    <Property Type="DateTime" Name="WORK_START_ON_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="JOB_VIEW_IS_PUBLIC" Nullable="true" />
+    <Property Type="Boolean" Name="OFFER_AMOUNT_IS_PUBLIC" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+    <Property Type="String" Name="MATTERMOST_TEAM_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_TEAM_NAME" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Web_OffersSentAwardedRejected_Result">
+    <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+    <Property Type="Int32" Name="USER_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_TYPE_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="true" />
+    <Property Type="Int32" Name="CLASS_ID" Nullable="true" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="String" Name="APPROXIMATE_DURATION" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="APPROXIMATE_BUDGET" Nullable="true" Precision="19" />
+    <Property Type="String" Name="DURATION" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="HOURLY_RATE" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="HOURS_PER_WEEK" Nullable="true" />
+    <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+    <Property Type="Int32" Name="RATE_TYPE_ID" Nullable="true" />
+    <Property Type="Decimal" Name="RATE" Nullable="true" Precision="19" />
+    <Property Type="Boolean" Name="ON_SITE_WORK" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_COUNTRY_ID" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_REGION_ID" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_CITY_ID" Nullable="true" />
+    <Property Type="String" Name="SITE_LOCATION_POSTCODE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="OFFER_SUBMIT_DAYS" Nullable="true" />
+    <Property Type="String" Name="WORK_START" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="WORK_START_IMMIDIATELY" Nullable="true" />
+    <Property Type="DateTime" Name="WORK_START_ON_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="JOB_VIEW_IS_PUBLIC" Nullable="true" />
+    <Property Type="Boolean" Name="OFFER_AMOUNT_IS_PUBLIC" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+    <Property Type="String" Name="MATTERMOST_TEAM_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_TEAM_NAME" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="Web_JobsByStatusForProvider_Result">
+    <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+    <Property Type="Int32" Name="USER_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_TYPE_ID" Nullable="true" />
+    <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="true" />
+    <Property Type="Int32" Name="CLASS_ID" Nullable="true" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="String" Name="APPROXIMATE_DURATION" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="APPROXIMATE_BUDGET" Nullable="true" Precision="19" />
+    <Property Type="String" Name="DURATION" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="HOURLY_RATE" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="HOURS_PER_WEEK" Nullable="true" />
+    <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+    <Property Type="Int32" Name="RATE_TYPE_ID" Nullable="true" />
+    <Property Type="Decimal" Name="RATE" Nullable="true" Precision="19" />
+    <Property Type="Boolean" Name="ON_SITE_WORK" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_COUNTRY_ID" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_REGION_ID" Nullable="true" />
+    <Property Type="Int32" Name="SITE_LOCATION_CITY_ID" Nullable="true" />
+    <Property Type="String" Name="SITE_LOCATION_POSTCODE" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="OFFER_SUBMIT_DAYS" Nullable="true" />
+    <Property Type="String" Name="WORK_START" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="WORK_START_IMMIDIATELY" Nullable="true" />
+    <Property Type="DateTime" Name="WORK_START_ON_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="JOB_VIEW_IS_PUBLIC" Nullable="true" />
+    <Property Type="Boolean" Name="OFFER_AMOUNT_IS_PUBLIC" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+    <Property Type="String" Name="MATTERMOST_TEAM_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_TEAM_NAME" Nullable="true" MaxLength="500" />
   </ComplexType>
 </Schema>

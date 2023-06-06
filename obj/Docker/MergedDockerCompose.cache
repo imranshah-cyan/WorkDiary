@@ -1,0 +1,16 @@
+name: dockercompose4925634421136494520
+services:
+  workdiary.emailplugin:
+    build:
+      context: F:\Github\WorkDiary\WorkDiary.EmailPlugin
+      dockerfile: Dockerfile
+    image: workdiaryemailplugin
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+networks:
+  default:
+    name: dockercompose4925634421136494520_default

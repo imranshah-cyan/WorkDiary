@@ -20,6 +20,10 @@ import { JobDetailsComponent } from './components/job-details/job-details.compon
 import { JobOffersComponent } from './components/job-offers/job-offers.component';
 import { WorkdiaryComponent } from './components/workdiary/workdiary.component';
 import { FormsModule } from '@angular/forms';
+import { PostJobComponent } from './components/PostJob/PostJob.component';
+import { ProjectTeamComponent } from './components/settings/ProjectTeam/ProjectTeam.component';
+import { ToastrModule } from 'ngx-toastr';
+import { SecurityQtnComponent } from './components/settings/securityQtn/securityQtn.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,10 @@ import { FormsModule } from '@angular/forms';
     ProvidersComponent,
     JobDetailsComponent,
     JobOffersComponent,
-    WorkdiaryComponent
+    WorkdiaryComponent,
+    PostJobComponent,
+    ProjectTeamComponent,
+    SecurityQtnComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { FormsModule } from '@angular/forms';
     BuyersRoutingModule,
     MatMenuModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   schemas: [NO_ERRORS_SCHEMA],
   exports: [

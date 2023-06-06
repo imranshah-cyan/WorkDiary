@@ -14,6 +14,11 @@ namespace WorkDiaryServices.Classes
             return new JobRepository().InsertJob(job);
         }
 
+        public List<Web_GetAllJobStatus_Result> GetAllJobStatuses()
+        {
+            return new JobRepository().GetAllJobStatuses();
+        }
+
         public int? TotalJobsByBuyer(int buyerId)
         {
             return new JobRepository().TotalJobsByBuyer(buyerId);
@@ -262,6 +267,31 @@ namespace WorkDiaryServices.Classes
         public List<GetImagesInGivenTime_Result> GetImagesInGivenTime(int providerId, int jobId, DateTime startTime, DateTime endTime)
         {
             return new JobRepository().GetImagesInGivenTime(providerId, jobId, startTime, endTime);
+        }
+
+        public List<Web_GetAllJobStatus_Result> GetAllJobStatus()
+        {
+            return new JobRepository().GetAllJobStatus();
+        }
+
+        public int? UpdateJobStatus(int? Job_Status_Id, int Job_Id)
+        {
+            return new JobRepository().UpdateJobStatus(Job_Status_Id, Job_Id);
+        }
+
+        public List<Web_GetJobByStatusId_Result> GetJobsByStatusId(int job_Status_Id)
+        {
+            return new JobRepository().GetJobsByStatusId(job_Status_Id);
+        }
+
+        public List<Web_OffersSentAwardedRejected_Result> GetJobsForOffersSentAwardedRejected(int Prov_Id, int Is_Awarded, int Is_Rejected)
+        {
+            return new JobRepository().GetJobsForOffersSentAwardedRejected(Prov_Id, Is_Awarded, Is_Rejected);
+        }
+
+        public List<Web_JobsByStatusForProvider_Result> Web_JobsByStatusForProvider(int Job_Status_Id, int Prov_Id)
+        {
+            return new JobRepository().Web_JobsByStatusForProvider(Job_Status_Id, Prov_Id);
         }
     }
 }

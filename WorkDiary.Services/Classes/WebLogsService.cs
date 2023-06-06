@@ -10,7 +10,7 @@ namespace WorkDiaryServices.Classes
 {
     public class WebLogsService
     {
-        public WebLogs WebLogs(DateTime start_date, DateTime end_date, int provider_id, int job_id)
+        public WebLogs WebLogs(DateTime? start_date, DateTime? end_date, int? provider_id, int? job_id)
         {
             var weblogs = new WebLogsRepository().GetWebLogs(start_date, end_date, provider_id, job_id);
 

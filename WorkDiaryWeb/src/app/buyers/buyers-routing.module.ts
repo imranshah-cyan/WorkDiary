@@ -14,6 +14,8 @@ import { UpdatePasswordComponent } from '../Shared/components/UpdatePassword/Upd
 import { ProviderProfileComponent } from './components/provider-profile/provider-profile.component';
 import { JobDetailsComponent } from './components/job-details/job-details.component';
 import { JobOffersComponent } from './components/job-offers/job-offers.component';
+import { ProjectTeamComponent } from './components/settings/ProjectTeam/ProjectTeam.component';
+import { SecurityQtnComponent } from './components/settings/securityQtn/securityQtn.component';
 
 const routes: Routes = [
   {
@@ -68,6 +70,14 @@ const routes: Routes = [
           {
             path: 'updatePassword',
             component: UpdatePasswordComponent
+          },
+          {
+            path: 'security',
+            component: SecurityQtnComponent
+          },
+          {
+            path: 'projectTeam',
+            component: ProjectTeamComponent
           }
         ]
       },

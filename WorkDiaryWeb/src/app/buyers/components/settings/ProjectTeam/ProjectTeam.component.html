@@ -1,0 +1,123 @@
+<div class="bg-white p-8">
+  <p class="font-bold text-lg">Project Team</p>
+  <p class="text-md">This page shows all the mangers who will receive a daily notification email of the Jobs mentioned
+    with their email</p>
+
+
+  <p class="alert alert-success text-sm p-2" *ngIf="NewMemberAdded === 'success'">New Member Added</p>
+  <p class="alert alert-danger text-sm p-2" *ngIf="NewMemberAdded === 'failure'">Failed to Add New Member</p>
+  <p class="alert alert-danger text-sm p-2" *ngIf="MemberDeleted">Member Deleted</p>
+  <p class="alert alert-success text-sm p-2" *ngIf="MemberUpdated">Member Updated</p>
+
+
+  <div class="p-3 bg-gray-200 rounded mb-3">
+    <p class="font-medium text-sm">Add a new team memeber</p>
+    <form #AddProjectTeamMemForm="ngForm" (ngSubmit)="AddProjectTeamMem(AddProjectTeamMemForm)" class="grid grid-cols-3 gap-2">
+      <div>
+        <label for="name">Job</label>
+        <select class="form-select" ngModel id="job" name="job">
+          <option value="">Choose a Job</option>
+          <option value="{{job.JOB_ID}}" *ngFor="let job of Jobs">{{ job.JOB_TITLE }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="name">Name</label>
+        <input type="text" ngModel id="Name" name="Name" class="form-control" />
+      </div>
+      <div>
+        <label for="name">Email</label>
+        <input type="email" ngModel id="email" name="email" id="email" class="form-control" />
+      </div>
+      <div class="col-span-3 ml-auto">
+        <button type="submit" class="px-3 py-1 bg-green-500 text-white rounded">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- app.component.html -->
+  <div class="container mx-auto">
+    <table class="min-w-full bg-white">
+      <!-- Table Header -->
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b border-gray-200">Serial No</th>
+          <th class="py-2 px-4 border-b border-gray-200">Job</th>
+          <th class="py-2 px-4 border-b border-gray-200">Name</th>
+          <th class="py-2 px-4 border-b border-gray-200">Email</th>
+          <th class="py-2 px-4 border-b border-gray-200">Actions</th>
+        </tr>
+      </thead>
+      <!-- Table Body -->
+      <tbody>
+        <tr *ngFor="let item of paginatedData; let i = index">
+          <ng-container *ngIf="!item.editing">
+            <td class="py-2 px-4 border-b border-gray-200">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+            <td class="py-2 px-4 border-b border-gray-200">{{ item.JOB_TITLE }}</td>
+            <td class="py-2 px-4 border-b border-gray-200">{{ item.NAME }}</td>
+            <td class="py-2 px-4 border-b border-gray-200">{{ item.EMAIL }}</td>
+            <td class="py-2 px-4 border-b border-gray-200">
+              <button class="text-blue-500 hover:text-blue-700 mr-2" (click)="editItem(item)">
+                Edit
+              </button>
+              <button class="text-red-500 hover:text-red-700" (click)="showConfirmDelete(item)">
+                Delete
+              </button>
+            </td>
+            <div *ngIf="showConfirmDeleteContainer" class="confirm-delete-container">
+              <p>Are you sure you want to delete this item? {{item.JOB_TITLE}}</p>
+              <button class="hover:text-red-700 p-2 bg-red-400 rounded text-white" (click)="confirmDelete()">Delete</button>
+              <button class="text-white ml-1 hover:text-gray-700 bg-gray-400 p-2 rounded" (click)="cancelDelete()">Cancel</button>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="item.editing">
+            <td class="py-2 px-4 border-b border-gray-200">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+            <td class="py-2 px-4 border-b border-gray-200">
+              <select class="form-select" [(ngModel)]="item.JOB_ID" name="JOB_ID">
+                <option value="">Choose a Job</option>
+                <option value="{{job.JOB_ID}}" *ngFor="let job of Jobs">{{ job.JOB_TITLE }}</option>
+              </select>
+            </td>
+            <td class="py-2 px-4 border-b border-gray-200">
+              <input type="text" class="border-2 border-blue-300 px-2 py-1 rounded" [(ngModel)]="item.NAME" />
+            </td>
+            <td class="py-2 px-4 border-b border-gray-200">
+              <input type="text" class="border-2 border-blue-300 px-2 py-1 rounded" [(ngModel)]="item.EMAIL" />
+            </td>
+            <td class="py-2 px-4 border-b border-gray-200">
+              <button class="text-green-500 hover:text-green-700 mr-2" (click)="saveItem(item)">
+                Save
+              </button>
+              <button class="text-gray-500 hover:text-gray-700" (click)="cancelEdit(item)">
+                Cancel
+              </button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="flex items-center justify-between mt-4">
+      <div>
+        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded mr-2" [disabled]="currentPage === 1"
+          (click)="previousPage()">
+          Previous
+        </button>
+        <button class="px-4 py-2 bg-green-500 text-white rounded" [disabled]="currentPage === totalPages"
+          (click)="nextPage()">
+          Next
+        </button>
+      </div>
+      <div class="text-gray-600">
+        Page {{ currentPage }} of {{ totalPages }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

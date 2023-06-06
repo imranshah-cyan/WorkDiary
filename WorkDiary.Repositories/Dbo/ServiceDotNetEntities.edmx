@@ -2884,10 +2884,30 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Parameter Name="USER_ID" Type="int" Mode="In" />
           <Parameter Name="TIME_SHEET_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Web_AddProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="JOB_ID" Type="int" Mode="In" />
+          <Parameter Name="DESIGNATION_ID" Type="int" Mode="In" />
+          <Parameter Name="NAME" Type="varchar" Mode="In" />
+          <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Web_DeleteProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PROJECT_TEAM_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Web_ForgotUserCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="USERNAME" Type="varchar" Mode="In" />
           <Parameter Name="SECURITY_QUESTION" Type="varchar" Mode="In" />
           <Parameter Name="ANSWER" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Web_GetAllJobStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Web_GetJobByStatusId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_GetJobByStatusIdBuyerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
+          <Parameter Name="Buyer_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_GetProjectTeamByBuyerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BUYER_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Web_GetWorkSummaryImagesByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="START_DATE" Type="datetime" Mode="In" />
@@ -2895,9 +2915,52 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
           <Parameter Name="JOB_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Web_JobsByStatusForProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
+          <Parameter Name="Provider_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_Offer_AcceptOffer_AwardJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Web_Offer_AcceptOffer&amp;AwardJob">
+          <Parameter Name="Job_Offer_Id" Type="int" Mode="In" />
+          <Parameter Name="Job_Id" Type="int" Mode="In" />
+          <Parameter Name="Provider_Id" Type="int" Mode="In" />
+          <Parameter Name="Buyer_Id" Type="int" Mode="In" />
+          <Parameter Name="Currency_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_Offer_GetActiveByBuyerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Buyer_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_Offer_GetRejectedByBuyerId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Buyer_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_Offer_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="JOB_ID" Type="int" Mode="In" />
+          <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+          <Parameter Name="BUYER_ID" Type="int" Mode="In" />
+          <Parameter Name="CURRENCY_ID" Type="int" Mode="In" />
+          <Parameter Name="OFFER_AMOUNT" Type="decimal" Mode="In" />
+          <Parameter Name="SERVICE_FEE" Type="decimal" Mode="In" />
+          <Parameter Name="CLIENT_CHARGED" Type="decimal" Mode="In" />
+          <Parameter Name="UPFRONT_PAYMENT" Type="decimal" Mode="In" />
+          <Parameter Name="TIME_REQUIRED" Type="varchar" Mode="In" />
+          <Parameter Name="IS_FIRST_OFFER" Type="bit" Mode="In" />
+          <Parameter Name="IS_AWARDED" Type="bit" Mode="In" />
+          <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+          <Parameter Name="TERMS" Type="varchar" Mode="In" />
+          <Parameter Name="CREATED_BY" Type="int" Mode="In" />
+          <Parameter Name="IS_OFFER_BUYER" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Web_Offer_Reject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Job_Offer_Id" Type="int" Mode="In" />
+          <Parameter Name="Buyer_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_OffersSentAwardedRejected" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Provider_Id" Type="int" Mode="In" />
+          <Parameter Name="Is_Awarded" Type="int" Mode="In" />
+          <Parameter Name="Is_Rejected" Type="int" Mode="In" />
+        </Function>
         <Function Name="Web_ScreenLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="START_ON" Type="datetime" Mode="In" />
-          <Parameter Name="END_ON" Type="datetime" Mode="In" />
+          <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="END_DATE" Type="datetime" Mode="In" />
           <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
           <Parameter Name="JOB_ID" Type="int" Mode="In" />
         </Function>
@@ -2924,8 +2987,31 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
         <Function Name="Web_TotalJobsByBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="buyer_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="Web_TotalLogsByProviderAndJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Web_TotalProvidersByBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="buyer_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_TotalTimeInSecondsByProviderJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="START_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="END_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_UpdateJobStatusByJobId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
+          <Parameter Name="Job_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_UpdateProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PROJECT_TEAM_ID" Type="int" Mode="In" />
+          <Parameter Name="Job_id" Type="int" Mode="In" />
+          <Parameter Name="Designation_Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
         </Function>
         <Function Name="WidgetBuyerBusinessInfo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BUYER_ID" Type="int" Mode="In" />
@@ -6240,12 +6326,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
             <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
             <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Web_ScreenLogs" ReturnType="Collection(ServiceDotNet.Web_ScreenLogs_Result)">
-            <Parameter Name="START_ON" Mode="In" Type="DateTime" />
-            <Parameter Name="END_ON" Mode="In" Type="DateTime" />
-            <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
-            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Web_ScreenShotsByProviderAndJob" IsComposable="true" ReturnType="Collection(ServiceDotNet.Web_ScreenShotsByProviderAndJob_Result)">
             <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
             <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
@@ -6264,7 +6344,100 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Parameter Name="buyer_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetBuyerProviders" ReturnType="Collection(ServiceDotNet.GetBuyerProviders_Result)">
-            <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+          <Parameter Name="buyer_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_TotalLogsByProviderAndJob" ReturnType="Collection(ServiceDotNet.Web_TotalLogsByProviderAndJob_Result)">
+            <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_TotalTimeInSecondsByProviderJob" ReturnType="Collection(Double)">
+            <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_ScreenLogs" ReturnType="Collection(ServiceDotNet.Web_ScreenLogs_Result)">
+            <Parameter Name="START_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="END_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_GetAllJobStatus" ReturnType="Collection(ServiceDotNet.Web_GetAllJobStatus_Result)" />
+          <FunctionImport Name="Web_GetJobByStatusId" ReturnType="Collection(ServiceDotNet.Web_GetJobByStatusId_Result)">
+          <Parameter Name="Job_Status_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_AddProjectTeamMember" ReturnType="Collection(Decimal)">
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+            <Parameter Name="DESIGNATION_ID" Mode="In" Type="Int32" />
+            <Parameter Name="NAME" Mode="In" Type="String" />
+            <Parameter Name="EMAIL" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Web_DeleteProjectTeamMember" ReturnType="Collection(Int32)">
+          <Parameter Name="PROJECT_TEAM_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_GetProjectTeamByBuyerId" ReturnType="Collection(ServiceDotNet.Web_GetProjectTeamByBuyerId_Result)">
+          <Parameter Name="BUYER_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_UpdateProjectTeamMember" ReturnType="Collection(Int32)">
+            <Parameter Name="PROJECT_TEAM_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Job_id" Mode="In" Type="Int32" />
+            <Parameter Name="Designation_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Web_Offer_Insert" ReturnType="Collection(Int32)">
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+            <Parameter Name="PROVIDER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="BUYER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="CURRENCY_ID" Mode="In" Type="Int32" />
+            <Parameter Name="OFFER_AMOUNT" Mode="In" Type="Decimal" />
+            <Parameter Name="SERVICE_FEE" Mode="In" Type="Decimal" />
+            <Parameter Name="CLIENT_CHARGED" Mode="In" Type="Decimal" />
+            <Parameter Name="UPFRONT_PAYMENT" Mode="In" Type="Decimal" />
+            <Parameter Name="TIME_REQUIRED" Mode="In" Type="String" />
+            <Parameter Name="IS_FIRST_OFFER" Mode="In" Type="Boolean" />
+            <Parameter Name="IS_AWARDED" Mode="In" Type="Boolean" />
+            <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+            <Parameter Name="TERMS" Mode="In" Type="String" />
+            <Parameter Name="CREATED_BY" Mode="In" Type="Int32" />
+            <Parameter Name="IS_OFFER_BUYER" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Web_Offer_AcceptOffer_AwardJob" ReturnType="Collection(Decimal)">
+            <Parameter Name="Job_Offer_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Job_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Currency_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_Offer_Reject" ReturnType="Collection(Int32)">
+            <Parameter Name="Job_Offer_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_GetJobStatus" ReturnType="Collection(ServiceDotNet.Web_GetJobStatus_Result)" />
+          <FunctionImport Name="Web_UpdateJobStatusByJobId" ReturnType="Collection(Int32)">
+            <Parameter Name="Job_Status_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Job_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_GetJobByStatusIdBuyerId" ReturnType="Collection(ServiceDotNet.Web_GetJobByStatusIdBuyerId_Result)">
+            <Parameter Name="Job_Status_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_OffersSentAwardedRejected" ReturnType="Collection(ServiceDotNet.Web_OffersSentAwardedRejected_Result)">
+            <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Is_Awarded" Mode="In" Type="Int32" />
+            <Parameter Name="Is_Rejected" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_JobsByStatusForProvider" ReturnType="Collection(ServiceDotNet.Web_JobsByStatusForProvider_Result)">
+            <Parameter Name="Job_Status_Id" Mode="In" Type="Int32" />
+            <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_Offer_GetActiveByBuyerId" ReturnType="Collection(ServiceDotNet.Web_Offer_GetActiveByBuyerId_Result)">
+            <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_Offer_GetRejectedByBuyerId" ReturnType="Collection(ServiceDotNet.Web_Offer_GetRejectedByBuyerId_Result)">
+            <Parameter Name="Buyer_id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ActiveJobGetByJobId_sp_Result">
@@ -8659,13 +8832,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
           <Property Type="String" Name="DISPLAY_TIME" Nullable="true" MaxLength="9" />
         </ComplexType>
-        <ComplexType Name="Web_ScreenLogs_Result">
-          <Property Type="Int32" Name="PROVIDER_ID" Nullable="true" />
-          <Property Type="DateTime" Name="START_ON" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="JOB_ID" Nullable="true" />
-          <Property Type="String" Name="CLASS_DESCRIPTION" Nullable="true" MaxLength="300" />
-          <Property Type="Double" Name="TIME_SPENT" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="Web_ScreenShotsByProviderAndJob_Result">
           <Property Type="DateTime" Name="SessionStart" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="SessionEnd" Nullable="true" Precision="23" />
@@ -8758,6 +8924,209 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="MATTERMOST_USER_PASSWORD" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="Web_TotalLogsByProviderAndJob_Result">
+          <Property Type="Int32" Name="Total_Key_Strokes" Nullable="true" />
+          <Property Type="Int32" Name="Total_Mouse_Clicks" Nullable="true" />
+          <Property Type="Int32" Name="Total_Windows_Switched" Nullable="true" />
+          <Property Type="Int32" Name="image_count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Web_ScreenLogs_Result">
+          <Property Type="Int32" Name="PROVIDER_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_ID" Nullable="true" />
+          <Property Type="String" Name="CLASS_DESCRIPTION" Nullable="true" MaxLength="300" />
+          <Property Type="Double" Name="TIME_SPENT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Web_GetAllJobStatus_Result">
+          <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="300" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Web_GetJobByStatusId_Result">
+          <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+          <Property Type="Int32" Name="USER_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_TYPE_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="true" />
+          <Property Type="Int32" Name="CLASS_ID" Nullable="true" />
+          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+          <Property Type="String" Name="APPROXIMATE_DURATION" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="APPROXIMATE_BUDGET" Nullable="true" Precision="19" />
+          <Property Type="String" Name="DURATION" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="HOURLY_RATE" Nullable="true" Precision="19" />
+          <Property Type="Double" Name="HOURS_PER_WEEK" Nullable="true" />
+          <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+          <Property Type="Int32" Name="RATE_TYPE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="RATE" Nullable="true" Precision="19" />
+          <Property Type="Boolean" Name="ON_SITE_WORK" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_COUNTRY_ID" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_REGION_ID" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_CITY_ID" Nullable="true" />
+          <Property Type="String" Name="SITE_LOCATION_POSTCODE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="OFFER_SUBMIT_DAYS" Nullable="true" />
+          <Property Type="String" Name="WORK_START" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="WORK_START_IMMIDIATELY" Nullable="true" />
+          <Property Type="DateTime" Name="WORK_START_ON_DATE" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="JOB_VIEW_IS_PUBLIC" Nullable="true" />
+          <Property Type="Boolean" Name="OFFER_AMOUNT_IS_PUBLIC" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+          <Property Type="String" Name="MATTERMOST_TEAM_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_TEAM_NAME" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="Web_GetProjectTeamByBuyerId_Result">
+          <Property Type="Int32" Name="PROJECT_TEAM_ID" Nullable="false" />
+          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DESIGNATION_NAME" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="Web_GetJobStatus_Result">
+          <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="300" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Web_GetJobByStatusIdBuyerId_Result">
+          <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+          <Property Type="Int32" Name="USER_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_TYPE_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="true" />
+          <Property Type="Int32" Name="CLASS_ID" Nullable="true" />
+          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+          <Property Type="String" Name="APPROXIMATE_DURATION" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="APPROXIMATE_BUDGET" Nullable="true" Precision="19" />
+          <Property Type="String" Name="DURATION" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="HOURLY_RATE" Nullable="true" Precision="19" />
+          <Property Type="Double" Name="HOURS_PER_WEEK" Nullable="true" />
+          <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+          <Property Type="Int32" Name="RATE_TYPE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="RATE" Nullable="true" Precision="19" />
+          <Property Type="Boolean" Name="ON_SITE_WORK" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_COUNTRY_ID" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_REGION_ID" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_CITY_ID" Nullable="true" />
+          <Property Type="String" Name="SITE_LOCATION_POSTCODE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="OFFER_SUBMIT_DAYS" Nullable="true" />
+          <Property Type="String" Name="WORK_START" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="WORK_START_IMMIDIATELY" Nullable="true" />
+          <Property Type="DateTime" Name="WORK_START_ON_DATE" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="JOB_VIEW_IS_PUBLIC" Nullable="true" />
+          <Property Type="Boolean" Name="OFFER_AMOUNT_IS_PUBLIC" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+          <Property Type="String" Name="MATTERMOST_TEAM_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_TEAM_NAME" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="Web_OffersSentAwardedRejected_Result">
+          <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+          <Property Type="Int32" Name="USER_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_TYPE_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="true" />
+          <Property Type="Int32" Name="CLASS_ID" Nullable="true" />
+          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+          <Property Type="String" Name="APPROXIMATE_DURATION" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="APPROXIMATE_BUDGET" Nullable="true" Precision="19" />
+          <Property Type="String" Name="DURATION" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="HOURLY_RATE" Nullable="true" Precision="19" />
+          <Property Type="Double" Name="HOURS_PER_WEEK" Nullable="true" />
+          <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+          <Property Type="Int32" Name="RATE_TYPE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="RATE" Nullable="true" Precision="19" />
+          <Property Type="Boolean" Name="ON_SITE_WORK" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_COUNTRY_ID" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_REGION_ID" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_CITY_ID" Nullable="true" />
+          <Property Type="String" Name="SITE_LOCATION_POSTCODE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="OFFER_SUBMIT_DAYS" Nullable="true" />
+          <Property Type="String" Name="WORK_START" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="WORK_START_IMMIDIATELY" Nullable="true" />
+          <Property Type="DateTime" Name="WORK_START_ON_DATE" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="JOB_VIEW_IS_PUBLIC" Nullable="true" />
+          <Property Type="Boolean" Name="OFFER_AMOUNT_IS_PUBLIC" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+          <Property Type="String" Name="MATTERMOST_TEAM_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_TEAM_NAME" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="Web_JobsByStatusForProvider_Result">
+          <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+          <Property Type="Int32" Name="USER_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_TYPE_ID" Nullable="true" />
+          <Property Type="Int32" Name="JOB_STATUS_ID" Nullable="true" />
+          <Property Type="Int32" Name="CLASS_ID" Nullable="true" />
+          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+          <Property Type="String" Name="APPROXIMATE_DURATION" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="APPROXIMATE_BUDGET" Nullable="true" Precision="19" />
+          <Property Type="String" Name="DURATION" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="HOURLY_RATE" Nullable="true" Precision="19" />
+          <Property Type="Double" Name="HOURS_PER_WEEK" Nullable="true" />
+          <Property Type="Int32" Name="CURRENCY_ID" Nullable="true" />
+          <Property Type="Int32" Name="RATE_TYPE_ID" Nullable="true" />
+          <Property Type="Decimal" Name="RATE" Nullable="true" Precision="19" />
+          <Property Type="Boolean" Name="ON_SITE_WORK" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_COUNTRY_ID" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_REGION_ID" Nullable="true" />
+          <Property Type="Int32" Name="SITE_LOCATION_CITY_ID" Nullable="true" />
+          <Property Type="String" Name="SITE_LOCATION_POSTCODE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="OFFER_SUBMIT_DAYS" Nullable="true" />
+          <Property Type="String" Name="WORK_START" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="WORK_START_IMMIDIATELY" Nullable="true" />
+          <Property Type="DateTime" Name="WORK_START_ON_DATE" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="JOB_VIEW_IS_PUBLIC" Nullable="true" />
+          <Property Type="Boolean" Name="OFFER_AMOUNT_IS_PUBLIC" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+          <Property Type="String" Name="MATTERMOST_TEAM_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_TEAM_NAME" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="Web_Offer_GetActiveByBuyerId_Result">
+          <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="JOB_OFFER_ID" Nullable="false" />
+          <Property Type="Int32" Name="JOB_ID" Nullable="true" />
+          <Property Type="Int32" Name="PROVIDER_ID" Nullable="true" />
+          <Property Type="Int32" Name="BUYER_ID" Nullable="true" />
+          <Property Type="Boolean" Name="IS_AWARDED" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Web_Offer_GetRejectedByBuyerId_Result">
+          <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="JOB_OFFER_ID" Nullable="false" />
+          <Property Type="Int32" Name="JOB_ID" Nullable="true" />
+          <Property Type="Int32" Name="PROVIDER_ID" Nullable="true" />
+          <Property Type="Int32" Name="BUYER_ID" Nullable="true" />
+          <Property Type="Boolean" Name="IS_AWARDED" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -12829,17 +13198,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Web_ScreenLogs" FunctionName="ServiceDotNet.Store.Web_ScreenLogs">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ServiceDotNet.Web_ScreenLogs_Result">
-                <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
-                <ScalarProperty Name="START_ON" ColumnName="START_ON" />
-                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
-                <ScalarProperty Name="CLASS_DESCRIPTION" ColumnName="CLASS_DESCRIPTION" />
-                <ScalarProperty Name="TIME_SPENT" ColumnName="TIME_SPENT" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Web_ScreenShotsByProviderAndJob" FunctionName="ServiceDotNet.Store.Web_ScreenShotsByProviderAndJob">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ServiceDotNet.Web_ScreenShotsByProviderAndJob_Result">
@@ -12944,6 +13302,251 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
                 <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
                 <ScalarProperty Name="MATTERMOST_USER_PASSWORD" ColumnName="MATTERMOST_USER_PASSWORD" />
                 <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_TotalLogsByProviderAndJob" FunctionName="ServiceDotNet.Store.Web_TotalLogsByProviderAndJob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_TotalLogsByProviderAndJob_Result">
+                <ScalarProperty Name="Total_Key_Strokes" ColumnName="Total_Key_Strokes" />
+                <ScalarProperty Name="Total_Mouse_Clicks" ColumnName="Total_Mouse_Clicks" />
+                <ScalarProperty Name="Total_Windows_Switched" ColumnName="Total_Windows_Switched" />
+                <ScalarProperty Name="image_count" ColumnName="image_count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_TotalTimeInSecondsByProviderJob" FunctionName="ServiceDotNet.Store.Web_TotalTimeInSecondsByProviderJob" />
+          <FunctionImportMapping FunctionImportName="Web_ScreenLogs" FunctionName="ServiceDotNet.Store.Web_ScreenLogs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_ScreenLogs_Result">
+                <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="CLASS_DESCRIPTION" ColumnName="CLASS_DESCRIPTION" />
+                <ScalarProperty Name="TIME_SPENT" ColumnName="TIME_SPENT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_GetAllJobStatus" FunctionName="ServiceDotNet.Store.Web_GetAllJobStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetAllJobStatus_Result">
+                <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_GetJobByStatusId" FunctionName="ServiceDotNet.Store.Web_GetJobByStatusId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetJobByStatusId_Result">
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="JOB_TYPE_ID" ColumnName="JOB_TYPE_ID" />
+                <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+                <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="APPROXIMATE_DURATION" ColumnName="APPROXIMATE_DURATION" />
+                <ScalarProperty Name="APPROXIMATE_BUDGET" ColumnName="APPROXIMATE_BUDGET" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="HOURLY_RATE" ColumnName="HOURLY_RATE" />
+                <ScalarProperty Name="HOURS_PER_WEEK" ColumnName="HOURS_PER_WEEK" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+                <ScalarProperty Name="RATE_TYPE_ID" ColumnName="RATE_TYPE_ID" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="ON_SITE_WORK" ColumnName="ON_SITE_WORK" />
+                <ScalarProperty Name="SITE_LOCATION_COUNTRY_ID" ColumnName="SITE_LOCATION_COUNTRY_ID" />
+                <ScalarProperty Name="SITE_LOCATION_REGION_ID" ColumnName="SITE_LOCATION_REGION_ID" />
+                <ScalarProperty Name="SITE_LOCATION_CITY_ID" ColumnName="SITE_LOCATION_CITY_ID" />
+                <ScalarProperty Name="SITE_LOCATION_POSTCODE" ColumnName="SITE_LOCATION_POSTCODE" />
+                <ScalarProperty Name="OFFER_SUBMIT_DAYS" ColumnName="OFFER_SUBMIT_DAYS" />
+                <ScalarProperty Name="WORK_START" ColumnName="WORK_START" />
+                <ScalarProperty Name="WORK_START_IMMIDIATELY" ColumnName="WORK_START_IMMIDIATELY" />
+                <ScalarProperty Name="WORK_START_ON_DATE" ColumnName="WORK_START_ON_DATE" />
+                <ScalarProperty Name="JOB_VIEW_IS_PUBLIC" ColumnName="JOB_VIEW_IS_PUBLIC" />
+                <ScalarProperty Name="OFFER_AMOUNT_IS_PUBLIC" ColumnName="OFFER_AMOUNT_IS_PUBLIC" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+                <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+                <ScalarProperty Name="MATTERMOST_TEAM_ID" ColumnName="MATTERMOST_TEAM_ID" />
+                <ScalarProperty Name="MATTERMOST_TEAM_NAME" ColumnName="MATTERMOST_TEAM_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_AddProjectTeamMember" FunctionName="ServiceDotNet.Store.Web_AddProjectTeamMember" />
+          <FunctionImportMapping FunctionImportName="Web_DeleteProjectTeamMember" FunctionName="ServiceDotNet.Store.Web_DeleteProjectTeamMember" />
+          <FunctionImportMapping FunctionImportName="Web_GetProjectTeamByBuyerId" FunctionName="ServiceDotNet.Store.Web_GetProjectTeamByBuyerId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetProjectTeamByBuyerId_Result">
+                <ScalarProperty Name="PROJECT_TEAM_ID" ColumnName="PROJECT_TEAM_ID" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DESIGNATION_NAME" ColumnName="DESIGNATION_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_UpdateProjectTeamMember" FunctionName="ServiceDotNet.Store.Web_UpdateProjectTeamMember" />
+          <FunctionImportMapping FunctionImportName="Web_Offer_Insert" FunctionName="ServiceDotNet.Store.Web_Offer_Insert" />
+          <FunctionImportMapping FunctionImportName="Web_Offer_AcceptOffer_AwardJob" FunctionName="ServiceDotNet.Store.Web_Offer_AcceptOffer_AwardJob" />
+          <FunctionImportMapping FunctionImportName="Web_Offer_Reject" FunctionName="ServiceDotNet.Store.Web_Offer_Reject" />
+          <FunctionImportMapping FunctionImportName="Web_UpdateJobStatusByJobId" FunctionName="ServiceDotNet.Store.Web_UpdateJobStatusByJobId" />
+          <FunctionImportMapping FunctionImportName="Web_GetJobByStatusIdBuyerId" FunctionName="ServiceDotNet.Store.Web_GetJobByStatusIdBuyerId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetJobByStatusIdBuyerId_Result">
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="JOB_TYPE_ID" ColumnName="JOB_TYPE_ID" />
+                <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+                <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="APPROXIMATE_DURATION" ColumnName="APPROXIMATE_DURATION" />
+                <ScalarProperty Name="APPROXIMATE_BUDGET" ColumnName="APPROXIMATE_BUDGET" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="HOURLY_RATE" ColumnName="HOURLY_RATE" />
+                <ScalarProperty Name="HOURS_PER_WEEK" ColumnName="HOURS_PER_WEEK" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+                <ScalarProperty Name="RATE_TYPE_ID" ColumnName="RATE_TYPE_ID" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="ON_SITE_WORK" ColumnName="ON_SITE_WORK" />
+                <ScalarProperty Name="SITE_LOCATION_COUNTRY_ID" ColumnName="SITE_LOCATION_COUNTRY_ID" />
+                <ScalarProperty Name="SITE_LOCATION_REGION_ID" ColumnName="SITE_LOCATION_REGION_ID" />
+                <ScalarProperty Name="SITE_LOCATION_CITY_ID" ColumnName="SITE_LOCATION_CITY_ID" />
+                <ScalarProperty Name="SITE_LOCATION_POSTCODE" ColumnName="SITE_LOCATION_POSTCODE" />
+                <ScalarProperty Name="OFFER_SUBMIT_DAYS" ColumnName="OFFER_SUBMIT_DAYS" />
+                <ScalarProperty Name="WORK_START" ColumnName="WORK_START" />
+                <ScalarProperty Name="WORK_START_IMMIDIATELY" ColumnName="WORK_START_IMMIDIATELY" />
+                <ScalarProperty Name="WORK_START_ON_DATE" ColumnName="WORK_START_ON_DATE" />
+                <ScalarProperty Name="JOB_VIEW_IS_PUBLIC" ColumnName="JOB_VIEW_IS_PUBLIC" />
+                <ScalarProperty Name="OFFER_AMOUNT_IS_PUBLIC" ColumnName="OFFER_AMOUNT_IS_PUBLIC" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+                <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+                <ScalarProperty Name="MATTERMOST_TEAM_ID" ColumnName="MATTERMOST_TEAM_ID" />
+                <ScalarProperty Name="MATTERMOST_TEAM_NAME" ColumnName="MATTERMOST_TEAM_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_OffersSentAwardedRejected" FunctionName="ServiceDotNet.Store.Web_OffersSentAwardedRejected">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_OffersSentAwardedRejected_Result">
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="JOB_TYPE_ID" ColumnName="JOB_TYPE_ID" />
+                <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+                <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="APPROXIMATE_DURATION" ColumnName="APPROXIMATE_DURATION" />
+                <ScalarProperty Name="APPROXIMATE_BUDGET" ColumnName="APPROXIMATE_BUDGET" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="HOURLY_RATE" ColumnName="HOURLY_RATE" />
+                <ScalarProperty Name="HOURS_PER_WEEK" ColumnName="HOURS_PER_WEEK" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+                <ScalarProperty Name="RATE_TYPE_ID" ColumnName="RATE_TYPE_ID" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="ON_SITE_WORK" ColumnName="ON_SITE_WORK" />
+                <ScalarProperty Name="SITE_LOCATION_COUNTRY_ID" ColumnName="SITE_LOCATION_COUNTRY_ID" />
+                <ScalarProperty Name="SITE_LOCATION_REGION_ID" ColumnName="SITE_LOCATION_REGION_ID" />
+                <ScalarProperty Name="SITE_LOCATION_CITY_ID" ColumnName="SITE_LOCATION_CITY_ID" />
+                <ScalarProperty Name="SITE_LOCATION_POSTCODE" ColumnName="SITE_LOCATION_POSTCODE" />
+                <ScalarProperty Name="OFFER_SUBMIT_DAYS" ColumnName="OFFER_SUBMIT_DAYS" />
+                <ScalarProperty Name="WORK_START" ColumnName="WORK_START" />
+                <ScalarProperty Name="WORK_START_IMMIDIATELY" ColumnName="WORK_START_IMMIDIATELY" />
+                <ScalarProperty Name="WORK_START_ON_DATE" ColumnName="WORK_START_ON_DATE" />
+                <ScalarProperty Name="JOB_VIEW_IS_PUBLIC" ColumnName="JOB_VIEW_IS_PUBLIC" />
+                <ScalarProperty Name="OFFER_AMOUNT_IS_PUBLIC" ColumnName="OFFER_AMOUNT_IS_PUBLIC" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+                <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+                <ScalarProperty Name="MATTERMOST_TEAM_ID" ColumnName="MATTERMOST_TEAM_ID" />
+                <ScalarProperty Name="MATTERMOST_TEAM_NAME" ColumnName="MATTERMOST_TEAM_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_JobsByStatusForProvider" FunctionName="ServiceDotNet.Store.Web_JobsByStatusForProvider">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_JobsByStatusForProvider_Result">
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="JOB_TYPE_ID" ColumnName="JOB_TYPE_ID" />
+                <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+                <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="APPROXIMATE_DURATION" ColumnName="APPROXIMATE_DURATION" />
+                <ScalarProperty Name="APPROXIMATE_BUDGET" ColumnName="APPROXIMATE_BUDGET" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="HOURLY_RATE" ColumnName="HOURLY_RATE" />
+                <ScalarProperty Name="HOURS_PER_WEEK" ColumnName="HOURS_PER_WEEK" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+                <ScalarProperty Name="RATE_TYPE_ID" ColumnName="RATE_TYPE_ID" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="ON_SITE_WORK" ColumnName="ON_SITE_WORK" />
+                <ScalarProperty Name="SITE_LOCATION_COUNTRY_ID" ColumnName="SITE_LOCATION_COUNTRY_ID" />
+                <ScalarProperty Name="SITE_LOCATION_REGION_ID" ColumnName="SITE_LOCATION_REGION_ID" />
+                <ScalarProperty Name="SITE_LOCATION_CITY_ID" ColumnName="SITE_LOCATION_CITY_ID" />
+                <ScalarProperty Name="SITE_LOCATION_POSTCODE" ColumnName="SITE_LOCATION_POSTCODE" />
+                <ScalarProperty Name="OFFER_SUBMIT_DAYS" ColumnName="OFFER_SUBMIT_DAYS" />
+                <ScalarProperty Name="WORK_START" ColumnName="WORK_START" />
+                <ScalarProperty Name="WORK_START_IMMIDIATELY" ColumnName="WORK_START_IMMIDIATELY" />
+                <ScalarProperty Name="WORK_START_ON_DATE" ColumnName="WORK_START_ON_DATE" />
+                <ScalarProperty Name="JOB_VIEW_IS_PUBLIC" ColumnName="JOB_VIEW_IS_PUBLIC" />
+                <ScalarProperty Name="OFFER_AMOUNT_IS_PUBLIC" ColumnName="OFFER_AMOUNT_IS_PUBLIC" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+                <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+                <ScalarProperty Name="MATTERMOST_TEAM_ID" ColumnName="MATTERMOST_TEAM_ID" />
+                <ScalarProperty Name="MATTERMOST_TEAM_NAME" ColumnName="MATTERMOST_TEAM_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_Offer_GetActiveByBuyerId" FunctionName="ServiceDotNet.Store.Web_Offer_GetActiveByBuyerId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_Offer_GetActiveByBuyerId_Result">
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="JOB_OFFER_ID" ColumnName="JOB_OFFER_ID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
+                <ScalarProperty Name="BUYER_ID" ColumnName="BUYER_ID" />
+                <ScalarProperty Name="IS_AWARDED" ColumnName="IS_AWARDED" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_Offer_GetRejectedByBuyerId" FunctionName="ServiceDotNet.Store.Web_Offer_GetRejectedByBuyerId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_Offer_GetRejectedByBuyerId_Result">
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="JOB_OFFER_ID" ColumnName="JOB_OFFER_ID" />
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
+                <ScalarProperty Name="BUYER_ID" ColumnName="BUYER_ID" />
+                <ScalarProperty Name="IS_AWARDED" ColumnName="IS_AWARDED" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

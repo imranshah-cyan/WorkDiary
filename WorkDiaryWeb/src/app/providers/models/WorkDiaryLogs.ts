@@ -16,7 +16,7 @@ export interface Session {
   KEY_STROKE_LELVE: number;
   MOUSE_CLICK: number;
   WINDOWS_SWITCHED: number;
-  activityLevel: number;
+  ACTIVITY_LEVEL: number;
   IMAGE_NAME: string;
   START_TIME: string;
   END_TIME: string;

@@ -48,6 +48,17 @@ namespace WorkDiaryRepository
                 throw e;
             }
         }
+        public List<Web_GetAllJobStatus_Result> GetAllJobStatuses()
+        {
+            try
+            {
+                return _db.Web_GetAllJobStatus().ToList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
         public int? TotalJobsByBuyer(int buyerId)
         {
@@ -539,6 +550,29 @@ namespace WorkDiaryRepository
             return _db.GetImagesInGivenTime(startTime, endTime, providerId, jobId).ToList();
         }
 
+        public List<Web_GetAllJobStatus_Result> GetAllJobStatus()
+        {
+            return _db.Web_GetAllJobStatus().ToList();
+        }
 
+        public int? UpdateJobStatus(int? Job_Status_Id, int Job_Id)
+        {
+            return _db.Web_UpdateJobStatusByJobId(Job_Status_Id, Job_Id).FirstOrDefault();
+        }
+
+        public List<Web_GetJobByStatusId_Result> GetJobsByStatusId(int job_Status_Id)
+        {
+            return _db.Web_GetJobByStatusId(job_Status_Id).ToList();
+        }
+
+        public List<Web_OffersSentAwardedRejected_Result> GetJobsForOffersSentAwardedRejected(int Prov_Id, int Is_Awarded, int Is_Rejected)
+        {
+            return _db.Web_OffersSentAwardedRejected(Prov_Id, Is_Awarded, Is_Rejected).ToList();
+        }
+
+        public List<Web_JobsByStatusForProvider_Result> Web_JobsByStatusForProvider(int Job_Status_Id, int Prov_Id)
+        {
+            return _db.Web_JobsByStatusForProvider(Job_Status_Id, Prov_Id).ToList();
+        }
     }
 }

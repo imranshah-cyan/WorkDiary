@@ -1,34 +1,124 @@
-<section class="container w-screen">
+<section class="container px-5">
 
   <div class="flex justify-end w-2/4 mx-auto">
     <div class="flex justify-center space-x-2">
       <a type="button" data-te-ripple-init data-te-ripple-color="light" href="/buyers/postjobs"
         class="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
         Post Job
-    </a>
+      </a>
     </div>
   </div>
 
-  <div class=" mx-auto w-2/4 mb-5 pb-5">
+  <div class=" mx-auto mb-5 pb-5">
     <p class="mb-1 text-lg font-normal">Active Jobs</p>
     <hr class="mb-2">
 
-    <!-- Active Jobs List -->
-    <div class="bg-gray-50 border-1 p-3 rounded-md mb-3" *ngFor="let job of jobs; let i = index;">
-      <!-- <h4>Job # {{ job.JOB_ID }}</h4> -->
-      <h4 class="pb-0 mb-1">{{ job.JOB_TITLE }}</h4>
-      <hr>
-      <p class="pt-2">{{ job.DESCRIPTION }}</p>
-      <div class="flex w-full flex-wrap">
-        <div data-te-chip-init data-te-ripple-init
-          class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-between rounded-[16px] border border-[#3b71ca]  bg-blue-100 py-0 px-[12px] text-[13px] font-normal normal-case leading-loose text-[#010101] shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none"
-          data-te-ripple-color="dark"
-          *ngFor="let provider of providers[job.JOB_ID]">
-          {{ provider.FULL_NAME }}
-        </div>
+
+    <ng-container *ngFor="let job of jobs; let i = index;">
+      <div class="my-4 flex flex-col bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Display mode -->
+        <ng-container *ngIf="!job.editing">
+          <div class="bg-gray-600 text-gray-200 text-lg px-6 py-4">{{ job.JOB_TITLE }}</div>
+
+          <div class="flex justify-between items-center px-6 py-4">
+            <div>
+              <!-- Change the icon and color based on the job status -->
+              <!-- <i class="fas fa-check-circle text-green-500 mr-1"></i> -->
+              <!-- <i class="fas fa-hourglass-half text-yellow-500 mr-1"></i> -->
+              <!-- <span>20 Offers Received</span> -->
+              <p><b>Job Status: </b> Open For Offers</p>
+            </div>
+            <div class="text-sm">
+              <p class="text-end">Job Created On</p>
+              <p class="text-end">{{ job.CREATED_ON | date:'dd-MM-YYYY' }}</p>
+            </div>
+          </div>
+
+          <div class="px-6 py-4 border-t border-gray-200">
+            <div class="border rounded-lg p-4 bg-gray-200">
+              {{ job.DESCRIPTION }}
+            </div>
+          </div>
+
+          <div class="bg-gray-300 px-6 py-4">
+            <div class="uppercase text-xs text-gray-700 font-bold mb-2">List of Workers</div>
+
+            <div class="flex w-full flex-wrap">
+              <div data-te-chip-init data-te-ripple-init
+                class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-between rounded-[16px] border border-[#3b71ca]  bg-blue-500 outline-orange-400 outline outline-1 outline-offset-1 hover:bg-orange-600 text-white py-0 my-2 px-[12px] text-[13px] font-normal normal-case leading-loose shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none"
+                data-te-ripple-color="dark" *ngFor="let provider of providers[job.JOB_ID]">
+                {{ provider.FULL_NAME }}
+              </div>
+            </div>
+
+            <!-- Add more workers here as needed -->
+
+          </div>
+
+          <div class="flex justify-end px-6 py-4">
+            <button class="px-4 py-2 bg-blue-500 text-white rounded mr-2 hover:bg-blue-600"
+              (click)="editItem(job)">Edit</button>
+            <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Delete</button>
+          </div>
+        </ng-container>
+
+        <!-- Edit mode -->
+        <ng-container *ngIf="job.editing">
+          <div class="bg-gray-600 text-gray-200 text-lg px-6 py-4">
+            <input class="bg-gray-300 text-gray-700 text-lg w-full p-2 border-2 border-blue-500 rounded" value="{{job.JOB_TITLE}}">
+          </div>
+
+          <div class="flex justify-between items-center px-6 py-4">
+            <div>
+              <!-- Change the icon and color based on the job status -->
+              <!-- <i class="fas fa-check-circle text-green-500 mr-1"></i> -->
+              <!-- <i class="fas fa-hourglass-half text-yellow-500 mr-1"></i> -->
+              <!-- <span>20 Offers Received</span> -->
+              <select class="form-select" ngModel id="job" name="job">
+                <option value="">Job Status</option>
+                <option value="">Status 1</option>
+                <option value="">Status 2</option>
+                <option value="">Status 3</option>
+              </select>
+            </div>
+            <div class="text-sm">
+              <p class="text-end">Job Created On</p>
+              <p class="text-end">{{ job.CREATED_ON | date:'dd-MM-YYYY' }}</p>
+            </div>
+          </div>
+
+          <div class="px-6 py-4 border-t border-gray-200">
+            <div class="border rounded-lg p-4 bg-gray-200">
+              <textarea class="w-full border-2 border-blue-500 rounded" [(ngModel)]="job.DESCRIPTION"></textarea>
+            </div>
+          </div>
+
+          <div class="bg-gray-300 px-6 py-4">
+            <div class="uppercase text-xs text-gray-700 font-bold mb-2">List of Workers</div>
+
+            <div class="flex w-full flex-wrap">
+              <div data-te-chip-init data-te-ripple-init
+                class="[word-wrap: break-word] my-[5px] mr-4 flex h-[32px] cursor-pointer items-center justify-between rounded-[16px] border border-[#3b71ca]  bg-blue-500 outline-orange-400 outline outline-1 outline-offset-1 hover:bg-orange-600 text-white py-0 my-2 px-[12px] text-[13px] font-normal normal-case leading-loose shadow-none transition-[opacity] duration-300 ease-linear hover:border-[#3b71ca] hover:!shadow-none"
+                data-te-ripple-color="dark" *ngFor="let provider of providers[job.JOB_ID]">
+                {{ provider.FULL_NAME }}
+              </div>
+            </div>
+
+            <!-- Add more workers here as needed -->
+
+          </div>
+
+          <div class="flex justify-end px-6 py-4">
+            <button class="px-4 py-2 bg-green-500 text-white rounded mr-2 hover:bg-green-600"
+              (click)="saveJob(job)">Save</button>
+            <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              (click)="cancelEdit(job)">Cancel</button>
+          </div>
+        </ng-container>
+
       </div>
-      <a (click)="JobDetails(job.JOB_ID)" class="flex justify-end hover:text-blue-600">More Details</a>
-    </div>
+    </ng-container>
+
 
   </div>
 </section>

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class JobsComponent implements OnInit {
 
-  public jobs:Job[] = [];
+  public jobs:any = [];
   providers: { [key: number]: Provider[] } = {};
 
   constructor(private jobsService:JobsService,
@@ -63,6 +63,21 @@ export class JobsComponent implements OnInit {
   getObjectFromLocalStorage(key: string): any {
     const storedValue = localStorage.getItem(key);
     return storedValue ? JSON.parse(storedValue) : null;
+  }
+
+
+  editItem(item: any): void {
+    item.editing = true;
+  }
+
+  cancelEdit(item: any): void {
+    item.editing = false;
+    // Implement the cancel edit functionality here
+    console.log('Cancel edit item:', item);
+  }
+
+  saveJob(item: any): void {
+    item.editing = false;
   }
 
 }

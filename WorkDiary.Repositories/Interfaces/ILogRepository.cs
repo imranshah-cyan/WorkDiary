@@ -13,5 +13,8 @@ namespace WorkDiaryRepository.Interfaces
     {
         SP_WorkDiaryAppLogs_Result GetLogs(Log entity);
         CheckProviderByBuyerId_Result CheckProviderByBuyerId(Log entity);
+        int? GetTotalTime(Log entity);
+        Web_TotalLogsByProviderAndJob_Result GetTotalLogs(Log entity);
+        List<Web_ScreenLogs_Result> GetTotalScreenLogs(Log entity);
     }
 }

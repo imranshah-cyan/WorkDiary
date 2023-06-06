@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_URL: 'https://adiltest.uat-aiscentral.net/api'
+  API_URL: 'https://workdiary.service.net/json/api'
 };

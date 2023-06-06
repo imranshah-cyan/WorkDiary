@@ -14,7 +14,6 @@ namespace WorkDiaryRepository.Dbo
     public partial class Web_ScreenLogs_Result
     {
         public Nullable<int> PROVIDER_ID { get; set; }
-        public Nullable<System.DateTime> START_ON { get; set; }
         public Nullable<int> JOB_ID { get; set; }
         public string CLASS_DESCRIPTION { get; set; }
         public Nullable<double> TIME_SPENT { get; set; }

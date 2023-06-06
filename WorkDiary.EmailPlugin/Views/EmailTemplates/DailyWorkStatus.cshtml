@@ -1,0 +1,192 @@
+﻿@model EmailPlugin.Models.vmDailyWork
+@{
+  ViewBag.Title = "DailyWorkStatus";
+  Layout = null; //"~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+  div.email_pattern {
+    font-family: verdana;
+    color: #4a4a4a;
+    font-size: 11px;
+  }
+</style>
+@if (Model.Log != null)
+{
+  <div>
+    <div class="form-group">
+      <label style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Work Summary for: </label>
+      <span style="color: blue; font-size: 18px; font-weight: bold;">@Model.Log.PROVIDER_FULL_NAME</span>
+    </div>
+    <div class="form-group">
+      <label style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Job: </label>
+      <span style="font-weight: bold;">@Model.Log.JOB_TITLE</span>
+    </div>
+    <div class="form-group">
+      <label style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Today's Worked Logged (hours): </label>
+      <span style="font-weight: bold;">@Model.Log.TODAYS_HOURS</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="heading" style="font-weight: bold; margin-top: 15px">Day Summary: </div>@Model.Log.DAY_SUMMARY_DISPLAY_DATE
+      <div class="form-group">
+        <label style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Activity Level: </label>
+        <div style='height: 15px; max-width: 100px; border: solid 1px #C1C0C0;' title="Key Strokes:'@Model.Log.DAY_KEY_STROKES' - Mouse Clicks: '@Model.Log.DAY_MOUSE_CLICKS'">
+          <div style='background-image: url("http://www.service.net/Images/progress-bar-bg.png"); background-repeat: repeat-x; height: 14px; width: @Model.Log.ACTIVITY_LEVEL%;'></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Total Key Strokes:</label>@Model.Log.DAY_KEY_STROKES
+      </div>
+      <div class="form-group">
+        <label style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Total Mouse Clicks:</label>@Model.Log.DAY_MOUSE_CLICKS
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="heading" style="font-weight: bold; margin-top: 20px">Project Summary:</div>
+    </div>
+  </div>
+
+  <br />
+  <table>
+    <tr>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Day Summary</td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>@Model.Log.DAY_SUMMARY_DISPLAY_DATE </td>
+    <td>
+      <div style='width: 200px;'></div>
+    </td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Project Total Hours:</td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>@Model.Log.PROJECT_TOTAL_HOURS</td>
+    <tr>
+    <tr>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Activity Level: </td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>
+      <div style='height: 15px; max-width: 100px; border: solid 1px #C1C0C0;' title="Key Strokes:'@Model.Log.DAY_KEY_STROKES' - Mouse Clicks: '@Model.Log.DAY_MOUSE_CLICKS'">
+        <div style='background-image: url("http://www.service.net/Images/progress-bar-bg.png"); background-repeat: repeat-x; height: 14px; width:@Model.Log.ACTIVITY_LEVEL%;'></div>
+      </div>
+    </td>
+    <td>&nbsp;</td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Average Activity Level:</td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>
+      <div style='height: 15px; max-width: 100px; border: solid 1px #C1C0C0;' title="Key Strokes:'@Model.Log.DAY_KEY_STROKES' - Mouse Clicks: '@Model.Log.DAY_MOUSE_CLICKS'">
+        <div style='background-image: url("http://www.service.net/Images/progress-bar-bg.png"); background-repeat: repeat-x; height: 14px; width:@Model.Log.ACTIVITY_LEVEL%;'></div>
+      </div>
+    </td>
+    <tr>
+    <tr>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Total Key strokes: </td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>@Model.Log.PROJECT_TOTAL_KEY_STROKES</td>
+    <td>&nbsp;</td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Project Started:</td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>@Model.Log.PROJECT_STARTED_ON</td>
+    <tr>
+    <tr>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Total Mouse clicks: </td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>@Model.Log.PROJECT_TOTAL_MOUSE_CLICKS</td>
+    <td>&nbsp;</td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>Last Worked:</td>
+    <td style='font-family: verdana; font-size: 11px; color: #4a4a4a;'>@Model.Log.PROJECT_LAST_WORKED_ON</td>
+    <tr>
+  </table>
+  <br />
+}
+
+@if (Model.Images.Any())
+{
+  <table>
+    @for (int r = 0; r < 2; r++)
+    {
+      var start = 0;
+      var end = 6;
+
+      if (r == 1)
+      {
+        start = 6;
+        end = Model.Images.Count >= 12 ? 12 : 5;
+      }
+
+      <tr>
+        @for (int i = start; i < end; i++)
+        {
+          if (Model.Images.ElementAtOrDefault(i) != null)
+          {
+            <td>
+              <div style='font-family: verdana; font-size: 10px; color: #4a4a4a; background-color: #90EE90 !important; width: 200px; height: 20px; overflow: hidden;'>@Model.Images[i].ACTIVE_WINDOW_TITLE</div>
+              <img src="cid:@(Model.Images[i].IMAGE_ID)" width='200px' height='100px' />
+              <div style='font-family: verdana; font-size: 10px; color: #4a4a4a; text-align: right;'>@Model.Images[i].DISPLAY_TIME</div>
+              <div style='font-family: verdana; font-size: 10px; color: #4a4a4a'>
+                Activity Level:
+                <div style='height: 15px; max-width: 100px; border: solid 1px #C1C0C0;' title="Key Strokes:'@Model.Images[i].KEY_STROKE_LEVEL' - Mouse Clicks: '@Model.Images[i].MOUSE_CLICK'">
+                  <div style='background-image: url("http://www.service.net/Images/progress-bar-bg.png"); background-repeat: repeat-x; height: 14px; width: @Model.Images[i].ACTIVITY_LEVEL%;'></div>
+                </div>
+              </div>
+              <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>@Model.Images[i].START_TIME - @Model.Images[i].END_TIME (@Model.Images[i].TOTAL_MINUTES min)</div>
+              <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                Key Strokes: <span style="font-weight: bold;">@Model.Images[i].KEY_STROKE_LEVEL</span>
+              </div>
+              <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                Mouse Clicks: <span style="font-weight: bold;">@Model.Images[i].MOUSE_CLICK</span>
+              </div>
+              <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                Windows Switched <span style="font-weight: bold;">@Model.Images[i].WINDOWS_SWITCHED</span>
+              </div>
+              <br />
+
+              @if (Model.WindowsUsage.Any())
+              {
+                <table>
+                  <thead>
+                  <tr>
+                    <td>
+                      <div style='font-family: verdana; font-size: 10px; color: #4a4a4a'>
+                        Windows Log:
+                      </div>
+                    </td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @{
+                    var logs = Model.WindowsUsage.Where(t => Convert.ToDateTime(Convert.ToDateTime(t.START_ON).ToShortTimeString()).Ticks >= Convert.ToDateTime(Model.Images[i].START_TIME).Ticks && Convert.ToDateTime(Convert.ToDateTime(t.START_ON).ToShortTimeString()).Ticks <= Convert.ToDateTime(Model.Images[i].END_TIME).Ticks).OrderByDescending(t => t.TIME_SPENT).ToList();
+                    for (var logIndex = 0; logIndex < 3; logIndex++)
+                    {
+                      <tr>
+                        @if (logs.ElementAtOrDefault(logIndex) != null)
+                        {
+                          <td style="vertical-align: top;">
+                            <div style='font-family: verdana; font-size: 10px; color: #4a4a4a; width: 150px; height: 20px; overflow: hidden;' title="@logs[logIndex].CLASS_DESCRIPTION">
+                              @logs[logIndex].CLASS_DESCRIPTION:
+                            </div>
+                          </td>
+                          <td style="vertical-align: top;">
+                            <div style='font-family: verdana; font-size: 10px; color: #4a4a4a;'>
+                              @if (!string.IsNullOrEmpty(logs[logIndex].TIME_SPENT_DESC))
+                              {
+                                <span style="font-weight: bold;">@logs[logIndex].TIME_SPENT_DESC</span>
+                              }
+                              else
+                              {
+                                <span style="font-weight: bold;">@logs[logIndex].TIME_SPENT</span>
+                              }
+                            </div>
+                          </td>
+                        }
+                        else
+                        {
+                          <td colspan="2">-</td>
+                        }
+                      </tr>
+                    }
+                  }
+                  </tbody>
+                </table>
+              }
+            </td>
+          }
+        }
+      </tr>
+    }
+  </table>
+}

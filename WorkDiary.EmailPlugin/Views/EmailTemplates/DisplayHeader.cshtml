@@ -1,0 +1,33 @@
+﻿@model EmailPlugin.Models.vmViewData
+@{
+  Layout = null;
+
+}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+  <tr>
+    <td width="150" style="border-bottom: 1px solid #ccc; padding-bottom: 5px">
+      @*<img src="data:image/png;base64,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" alt="Service.Net" />*@
+      <strong>Service.net</strong>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-top: 1px solid white">
+  <tbody>
+  <tr>
+    <td style="padding-top: 20px; padding-bottom: 10px; font-weight: bold; font-size: 24px; font-family: arial, helvetica, sans-serif; color: black; line-height: 22px; text-align: center; vertical-align: middle">
+      Daily Work Summary
+    </td>
+  </tr>
+  <tr>
+    <td class="m_2365993426833772414center" style="text-align: center; padding-bottom: 25px; font-family: arial, helvetica, sans-serif; font-size: 18px">
+      @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.today))
+    </td>
+  </tr>
+  </tbody>
+</table>
+<section id="what-we-do">
+<div class="container-fluid">
+<div class="row mt-5">

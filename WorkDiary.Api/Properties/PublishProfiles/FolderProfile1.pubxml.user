@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>F:\Github\Publish\Work Diary API</_PublishTargetUrl>
+    <History>True|2023-05-30T00:27:38.2232106Z;True|2023-05-23T00:53:44.7563783+05:00;True|2023-05-09T13:35:59.5055218+05:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>02/22/2013 13:43:40</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>02/22/2013 13:43:40</publishTime>
+    </File>
+    <File Include="bin/credentials.json">
+      <publishTime>05/12/2022 15:07:41</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>11/16/2019 08:00:22</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>11/16/2019 08:00:40</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Auth.dll">
+      <publishTime>04/02/2020 15:45:52</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Auth.pdb">
+      <publishTime>04/02/2020 15:45:52</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Auth.PlatformServices.dll">
+      <publishTime>04/02/2020 15:45:52</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Core.dll">
+      <publishTime>04/02/2020 15:45:46</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Core.pdb">
+      <publishTime>04/02/2020 15:45:46</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.dll">
+      <publishTime>04/02/2020 15:45:48</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Drive.v3.dll">
+      <publishTime>04/16/2020 13:10:18</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Drive.v3.pdb">
+      <publishTime>04/16/2020 13:10:18</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.pdb">
+      <publishTime>04/02/2020 15:45:48</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.PlatformServices.dll">
+      <publishTime>04/02/2020 15:45:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Azure.KeyVault.Core.dll">
+      <publishTime>07/29/2015 17:56:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/25/2012 16:48:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.WindowsAzure.Configuration.dll">
+      <publishTime>10/25/2016 15:48:08</publishTime>
+    </File>
+    <File Include="bin/Microsoft.WindowsAzure.Storage.dll">
+      <publishTime>09/15/2018 06:06:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.WindowsAzure.Storage.pdb">
+      <publishTime>09/15/2018 05:34:24</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>11/09/2019 05:56:44</publishTime>
+    </File>
+    <File Include="bin/ServiceDotNet.Api.dll">
+      <publishTime>05/30/2023 05:27:37</publishTime>
+    </File>
+    <File Include="bin/ServiceDotNet.Api.pdb">
+      <publishTime>05/30/2023 05:27:37</publishTime>
+    </File>
+    <File Include="bin/Swashbuckle.Core.dll">
+      <publishTime>07/08/2017 06:30:56</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Extensions.dll">
+      <publishTime>02/20/2015 01:10:46</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>11/28/2018 18:00:36</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Primitives.dll">
+      <publishTime>02/20/2015 01:10:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>11/28/2018 17:58:44</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>11/28/2018 18:04:24</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Cors.dll">
+      <publishTime>11/28/2018 18:01:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>11/28/2018 18:01:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>11/28/2018 18:02:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>11/28/2018 17:59:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/11/2014 20:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>11/28/2018 18:00:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>11/28/2018 18:04:24</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>11/28/2018 18:04:24</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>11/28/2018 18:04:24</publishTime>
+    </File>
+    <File Include="bin/WebActivatorEx.dll">
+      <publishTime>02/08/2013 21:42:28</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>07/17/2013 22:03:52</publishTime>
+    </File>
+    <File Include="bin/WorkDiaryRepository.dll">
+      <publishTime>05/30/2023 05:27:36</publishTime>
+    </File>
+    <File Include="bin/WorkDiaryRepository.dll.config">
+      <publishTime>05/16/2023 20:27:30</publishTime>
+    </File>
+    <File Include="bin/WorkDiaryRepository.pdb">
+      <publishTime>05/30/2023 05:27:36</publishTime>
+    </File>
+    <File Include="bin/WorkDiaryServices.dll">
+      <publishTime>05/30/2023 05:27:36</publishTime>
+    </File>
+    <File Include="bin/WorkDiaryServices.dll.config">
+      <publishTime>05/12/2022 15:07:41</publishTime>
+    </File>
+    <File Include="bin/WorkDiaryServices.pdb">
+      <publishTime>05/30/2023 05:27:36</publishTime>
+    </File>
+    <File Include="credentials.json">
+      <publishTime>05/12/2022 15:07:41</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>05/12/2022 15:07:41</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/07/2023 20:07:41</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/30/2023 05:27:37</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

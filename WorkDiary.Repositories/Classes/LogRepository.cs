@@ -52,5 +52,57 @@ namespace WorkDiaryRepository
             }
         }
 
+        public int? GetTotalTime(Log entity)
+        {
+            try
+            {
+                var result = _db.Web_TotalTimeInSecondsByProviderJob(
+                                            entity.Start_Time,
+                                            entity.End_Time,
+                                            entity.PROVIDER_ID,
+                                            entity.JOB_ID).FirstOrDefault();
+                if (result == null)
+                    return 0;
+                return (int)result;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public Web_TotalLogsByProviderAndJob_Result GetTotalLogs(Log entity)
+        {
+            try
+            {
+                var result = _db.Web_TotalLogsByProviderAndJob(
+                                            entity.Start_Time,
+                                            entity.End_Time,
+                                            entity.PROVIDER_ID,
+                                            entity.JOB_ID).FirstOrDefault();
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public List<Web_ScreenLogs_Result> GetTotalScreenLogs(Log entity)
+        {
+            try
+            {
+                var result = _db.Web_ScreenLogs(
+                                            entity.Start_Time,
+                                            entity.End_Time,
+                                            entity.PROVIDER_ID,
+                                            entity.JOB_ID).ToList();
+                return result;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
     }
 }

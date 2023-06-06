@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { NewJob } from '../models/NewJob';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,16 @@ export class JobsService {
   JobId: number = 0;
 
   constructor(private http: HttpClient) { }
+
+  AddNewJob(NewJob: NewJob): Observable<any> {
+    const url = `${this.baseUrl}/job/addJob`;
+    return this.http.post(url, NewJob);
+  }
+
+  getJobStatus(): Observable<any> {
+    const url = `${this.baseUrl}/job/jobStatuses`;
+    return this.http.get(url);
+  }
 
   getJobs(Buyer_Id:number): Observable<any> {
     const url = `${this.baseUrl}/job/GetJobsbyBuyerId?Buyer_Id=${Buyer_Id}`;

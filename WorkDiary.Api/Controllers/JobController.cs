@@ -51,6 +51,44 @@ namespace ServiceDotNet.Api.Controllers
         {
             return new JobService().GetJobsByBuyerId(Buyer_Id);
         }
-        
+
+        // Get All Job Statuses
+        [Route("GetJobStatuses")]
+        [HttpGet]
+        public List<Web_GetAllJobStatus_Result> GetAllJobStatus()
+        {
+            return new JobService().GetAllJobStatus();
+        }
+
+        // Update Job Status
+        [Route("UpdateJobStatus")]
+        [HttpGet]
+        public int? UpdateJobStatusByJobId(int Job_Status_Id, int Job_Id)
+        {
+            return new JobService().UpdateJobStatus(Job_Status_Id, Job_Id);
+        }
+
+        // Get Job by Status Id
+        [Route("GetJobByStatusId")]
+        [HttpGet]
+        public List<Web_GetJobByStatusId_Result> GetJobsByStatusId(int job_Status_Id)
+        {
+            return new JobService().GetJobsByStatusId(job_Status_Id); 
+        }
+
+        // Get Jobs For Offers Sent Awarded Rejected
+        [Route("GetJobsForOffersSentAwardedRejected")]
+        [HttpGet]
+        public List<Web_OffersSentAwardedRejected_Result> GetJobsForOffersSentAwardedRejected(int Prov_Id, int Is_Awarded, int Is_Rejected)
+        {
+            return new JobService().GetJobsForOffersSentAwardedRejected(Prov_Id, Is_Awarded, Is_Rejected);  
+        }
+
+        [Route("JobsByStatusForProvider")]
+        [HttpGet]
+        public List<Web_JobsByStatusForProvider_Result> Web_JobsByStatusForProvider(int Job_Status_Id, int Prov_Id)
+        {
+            return new JobService().Web_JobsByStatusForProvider(Job_Status_Id, Prov_Id);
+        }
     }
 }

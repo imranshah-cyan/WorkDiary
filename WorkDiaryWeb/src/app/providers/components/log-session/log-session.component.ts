@@ -13,7 +13,12 @@ export class LogSessionComponent {
   @Input() Total_Minutes: string | undefined;
   @Input() Key_Stroke_Level: number | undefined;
   @Input() Mouse_Click: number | undefined;
+  @Input() ACTIVITY_LEVEL: number | undefined;
   @Input() WindowsSwitched: number | undefined;
   @Input() Image_Name: string | undefined;
+
+  openLightbox(imageUrl: string) {
+    window.open(imageUrl, '_blank');
+  }
 
 }

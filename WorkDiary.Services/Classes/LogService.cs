@@ -43,5 +43,83 @@ namespace WorkDiaryServices.Classes
 
             return new LogRepository().GetLogs(pLog);
         }
+
+        public int? GetTotalTime(Log log)
+        {
+            if (log.Period == 1)
+            {
+                log.Start_Time = DateTime.Now.Date;
+                log.End_Time = DateTime.Now.Date.AddDays(1);
+            }
+            else if (log.Period == -1)
+            {
+                log.Start_Time = DateTime.Now.Date.AddDays(-1);
+                log.End_Time = DateTime.Now.Date;
+            }
+            else if (log.Period == -7)
+            {
+                log.Start_Time = DateTime.Now.Date.AddDays(-7);
+                log.End_Time = DateTime.Now.Date;
+            }
+            else if (log.Period == -30)
+            {
+                log.Start_Time = DateTime.Now.Date.AddMonths(-1);
+                log.End_Time = DateTime.Now.Date;
+            }
+
+            return new LogRepository().GetTotalTime(log);
+        }
+
+        public Web_TotalLogsByProviderAndJob_Result GetTotalLogs(Log log)
+        {
+            if (log.Period == 1)
+            {
+                log.Start_Time = DateTime.Now.Date;
+                log.End_Time = DateTime.Now.Date.AddDays(1);
+            }
+            else if (log.Period == -1)
+            {
+                log.Start_Time = DateTime.Now.Date.AddDays(-1);
+                log.End_Time = DateTime.Now.Date;
+            }
+            else if (log.Period == -7)
+            {
+                log.Start_Time = DateTime.Now.Date.AddDays(-7);
+                log.End_Time = DateTime.Now.Date;
+            }
+            else if (log.Period == -30)
+            {
+                log.Start_Time = DateTime.Now.Date.AddMonths(-1);
+                log.End_Time = DateTime.Now.Date;
+            }
+
+            return new LogRepository().GetTotalLogs(log);
+        }
+
+        public List<Web_ScreenLogs_Result> GetTotalScreenLogs(Log log)
+        {
+            if (log.Period == 1)
+            {
+                log.Start_Time = DateTime.Now.Date;
+                log.End_Time = DateTime.Now.Date.AddDays(1);
+            }
+            else if (log.Period == -1)
+            {
+                log.Start_Time = DateTime.Now.Date.AddDays(-1);
+                log.End_Time = DateTime.Now.Date;
+            }
+            else if (log.Period == -7)
+            {
+                log.Start_Time = DateTime.Now.Date.AddDays(-7);
+                log.End_Time = DateTime.Now.Date;
+            }
+            else if (log.Period == -30)
+            {
+                log.Start_Time = DateTime.Now.Date.AddMonths(-1);
+                log.End_Time = DateTime.Now.Date;
+            }
+
+            return new LogRepository().GetTotalScreenLogs(log);
+        }
     }
 }

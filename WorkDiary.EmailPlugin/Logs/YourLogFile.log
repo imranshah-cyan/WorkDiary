@@ -1,0 +1,32 @@
+2023-06-06 04:26:12,633 [1] INFO  Hangfire.SqlServer.SqlServerStorage - Start installing Hangfire SQL objects...
+2023-06-06 04:26:13,175 [1] INFO  Hangfire.SqlServer.SqlServerStorage - Hangfire SQL objects installed.
+2023-06-06 04:26:17,351 [1] INFO  Hangfire.BackgroundJobServer - Starting Hangfire Server
+2023-06-06 04:26:17,355 [1] INFO  Hangfire.BackgroundJobServer - Using job storage: 'SQL Server: 217.160.146.216\sqlexpress,1433@ServiceDotNet'
+2023-06-06 04:26:17,355 [1] INFO  Hangfire.BackgroundJobServer - Using the following options for SQL Server job storage:
+2023-06-06 04:26:17,355 [1] INFO  Hangfire.BackgroundJobServer -     Queue poll interval: 00:00:15.
+2023-06-06 04:26:17,355 [1] INFO  Hangfire.BackgroundJobServer - Using the following options for Hangfire Server:
+2023-06-06 04:26:17,355 [1] INFO  Hangfire.BackgroundJobServer -     Worker count: 20
+2023-06-06 04:26:17,356 [1] INFO  Hangfire.BackgroundJobServer -     Listening queues: 'default'
+2023-06-06 04:26:17,356 [1] INFO  Hangfire.BackgroundJobServer -     Shutdown timeout: 00:00:15
+2023-06-06 04:26:17,356 [1] INFO  Hangfire.BackgroundJobServer -     Schedule polling interval: 00:00:15
+2023-06-06 04:26:18,419 [ServerWatchdog] INFO  Hangfire.Server.ServerWatchdog - 1 servers were removed due to timeout
+2023-06-06 04:27:11,105 [Worker #512f68b2] WARN  Email.Controllers.HomeController - Log Email Not Sent for Adilbecause the User logs are less than 1 hour
+2023-06-06 04:27:27,647 [Worker #512f68b2] WARN  Email.Controllers.HomeController - Log Email Not Sent for Adilbecause the User logs are less than 1 hour
+2023-06-06 04:28:29,652 [Worker #512f68b2] WARN  Email.Controllers.HomeController - Log Email Not Sent for Adil because the User logs are less than 1 hour
+2023-06-06 04:28:49,382 [Worker #512f68b2] WARN  Email.Controllers.HomeController - Log Email Not Sent for Adil because the User logs are less than 1 hour
+2023-06-06 04:29:55,322 [1] INFO  Hangfire.SqlServer.SqlServerStorage - Start installing Hangfire SQL objects...
+2023-06-06 04:29:55,899 [1] INFO  Hangfire.SqlServer.SqlServerStorage - Hangfire SQL objects installed.
+2023-06-06 04:29:59,839 [1] INFO  Hangfire.BackgroundJobServer - Starting Hangfire Server
+2023-06-06 04:29:59,842 [1] INFO  Hangfire.BackgroundJobServer - Using job storage: 'SQL Server: 217.160.146.216\sqlexpress,1433@ServiceDotNet'
+2023-06-06 04:29:59,843 [1] INFO  Hangfire.BackgroundJobServer - Using the following options for SQL Server job storage:
+2023-06-06 04:29:59,843 [1] INFO  Hangfire.BackgroundJobServer -     Queue poll interval: 00:00:15.
+2023-06-06 04:29:59,843 [1] INFO  Hangfire.BackgroundJobServer - Using the following options for Hangfire Server:
+2023-06-06 04:29:59,843 [1] INFO  Hangfire.BackgroundJobServer -     Worker count: 20
+2023-06-06 04:29:59,843 [1] INFO  Hangfire.BackgroundJobServer -     Listening queues: 'default'
+2023-06-06 04:29:59,843 [1] INFO  Hangfire.BackgroundJobServer -     Shutdown timeout: 00:00:15
+2023-06-06 04:29:59,843 [1] INFO  Hangfire.BackgroundJobServer -     Schedule polling interval: 00:00:15
+2023-06-06 04:35:01,190 [ServerWatchdog] INFO  Hangfire.Server.ServerWatchdog - 1 servers were removed due to timeout
+2023-06-06 04:58:05,973 [Worker #f0e3bdd1] WARN  Email.Controllers.HomeController - Log Email Not Sent for Adil because the User logs are less than 1 hour
+2023-06-06 04:59:37,651 [Worker #f0e3bdd1] INFO  Email.Controllers.HomeController - Email at 06/06/2023 04:59:37
+2023-06-06 04:59:38,525 [Worker #f0e3bdd1] INFO  Email.Controllers.HomeController - To Email : ykhanzada@gmail.com
+2023-06-06 04:59:39,369 [Worker #f0e3bdd1] INFO  Email.Controllers.HomeController - Email isSent: True

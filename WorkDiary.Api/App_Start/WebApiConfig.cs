@@ -29,7 +29,7 @@ namespace ServiceDotNet.Api
 
             GlobalConfiguration.Configuration.MessageHandlers.Add(new AuthHandler());
 
-            var cors = new EnableCorsAttribute("*", "*", "*");
+            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*", "*");
             config.EnableCors(cors);
         }
     }

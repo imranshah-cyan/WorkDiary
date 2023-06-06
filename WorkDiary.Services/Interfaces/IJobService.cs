@@ -12,6 +12,7 @@ namespace WorkDiaryServices.Interfaces
     public interface IJobService
     {
         int? InsertJob(Job job);
+        List<Web_GetAllJobStatus_Result> GetAllJobStatuses();
         int? TotalJobsByBuyer(int buyerId);
         List<GetProvidersByJobId_Result> GetProvidersByJobId(int Job_Id, int Buyer_Id);
         List<GetJobsByBuyerId_Result> GetJobsByBuyerId(int Buyer_Id);
@@ -57,5 +58,11 @@ namespace WorkDiaryServices.Interfaces
         GetUserTimeLog_Result GetUserLog(int userId, int currentJobId, DateTime currentDateTime);
         List<UserLogsGetByHours_Result> GetUserLogByTime(int userId, int jobId, DateTime startTime, DateTime endTime);
         List<GetImagesInGivenTime_Result> GetImagesInGivenTime(int providerId, int jobId, DateTime startTime, DateTime endTime);
+
+        List<Web_GetAllJobStatus_Result> GetAllJobStatus();
+        int? UpdateJobStatus(int? Job_Status_Id, int Job_Id);
+        List<Web_GetJobByStatusId_Result> GetJobsByStatusId(int job_Status_Id);
+        List<Web_OffersSentAwardedRejected_Result> GetJobsForOffersSentAwardedRejected(int Prov_Id, int Is_Awarded, int Is_Rejected);
+        List<Web_JobsByStatusForProvider_Result> Web_JobsByStatusForProvider(int Job_Status_Id, int Prov_Id);
     }
 }

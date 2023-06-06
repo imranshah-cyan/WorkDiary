@@ -4065,17 +4065,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Web_ScreenLogs" FunctionName="ServiceDotNet.Store.Web_ScreenLogs">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ServiceDotNet.Web_ScreenLogs_Result">
-          <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
-          <ScalarProperty Name="START_ON" ColumnName="START_ON" />
-          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
-          <ScalarProperty Name="CLASS_DESCRIPTION" ColumnName="CLASS_DESCRIPTION" />
-          <ScalarProperty Name="TIME_SPENT" ColumnName="TIME_SPENT" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Web_ScreenShotsByProviderAndJob" FunctionName="ServiceDotNet.Store.Web_ScreenShotsByProviderAndJob">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ServiceDotNet.Web_ScreenShotsByProviderAndJob_Result">
@@ -4180,6 +4169,251 @@
           <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
           <ScalarProperty Name="MATTERMOST_USER_PASSWORD" ColumnName="MATTERMOST_USER_PASSWORD" />
           <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_TotalLogsByProviderAndJob" FunctionName="ServiceDotNet.Store.Web_TotalLogsByProviderAndJob">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_TotalLogsByProviderAndJob_Result">
+          <ScalarProperty Name="Total_Key_Strokes" ColumnName="Total_Key_Strokes" />
+          <ScalarProperty Name="Total_Mouse_Clicks" ColumnName="Total_Mouse_Clicks" />
+          <ScalarProperty Name="Total_Windows_Switched" ColumnName="Total_Windows_Switched" />
+          <ScalarProperty Name="image_count" ColumnName="image_count" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_TotalTimeInSecondsByProviderJob" FunctionName="ServiceDotNet.Store.Web_TotalTimeInSecondsByProviderJob" />
+    <FunctionImportMapping FunctionImportName="Web_ScreenLogs" FunctionName="ServiceDotNet.Store.Web_ScreenLogs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_ScreenLogs_Result">
+          <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="CLASS_DESCRIPTION" ColumnName="CLASS_DESCRIPTION" />
+          <ScalarProperty Name="TIME_SPENT" ColumnName="TIME_SPENT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_GetAllJobStatus" FunctionName="ServiceDotNet.Store.Web_GetAllJobStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetAllJobStatus_Result">
+          <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_GetJobByStatusId" FunctionName="ServiceDotNet.Store.Web_GetJobByStatusId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetJobByStatusId_Result">
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="JOB_TYPE_ID" ColumnName="JOB_TYPE_ID" />
+          <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="APPROXIMATE_DURATION" ColumnName="APPROXIMATE_DURATION" />
+          <ScalarProperty Name="APPROXIMATE_BUDGET" ColumnName="APPROXIMATE_BUDGET" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="HOURLY_RATE" ColumnName="HOURLY_RATE" />
+          <ScalarProperty Name="HOURS_PER_WEEK" ColumnName="HOURS_PER_WEEK" />
+          <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+          <ScalarProperty Name="RATE_TYPE_ID" ColumnName="RATE_TYPE_ID" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="ON_SITE_WORK" ColumnName="ON_SITE_WORK" />
+          <ScalarProperty Name="SITE_LOCATION_COUNTRY_ID" ColumnName="SITE_LOCATION_COUNTRY_ID" />
+          <ScalarProperty Name="SITE_LOCATION_REGION_ID" ColumnName="SITE_LOCATION_REGION_ID" />
+          <ScalarProperty Name="SITE_LOCATION_CITY_ID" ColumnName="SITE_LOCATION_CITY_ID" />
+          <ScalarProperty Name="SITE_LOCATION_POSTCODE" ColumnName="SITE_LOCATION_POSTCODE" />
+          <ScalarProperty Name="OFFER_SUBMIT_DAYS" ColumnName="OFFER_SUBMIT_DAYS" />
+          <ScalarProperty Name="WORK_START" ColumnName="WORK_START" />
+          <ScalarProperty Name="WORK_START_IMMIDIATELY" ColumnName="WORK_START_IMMIDIATELY" />
+          <ScalarProperty Name="WORK_START_ON_DATE" ColumnName="WORK_START_ON_DATE" />
+          <ScalarProperty Name="JOB_VIEW_IS_PUBLIC" ColumnName="JOB_VIEW_IS_PUBLIC" />
+          <ScalarProperty Name="OFFER_AMOUNT_IS_PUBLIC" ColumnName="OFFER_AMOUNT_IS_PUBLIC" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+          <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+          <ScalarProperty Name="MATTERMOST_TEAM_ID" ColumnName="MATTERMOST_TEAM_ID" />
+          <ScalarProperty Name="MATTERMOST_TEAM_NAME" ColumnName="MATTERMOST_TEAM_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_AddProjectTeamMember" FunctionName="ServiceDotNet.Store.Web_AddProjectTeamMember" />
+    <FunctionImportMapping FunctionImportName="Web_DeleteProjectTeamMember" FunctionName="ServiceDotNet.Store.Web_DeleteProjectTeamMember" />
+    <FunctionImportMapping FunctionImportName="Web_GetProjectTeamByBuyerId" FunctionName="ServiceDotNet.Store.Web_GetProjectTeamByBuyerId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetProjectTeamByBuyerId_Result">
+          <ScalarProperty Name="PROJECT_TEAM_ID" ColumnName="PROJECT_TEAM_ID" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="DESIGNATION_NAME" ColumnName="DESIGNATION_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_UpdateProjectTeamMember" FunctionName="ServiceDotNet.Store.Web_UpdateProjectTeamMember" />
+    <FunctionImportMapping FunctionImportName="Web_Offer_Insert" FunctionName="ServiceDotNet.Store.Web_Offer_Insert" />
+    <FunctionImportMapping FunctionImportName="Web_Offer_AcceptOffer_AwardJob" FunctionName="ServiceDotNet.Store.Web_Offer_AcceptOffer_AwardJob" />
+    <FunctionImportMapping FunctionImportName="Web_Offer_Reject" FunctionName="ServiceDotNet.Store.Web_Offer_Reject" />
+    <FunctionImportMapping FunctionImportName="Web_UpdateJobStatusByJobId" FunctionName="ServiceDotNet.Store.Web_UpdateJobStatusByJobId" />
+    <FunctionImportMapping FunctionImportName="Web_GetJobByStatusIdBuyerId" FunctionName="ServiceDotNet.Store.Web_GetJobByStatusIdBuyerId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_GetJobByStatusIdBuyerId_Result">
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="JOB_TYPE_ID" ColumnName="JOB_TYPE_ID" />
+          <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="APPROXIMATE_DURATION" ColumnName="APPROXIMATE_DURATION" />
+          <ScalarProperty Name="APPROXIMATE_BUDGET" ColumnName="APPROXIMATE_BUDGET" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="HOURLY_RATE" ColumnName="HOURLY_RATE" />
+          <ScalarProperty Name="HOURS_PER_WEEK" ColumnName="HOURS_PER_WEEK" />
+          <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+          <ScalarProperty Name="RATE_TYPE_ID" ColumnName="RATE_TYPE_ID" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="ON_SITE_WORK" ColumnName="ON_SITE_WORK" />
+          <ScalarProperty Name="SITE_LOCATION_COUNTRY_ID" ColumnName="SITE_LOCATION_COUNTRY_ID" />
+          <ScalarProperty Name="SITE_LOCATION_REGION_ID" ColumnName="SITE_LOCATION_REGION_ID" />
+          <ScalarProperty Name="SITE_LOCATION_CITY_ID" ColumnName="SITE_LOCATION_CITY_ID" />
+          <ScalarProperty Name="SITE_LOCATION_POSTCODE" ColumnName="SITE_LOCATION_POSTCODE" />
+          <ScalarProperty Name="OFFER_SUBMIT_DAYS" ColumnName="OFFER_SUBMIT_DAYS" />
+          <ScalarProperty Name="WORK_START" ColumnName="WORK_START" />
+          <ScalarProperty Name="WORK_START_IMMIDIATELY" ColumnName="WORK_START_IMMIDIATELY" />
+          <ScalarProperty Name="WORK_START_ON_DATE" ColumnName="WORK_START_ON_DATE" />
+          <ScalarProperty Name="JOB_VIEW_IS_PUBLIC" ColumnName="JOB_VIEW_IS_PUBLIC" />
+          <ScalarProperty Name="OFFER_AMOUNT_IS_PUBLIC" ColumnName="OFFER_AMOUNT_IS_PUBLIC" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+          <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+          <ScalarProperty Name="MATTERMOST_TEAM_ID" ColumnName="MATTERMOST_TEAM_ID" />
+          <ScalarProperty Name="MATTERMOST_TEAM_NAME" ColumnName="MATTERMOST_TEAM_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_OffersSentAwardedRejected" FunctionName="ServiceDotNet.Store.Web_OffersSentAwardedRejected">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_OffersSentAwardedRejected_Result">
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="JOB_TYPE_ID" ColumnName="JOB_TYPE_ID" />
+          <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="APPROXIMATE_DURATION" ColumnName="APPROXIMATE_DURATION" />
+          <ScalarProperty Name="APPROXIMATE_BUDGET" ColumnName="APPROXIMATE_BUDGET" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="HOURLY_RATE" ColumnName="HOURLY_RATE" />
+          <ScalarProperty Name="HOURS_PER_WEEK" ColumnName="HOURS_PER_WEEK" />
+          <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+          <ScalarProperty Name="RATE_TYPE_ID" ColumnName="RATE_TYPE_ID" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="ON_SITE_WORK" ColumnName="ON_SITE_WORK" />
+          <ScalarProperty Name="SITE_LOCATION_COUNTRY_ID" ColumnName="SITE_LOCATION_COUNTRY_ID" />
+          <ScalarProperty Name="SITE_LOCATION_REGION_ID" ColumnName="SITE_LOCATION_REGION_ID" />
+          <ScalarProperty Name="SITE_LOCATION_CITY_ID" ColumnName="SITE_LOCATION_CITY_ID" />
+          <ScalarProperty Name="SITE_LOCATION_POSTCODE" ColumnName="SITE_LOCATION_POSTCODE" />
+          <ScalarProperty Name="OFFER_SUBMIT_DAYS" ColumnName="OFFER_SUBMIT_DAYS" />
+          <ScalarProperty Name="WORK_START" ColumnName="WORK_START" />
+          <ScalarProperty Name="WORK_START_IMMIDIATELY" ColumnName="WORK_START_IMMIDIATELY" />
+          <ScalarProperty Name="WORK_START_ON_DATE" ColumnName="WORK_START_ON_DATE" />
+          <ScalarProperty Name="JOB_VIEW_IS_PUBLIC" ColumnName="JOB_VIEW_IS_PUBLIC" />
+          <ScalarProperty Name="OFFER_AMOUNT_IS_PUBLIC" ColumnName="OFFER_AMOUNT_IS_PUBLIC" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+          <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+          <ScalarProperty Name="MATTERMOST_TEAM_ID" ColumnName="MATTERMOST_TEAM_ID" />
+          <ScalarProperty Name="MATTERMOST_TEAM_NAME" ColumnName="MATTERMOST_TEAM_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_JobsByStatusForProvider" FunctionName="ServiceDotNet.Store.Web_JobsByStatusForProvider">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_JobsByStatusForProvider_Result">
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="JOB_TYPE_ID" ColumnName="JOB_TYPE_ID" />
+          <ScalarProperty Name="JOB_STATUS_ID" ColumnName="JOB_STATUS_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="APPROXIMATE_DURATION" ColumnName="APPROXIMATE_DURATION" />
+          <ScalarProperty Name="APPROXIMATE_BUDGET" ColumnName="APPROXIMATE_BUDGET" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="HOURLY_RATE" ColumnName="HOURLY_RATE" />
+          <ScalarProperty Name="HOURS_PER_WEEK" ColumnName="HOURS_PER_WEEK" />
+          <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+          <ScalarProperty Name="RATE_TYPE_ID" ColumnName="RATE_TYPE_ID" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="ON_SITE_WORK" ColumnName="ON_SITE_WORK" />
+          <ScalarProperty Name="SITE_LOCATION_COUNTRY_ID" ColumnName="SITE_LOCATION_COUNTRY_ID" />
+          <ScalarProperty Name="SITE_LOCATION_REGION_ID" ColumnName="SITE_LOCATION_REGION_ID" />
+          <ScalarProperty Name="SITE_LOCATION_CITY_ID" ColumnName="SITE_LOCATION_CITY_ID" />
+          <ScalarProperty Name="SITE_LOCATION_POSTCODE" ColumnName="SITE_LOCATION_POSTCODE" />
+          <ScalarProperty Name="OFFER_SUBMIT_DAYS" ColumnName="OFFER_SUBMIT_DAYS" />
+          <ScalarProperty Name="WORK_START" ColumnName="WORK_START" />
+          <ScalarProperty Name="WORK_START_IMMIDIATELY" ColumnName="WORK_START_IMMIDIATELY" />
+          <ScalarProperty Name="WORK_START_ON_DATE" ColumnName="WORK_START_ON_DATE" />
+          <ScalarProperty Name="JOB_VIEW_IS_PUBLIC" ColumnName="JOB_VIEW_IS_PUBLIC" />
+          <ScalarProperty Name="OFFER_AMOUNT_IS_PUBLIC" ColumnName="OFFER_AMOUNT_IS_PUBLIC" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+          <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+          <ScalarProperty Name="MATTERMOST_TEAM_ID" ColumnName="MATTERMOST_TEAM_ID" />
+          <ScalarProperty Name="MATTERMOST_TEAM_NAME" ColumnName="MATTERMOST_TEAM_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_Offer_GetActiveByBuyerId" FunctionName="ServiceDotNet.Store.Web_Offer_GetActiveByBuyerId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_Offer_GetActiveByBuyerId_Result">
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="JOB_OFFER_ID" ColumnName="JOB_OFFER_ID" />
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
+          <ScalarProperty Name="BUYER_ID" ColumnName="BUYER_ID" />
+          <ScalarProperty Name="IS_AWARDED" ColumnName="IS_AWARDED" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_Offer_GetRejectedByBuyerId" FunctionName="ServiceDotNet.Store.Web_Offer_GetRejectedByBuyerId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_Offer_GetRejectedByBuyerId_Result">
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="JOB_OFFER_ID" ColumnName="JOB_OFFER_ID" />
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="PROVIDER_ID" ColumnName="PROVIDER_ID" />
+          <ScalarProperty Name="BUYER_ID" ColumnName="BUYER_ID" />
+          <ScalarProperty Name="IS_AWARDED" ColumnName="IS_AWARDED" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -5,6 +5,7 @@ import { ProviderLogsComponent } from './components/provider-logs/provider-logs.
 import { SettingsComponent } from '../buyers/components/settings/settings.component';
 import { ProfileComponentComponent } from '../Shared/components/profileComponent/profileComponent.component';
 import { UpdatePasswordComponent } from '../Shared/components/UpdatePassword/UpdatePassword.component';
+import { JobOffersComponent } from './components/JobOffers/JobOffers.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: '',
         component: ProviderLogsComponent
+      },
+      {
+        path: 'Jobs',
+        component: JobOffersComponent
       },
       {
         path: 'settings',

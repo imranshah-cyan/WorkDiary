@@ -3666,27 +3666,6 @@ namespace WorkDiaryRepository.Dbo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetWorkSummaryImagesByProviderAndJob_Result>("Web_GetWorkSummaryImagesByProviderAndJob", sTART_DATEParameter, eND_DATEParameter, pROVIDER_IDParameter, jOB_IDParameter);
         }
     
-        public virtual ObjectResult<Web_ScreenLogs_Result> Web_ScreenLogs(Nullable<System.DateTime> sTART_ON, Nullable<System.DateTime> eND_ON, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
-        {
-            var sTART_ONParameter = sTART_ON.HasValue ?
-                new ObjectParameter("START_ON", sTART_ON) :
-                new ObjectParameter("START_ON", typeof(System.DateTime));
-    
-            var eND_ONParameter = eND_ON.HasValue ?
-                new ObjectParameter("END_ON", eND_ON) :
-                new ObjectParameter("END_ON", typeof(System.DateTime));
-    
-            var pROVIDER_IDParameter = pROVIDER_ID.HasValue ?
-                new ObjectParameter("PROVIDER_ID", pROVIDER_ID) :
-                new ObjectParameter("PROVIDER_ID", typeof(int));
-    
-            var jOB_IDParameter = jOB_ID.HasValue ?
-                new ObjectParameter("JOB_ID", jOB_ID) :
-                new ObjectParameter("JOB_ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_ScreenLogs_Result>("Web_ScreenLogs", sTART_ONParameter, eND_ONParameter, pROVIDER_IDParameter, jOB_IDParameter);
-        }
-    
         [DbFunction("ServiceDotNetEntities", "Web_ScreenShotsByProviderAndJob")]
         public virtual IQueryable<Web_ScreenShotsByProviderAndJob_Result> Web_ScreenShotsByProviderAndJob(Nullable<System.DateTime> sTART_DATE, Nullable<System.DateTime> eND_DATE, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
         {
@@ -3751,6 +3730,329 @@ namespace WorkDiaryRepository.Dbo
                 new ObjectParameter("buyer_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBuyerProviders_Result>("GetBuyerProviders", buyer_idParameter);
+        }
+    
+        public virtual ObjectResult<Web_TotalLogsByProviderAndJob_Result> Web_TotalLogsByProviderAndJob(Nullable<System.DateTime> sTART_DATE, Nullable<System.DateTime> eND_DATE, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
+        {
+            var sTART_DATEParameter = sTART_DATE.HasValue ?
+                new ObjectParameter("START_DATE", sTART_DATE) :
+                new ObjectParameter("START_DATE", typeof(System.DateTime));
+    
+            var eND_DATEParameter = eND_DATE.HasValue ?
+                new ObjectParameter("END_DATE", eND_DATE) :
+                new ObjectParameter("END_DATE", typeof(System.DateTime));
+    
+            var pROVIDER_IDParameter = pROVIDER_ID.HasValue ?
+                new ObjectParameter("PROVIDER_ID", pROVIDER_ID) :
+                new ObjectParameter("PROVIDER_ID", typeof(int));
+    
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_TotalLogsByProviderAndJob_Result>("Web_TotalLogsByProviderAndJob", sTART_DATEParameter, eND_DATEParameter, pROVIDER_IDParameter, jOB_IDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> Web_TotalTimeInSecondsByProviderJob(Nullable<System.DateTime> sTART_DATE, Nullable<System.DateTime> eND_DATE, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
+        {
+            var sTART_DATEParameter = sTART_DATE.HasValue ?
+                new ObjectParameter("START_DATE", sTART_DATE) :
+                new ObjectParameter("START_DATE", typeof(System.DateTime));
+    
+            var eND_DATEParameter = eND_DATE.HasValue ?
+                new ObjectParameter("END_DATE", eND_DATE) :
+                new ObjectParameter("END_DATE", typeof(System.DateTime));
+    
+            var pROVIDER_IDParameter = pROVIDER_ID.HasValue ?
+                new ObjectParameter("PROVIDER_ID", pROVIDER_ID) :
+                new ObjectParameter("PROVIDER_ID", typeof(int));
+    
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("Web_TotalTimeInSecondsByProviderJob", sTART_DATEParameter, eND_DATEParameter, pROVIDER_IDParameter, jOB_IDParameter);
+        }
+    
+        public virtual ObjectResult<Web_ScreenLogs_Result> Web_ScreenLogs(Nullable<System.DateTime> sTART_DATE, Nullable<System.DateTime> eND_DATE, Nullable<int> pROVIDER_ID, Nullable<int> jOB_ID)
+        {
+            var sTART_DATEParameter = sTART_DATE.HasValue ?
+                new ObjectParameter("START_DATE", sTART_DATE) :
+                new ObjectParameter("START_DATE", typeof(System.DateTime));
+    
+            var eND_DATEParameter = eND_DATE.HasValue ?
+                new ObjectParameter("END_DATE", eND_DATE) :
+                new ObjectParameter("END_DATE", typeof(System.DateTime));
+    
+            var pROVIDER_IDParameter = pROVIDER_ID.HasValue ?
+                new ObjectParameter("PROVIDER_ID", pROVIDER_ID) :
+                new ObjectParameter("PROVIDER_ID", typeof(int));
+    
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_ScreenLogs_Result>("Web_ScreenLogs", sTART_DATEParameter, eND_DATEParameter, pROVIDER_IDParameter, jOB_IDParameter);
+        }
+    
+        public virtual ObjectResult<Web_GetAllJobStatus_Result> Web_GetAllJobStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetAllJobStatus_Result>("Web_GetAllJobStatus");
+        }
+    
+        public virtual ObjectResult<Web_GetJobByStatusId_Result> Web_GetJobByStatusId(Nullable<int> job_Status_Id)
+        {
+            var job_Status_IdParameter = job_Status_Id.HasValue ?
+                new ObjectParameter("Job_Status_Id", job_Status_Id) :
+                new ObjectParameter("Job_Status_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetJobByStatusId_Result>("Web_GetJobByStatusId", job_Status_IdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> Web_AddProjectTeamMember(Nullable<int> jOB_ID, Nullable<int> dESIGNATION_ID, string nAME, string eMAIL)
+        {
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            var dESIGNATION_IDParameter = dESIGNATION_ID.HasValue ?
+                new ObjectParameter("DESIGNATION_ID", dESIGNATION_ID) :
+                new ObjectParameter("DESIGNATION_ID", typeof(int));
+    
+            var nAMEParameter = nAME != null ?
+                new ObjectParameter("NAME", nAME) :
+                new ObjectParameter("NAME", typeof(string));
+    
+            var eMAILParameter = eMAIL != null ?
+                new ObjectParameter("EMAIL", eMAIL) :
+                new ObjectParameter("EMAIL", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("Web_AddProjectTeamMember", jOB_IDParameter, dESIGNATION_IDParameter, nAMEParameter, eMAILParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_DeleteProjectTeamMember(Nullable<int> pROJECT_TEAM_ID)
+        {
+            var pROJECT_TEAM_IDParameter = pROJECT_TEAM_ID.HasValue ?
+                new ObjectParameter("PROJECT_TEAM_ID", pROJECT_TEAM_ID) :
+                new ObjectParameter("PROJECT_TEAM_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_DeleteProjectTeamMember", pROJECT_TEAM_IDParameter);
+        }
+    
+        public virtual ObjectResult<Web_GetProjectTeamByBuyerId_Result> Web_GetProjectTeamByBuyerId(Nullable<int> bUYER_ID)
+        {
+            var bUYER_IDParameter = bUYER_ID.HasValue ?
+                new ObjectParameter("BUYER_ID", bUYER_ID) :
+                new ObjectParameter("BUYER_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetProjectTeamByBuyerId_Result>("Web_GetProjectTeamByBuyerId", bUYER_IDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_UpdateProjectTeamMember(Nullable<int> pROJECT_TEAM_ID, Nullable<int> job_id, Nullable<int> designation_Id, string name, string email)
+        {
+            var pROJECT_TEAM_IDParameter = pROJECT_TEAM_ID.HasValue ?
+                new ObjectParameter("PROJECT_TEAM_ID", pROJECT_TEAM_ID) :
+                new ObjectParameter("PROJECT_TEAM_ID", typeof(int));
+    
+            var job_idParameter = job_id.HasValue ?
+                new ObjectParameter("Job_id", job_id) :
+                new ObjectParameter("Job_id", typeof(int));
+    
+            var designation_IdParameter = designation_Id.HasValue ?
+                new ObjectParameter("Designation_Id", designation_Id) :
+                new ObjectParameter("Designation_Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_UpdateProjectTeamMember", pROJECT_TEAM_IDParameter, job_idParameter, designation_IdParameter, nameParameter, emailParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_Offer_Insert(Nullable<int> jOB_ID, Nullable<int> pROVIDER_ID, Nullable<int> bUYER_ID, Nullable<int> cURRENCY_ID, Nullable<decimal> oFFER_AMOUNT, Nullable<decimal> sERVICE_FEE, Nullable<decimal> cLIENT_CHARGED, Nullable<decimal> uPFRONT_PAYMENT, string tIME_REQUIRED, Nullable<bool> iS_FIRST_OFFER, Nullable<bool> iS_AWARDED, string dESCRIPTION, string tERMS, Nullable<int> cREATED_BY, Nullable<bool> iS_OFFER_BUYER)
+        {
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            var pROVIDER_IDParameter = pROVIDER_ID.HasValue ?
+                new ObjectParameter("PROVIDER_ID", pROVIDER_ID) :
+                new ObjectParameter("PROVIDER_ID", typeof(int));
+    
+            var bUYER_IDParameter = bUYER_ID.HasValue ?
+                new ObjectParameter("BUYER_ID", bUYER_ID) :
+                new ObjectParameter("BUYER_ID", typeof(int));
+    
+            var cURRENCY_IDParameter = cURRENCY_ID.HasValue ?
+                new ObjectParameter("CURRENCY_ID", cURRENCY_ID) :
+                new ObjectParameter("CURRENCY_ID", typeof(int));
+    
+            var oFFER_AMOUNTParameter = oFFER_AMOUNT.HasValue ?
+                new ObjectParameter("OFFER_AMOUNT", oFFER_AMOUNT) :
+                new ObjectParameter("OFFER_AMOUNT", typeof(decimal));
+    
+            var sERVICE_FEEParameter = sERVICE_FEE.HasValue ?
+                new ObjectParameter("SERVICE_FEE", sERVICE_FEE) :
+                new ObjectParameter("SERVICE_FEE", typeof(decimal));
+    
+            var cLIENT_CHARGEDParameter = cLIENT_CHARGED.HasValue ?
+                new ObjectParameter("CLIENT_CHARGED", cLIENT_CHARGED) :
+                new ObjectParameter("CLIENT_CHARGED", typeof(decimal));
+    
+            var uPFRONT_PAYMENTParameter = uPFRONT_PAYMENT.HasValue ?
+                new ObjectParameter("UPFRONT_PAYMENT", uPFRONT_PAYMENT) :
+                new ObjectParameter("UPFRONT_PAYMENT", typeof(decimal));
+    
+            var tIME_REQUIREDParameter = tIME_REQUIRED != null ?
+                new ObjectParameter("TIME_REQUIRED", tIME_REQUIRED) :
+                new ObjectParameter("TIME_REQUIRED", typeof(string));
+    
+            var iS_FIRST_OFFERParameter = iS_FIRST_OFFER.HasValue ?
+                new ObjectParameter("IS_FIRST_OFFER", iS_FIRST_OFFER) :
+                new ObjectParameter("IS_FIRST_OFFER", typeof(bool));
+    
+            var iS_AWARDEDParameter = iS_AWARDED.HasValue ?
+                new ObjectParameter("IS_AWARDED", iS_AWARDED) :
+                new ObjectParameter("IS_AWARDED", typeof(bool));
+    
+            var dESCRIPTIONParameter = dESCRIPTION != null ?
+                new ObjectParameter("DESCRIPTION", dESCRIPTION) :
+                new ObjectParameter("DESCRIPTION", typeof(string));
+    
+            var tERMSParameter = tERMS != null ?
+                new ObjectParameter("TERMS", tERMS) :
+                new ObjectParameter("TERMS", typeof(string));
+    
+            var cREATED_BYParameter = cREATED_BY.HasValue ?
+                new ObjectParameter("CREATED_BY", cREATED_BY) :
+                new ObjectParameter("CREATED_BY", typeof(int));
+    
+            var iS_OFFER_BUYERParameter = iS_OFFER_BUYER.HasValue ?
+                new ObjectParameter("IS_OFFER_BUYER", iS_OFFER_BUYER) :
+                new ObjectParameter("IS_OFFER_BUYER", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_Offer_Insert", jOB_IDParameter, pROVIDER_IDParameter, bUYER_IDParameter, cURRENCY_IDParameter, oFFER_AMOUNTParameter, sERVICE_FEEParameter, cLIENT_CHARGEDParameter, uPFRONT_PAYMENTParameter, tIME_REQUIREDParameter, iS_FIRST_OFFERParameter, iS_AWARDEDParameter, dESCRIPTIONParameter, tERMSParameter, cREATED_BYParameter, iS_OFFER_BUYERParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> Web_Offer_AcceptOffer_AwardJob(Nullable<int> job_Offer_Id, Nullable<int> job_Id, Nullable<int> provider_Id, Nullable<int> buyer_Id, Nullable<int> currency_Id)
+        {
+            var job_Offer_IdParameter = job_Offer_Id.HasValue ?
+                new ObjectParameter("Job_Offer_Id", job_Offer_Id) :
+                new ObjectParameter("Job_Offer_Id", typeof(int));
+    
+            var job_IdParameter = job_Id.HasValue ?
+                new ObjectParameter("Job_Id", job_Id) :
+                new ObjectParameter("Job_Id", typeof(int));
+    
+            var provider_IdParameter = provider_Id.HasValue ?
+                new ObjectParameter("Provider_Id", provider_Id) :
+                new ObjectParameter("Provider_Id", typeof(int));
+    
+            var buyer_IdParameter = buyer_Id.HasValue ?
+                new ObjectParameter("Buyer_Id", buyer_Id) :
+                new ObjectParameter("Buyer_Id", typeof(int));
+    
+            var currency_IdParameter = currency_Id.HasValue ?
+                new ObjectParameter("Currency_Id", currency_Id) :
+                new ObjectParameter("Currency_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("Web_Offer_AcceptOffer_AwardJob", job_Offer_IdParameter, job_IdParameter, provider_IdParameter, buyer_IdParameter, currency_IdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_Offer_Reject(Nullable<int> job_Offer_Id, Nullable<int> buyer_Id)
+        {
+            var job_Offer_IdParameter = job_Offer_Id.HasValue ?
+                new ObjectParameter("Job_Offer_Id", job_Offer_Id) :
+                new ObjectParameter("Job_Offer_Id", typeof(int));
+    
+            var buyer_IdParameter = buyer_Id.HasValue ?
+                new ObjectParameter("Buyer_Id", buyer_Id) :
+                new ObjectParameter("Buyer_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_Offer_Reject", job_Offer_IdParameter, buyer_IdParameter);
+        }
+    
+        public virtual ObjectResult<Web_GetJobStatus_Result> Web_GetJobStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetJobStatus_Result>("Web_GetJobStatus");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_UpdateJobStatusByJobId(Nullable<int> job_Status_Id, Nullable<int> job_Id)
+        {
+            var job_Status_IdParameter = job_Status_Id.HasValue ?
+                new ObjectParameter("Job_Status_Id", job_Status_Id) :
+                new ObjectParameter("Job_Status_Id", typeof(int));
+    
+            var job_IdParameter = job_Id.HasValue ?
+                new ObjectParameter("Job_Id", job_Id) :
+                new ObjectParameter("Job_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_UpdateJobStatusByJobId", job_Status_IdParameter, job_IdParameter);
+        }
+    
+        public virtual ObjectResult<Web_GetJobByStatusIdBuyerId_Result> Web_GetJobByStatusIdBuyerId(Nullable<int> job_Status_Id, Nullable<int> buyer_Id)
+        {
+            var job_Status_IdParameter = job_Status_Id.HasValue ?
+                new ObjectParameter("Job_Status_Id", job_Status_Id) :
+                new ObjectParameter("Job_Status_Id", typeof(int));
+    
+            var buyer_IdParameter = buyer_Id.HasValue ?
+                new ObjectParameter("Buyer_Id", buyer_Id) :
+                new ObjectParameter("Buyer_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_GetJobByStatusIdBuyerId_Result>("Web_GetJobByStatusIdBuyerId", job_Status_IdParameter, buyer_IdParameter);
+        }
+    
+        public virtual ObjectResult<Web_OffersSentAwardedRejected_Result> Web_OffersSentAwardedRejected(Nullable<int> provider_Id, Nullable<int> is_Awarded, Nullable<int> is_Rejected)
+        {
+            var provider_IdParameter = provider_Id.HasValue ?
+                new ObjectParameter("Provider_Id", provider_Id) :
+                new ObjectParameter("Provider_Id", typeof(int));
+    
+            var is_AwardedParameter = is_Awarded.HasValue ?
+                new ObjectParameter("Is_Awarded", is_Awarded) :
+                new ObjectParameter("Is_Awarded", typeof(int));
+    
+            var is_RejectedParameter = is_Rejected.HasValue ?
+                new ObjectParameter("Is_Rejected", is_Rejected) :
+                new ObjectParameter("Is_Rejected", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_OffersSentAwardedRejected_Result>("Web_OffersSentAwardedRejected", provider_IdParameter, is_AwardedParameter, is_RejectedParameter);
+        }
+    
+        public virtual ObjectResult<Web_JobsByStatusForProvider_Result> Web_JobsByStatusForProvider(Nullable<int> job_Status_Id, Nullable<int> provider_Id)
+        {
+            var job_Status_IdParameter = job_Status_Id.HasValue ?
+                new ObjectParameter("Job_Status_Id", job_Status_Id) :
+                new ObjectParameter("Job_Status_Id", typeof(int));
+    
+            var provider_IdParameter = provider_Id.HasValue ?
+                new ObjectParameter("Provider_Id", provider_Id) :
+                new ObjectParameter("Provider_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_JobsByStatusForProvider_Result>("Web_JobsByStatusForProvider", job_Status_IdParameter, provider_IdParameter);
+        }
+    
+        public virtual ObjectResult<Web_Offer_GetActiveByBuyerId_Result> Web_Offer_GetActiveByBuyerId(Nullable<int> buyer_Id)
+        {
+            var buyer_IdParameter = buyer_Id.HasValue ?
+                new ObjectParameter("Buyer_Id", buyer_Id) :
+                new ObjectParameter("Buyer_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_Offer_GetActiveByBuyerId_Result>("Web_Offer_GetActiveByBuyerId", buyer_IdParameter);
+        }
+    
+        public virtual ObjectResult<Web_Offer_GetRejectedByBuyerId_Result> Web_Offer_GetRejectedByBuyerId(Nullable<int> buyer_id)
+        {
+            var buyer_idParameter = buyer_id.HasValue ?
+                new ObjectParameter("Buyer_id", buyer_id) :
+                new ObjectParameter("Buyer_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_Offer_GetRejectedByBuyerId_Result>("Web_Offer_GetRejectedByBuyerId", buyer_idParameter);
         }
     }
 }

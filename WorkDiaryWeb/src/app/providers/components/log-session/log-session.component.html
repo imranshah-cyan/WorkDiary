@@ -1,10 +1,20 @@
 <div class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style="height: 280px;">
-  <a href="#">
-    <img class="rounded-t-lg" src="../../../../assets/images/4914312.jpg" alt="{{Image_Name}}" width="100%" />
-  </a>
+  <ng-container *ngIf="Image_Name !== 'cancelled.jpg'; else defaultImage">
+    <img class="rounded-t-lg dynamic-image" src="https://workdiary1.blob.core.windows.net/images/{{ Image_Name }}" (click)="openLightbox('https://workdiary1.blob.core.windows.net/images/' + Image_Name)"
+      alt="{{ Image_Name }}" width="100%" height="500px" />
+  </ng-container>
+
+  <ng-template #defaultImage>
+    <img class="rounded-t-lg default-image" src="../../../../assets/images/noimage.jpg" alt="Default Image" width="70%" />
+  </ng-template>
+
   <div class="mt-2">
     <p class="text-xs">{{ Start_Time }} - {{ End_Time }}</p>
     <p class="text-xs my-1 truncate" style="overflow-wrap: break-word; word-wrap: break-word; width: 100%;">{{ ActiveWindowTitle }}</p>
+    <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+      <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+        [style.width]="ACTIVITY_LEVEL + '%'">{{ ACTIVITY_LEVEL }}</div>
+    </div>
     <p class="text-xs my-1"><b>Key Strokes:</b> {{ Key_Stroke_Level }}</p>
     <p class="text-xs my-1"><b>Mouse Clicks:</b> {{ Mouse_Click }}</p>
     <p class="text-xs my-1"><b>Windows Switched:</b> {{ WindowsSwitched }}</p>
