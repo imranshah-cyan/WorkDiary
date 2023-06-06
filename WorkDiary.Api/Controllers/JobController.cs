@@ -10,7 +10,7 @@ using WorkDiaryServices.Classes;
 
 namespace ServiceDotNet.Api.Controllers
 {
-    [RoutePrefix("api/jobs")]
+    [RoutePrefix("api/job")]
     public class JobController : ApiController
     {
         [Route("get/{userId}")]
