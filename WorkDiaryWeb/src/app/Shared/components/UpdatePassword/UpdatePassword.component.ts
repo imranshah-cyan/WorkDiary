@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CacheStorageService } from '../../services/CacheStorage.service';
+import { UserService } from 'src/app/buyers/services/user.service';
 
 @Component({
   selector: 'app-UpdatePassword',
@@ -8,13 +10,17 @@ import { NgForm } from '@angular/forms';
 })
 export class UpdatePasswordComponent implements OnInit {
 
-  Newpassword: string = "";
-  confirmPassword: string = "";
-
-  PassNotSame: boolean = false;
+  CurrentUserId: number = 0;
   Updated: boolean = false;
+  Alert: boolean = false;
+  Result: string = '';
 
-  constructor() { }
+  constructor(private cacheStorage: CacheStorageService,
+    private userService: UserService) {
+    const userId = this.cacheStorage.get('User').USER_ID;
+    this.CurrentUserId = userId;
+  }
+
 
   ngOnInit() {
   }
@@ -22,17 +28,24 @@ export class UpdatePasswordComponent implements OnInit {
   updatePass(passwordForm: NgForm) {
     console.log(passwordForm.form.value);
 
-    this.Newpassword = passwordForm.form.value.newPass;
-    this.confirmPassword = passwordForm.form.value.ConfirmNewPass;
-
-    if (!(this.Newpassword === this.confirmPassword))
-    {
-      this.PassNotSame = true;
-      this.Updated = false;
-      return;
-    }
-    this.PassNotSame = false;
-    this.Updated = true;
+    this.userService.updateExistingPass(this.CurrentUserId, passwordForm.form.value.currentPass, passwordForm.form.value.newPassword).subscribe(
+      (response: any) => {
+        console.log(response);
+        if (response > 0) {
+          this.Result = "Successfully updated the Password";
+          this.Alert = false;
+          this.Updated = true;
+        }
+        else {
+          this.Result = "Kindly enter the correct password to update your password";
+          this.Alert = true;
+          this.Updated = true;
+        }
+      },
+      (error: any) => {
+        // console.log(error);
+      }
+    )
   }
 
 }

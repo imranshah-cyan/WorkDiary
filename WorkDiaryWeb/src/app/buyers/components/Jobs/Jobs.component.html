@@ -1,10 +1,10 @@
 <section class="container px-5">
 
-  <div class="flex justify-end w-2/4 mx-auto">
+  <div class="flex justify-end w-full mx-auto">
     <div class="flex justify-center space-x-2">
       <a type="button" data-te-ripple-init data-te-ripple-color="light" href="/buyers/postjobs"
-        class="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
-        Post Job
+        class="inline-block rounded bg-success px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
+        Add a new Job
       </a>
     </div>
   </div>
@@ -12,6 +12,9 @@
   <div class=" mx-auto mb-5 pb-5">
     <p class="mb-1 text-lg font-normal">Active Jobs</p>
     <hr class="mb-2">
+
+    <p class="alert p-2 mb-0" [ngClass]="{'alert-danger': Alert, 'alert-success': !Alert}" *ngIf="Updated">{{Result}}
+    </p>
 
 
     <ng-container *ngFor="let job of jobs; let i = index;">
@@ -26,12 +29,12 @@
               <!-- <i class="fas fa-check-circle text-green-500 mr-1"></i> -->
               <!-- <i class="fas fa-hourglass-half text-yellow-500 mr-1"></i> -->
               <!-- <span>20 Offers Received</span> -->
-              <p><b>Job Status: </b> Open For Offers</p>
+              <p><b>Job Status: </b> {{ job.NAME }}</p>
             </div>
-            <div class="text-sm">
+            <!-- <div class="text-sm">
               <p class="text-end">Job Created On</p>
               <p class="text-end">{{ job.CREATED_ON | date:'dd-MM-YYYY' }}</p>
-            </div>
+            </div> -->
           </div>
 
           <div class="px-6 py-4 border-t border-gray-200">
@@ -58,14 +61,16 @@
           <div class="flex justify-end px-6 py-4">
             <button class="px-4 py-2 bg-blue-500 text-white rounded mr-2 hover:bg-blue-600"
               (click)="editItem(job)">Edit</button>
-            <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Delete</button>
+            <!-- <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Delete</button> -->
           </div>
         </ng-container>
 
         <!-- Edit mode -->
         <ng-container *ngIf="job.editing">
+
           <div class="bg-gray-600 text-gray-200 text-lg px-6 py-4">
-            <input class="bg-gray-300 text-gray-700 text-lg w-full p-2 border-2 border-blue-500 rounded" value="{{job.JOB_TITLE}}">
+            <input [(ngModel)]="job.JOB_TITLE"  class="bg-gray-300 text-gray-700 text-lg w-full p-2 border-2 border-blue-500 rounded"
+              value="{{job.JOB_TITLE}}">
           </div>
 
           <div class="flex justify-between items-center px-6 py-4">
@@ -74,22 +79,22 @@
               <!-- <i class="fas fa-check-circle text-green-500 mr-1"></i> -->
               <!-- <i class="fas fa-hourglass-half text-yellow-500 mr-1"></i> -->
               <!-- <span>20 Offers Received</span> -->
-              <select class="form-select" ngModel id="job" name="job">
-                <option value="">Job Status</option>
-                <option value="">Status 1</option>
-                <option value="">Status 2</option>
-                <option value="">Status 3</option>
+              <p class="mb-2 font-medium">Job Status</p>
+              <select class="form-select" [(ngModel)]="job.JOB_STATUS_ID" id="job" name="job">
+                <option value="{{jobStatus.JOB_STATUS_ID}}" *ngFor="let jobStatus of JobStatusTypes">{{ jobStatus.NAME
+                  }}</option>
               </select>
             </div>
-            <div class="text-sm">
+            <!-- <div class="text-sm">
               <p class="text-end">Job Created On</p>
               <p class="text-end">{{ job.CREATED_ON | date:'dd-MM-YYYY' }}</p>
-            </div>
+            </div> -->
           </div>
 
           <div class="px-6 py-4 border-t border-gray-200">
             <div class="border rounded-lg p-4 bg-gray-200">
-              <textarea class="w-full border-2 border-blue-500 rounded" [(ngModel)]="job.DESCRIPTION"></textarea>
+              <textarea class="w-full border-2 border-blue-500 rounded" rows="5"
+                [(ngModel)]="job.DESCRIPTION"></textarea>
             </div>
           </div>
 

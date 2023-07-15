@@ -3247,15 +3247,6 @@ namespace WorkDiaryRepository.Dbo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGetByEmail_sp_Result>("UserGetByEmail_sp", eMAILParameter);
         }
     
-        public virtual ObjectResult<UserInfoGetById_sp_Result> UserInfoGetById_sp(Nullable<int> uSER_ID)
-        {
-            var uSER_IDParameter = uSER_ID.HasValue ?
-                new ObjectParameter("USER_ID", uSER_ID) :
-                new ObjectParameter("USER_ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserInfoGetById_sp_Result>("UserInfoGetById_sp", uSER_IDParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> UserInsert_sp(Nullable<int> rOLE_ID, string fULL_NAME, string eMAIL, string uSER_NAME, string pASSWORD, string sECURITY_QUESTION, string sECURITY_QUESTION_ANSWER)
         {
             var rOLE_IDParameter = rOLE_ID.HasValue ?
@@ -3599,15 +3590,6 @@ namespace WorkDiaryRepository.Dbo
                 new ObjectParameter("Buyer_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProvidersByJobId_Result>("GetProvidersByJobId", job_IdParameter, buyer_IdParameter);
-        }
-    
-        public virtual ObjectResult<GetJobsByBuyerId_Result> GetJobsByBuyerId(Nullable<int> buyer_Id)
-        {
-            var buyer_IdParameter = buyer_Id.HasValue ?
-                new ObjectParameter("Buyer_Id", buyer_Id) :
-                new ObjectParameter("Buyer_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetJobsByBuyerId_Result>("GetJobsByBuyerId", buyer_IdParameter);
         }
     
         public virtual ObjectResult<SP_WorkDiaryAppLogs_Result> SP_WorkDiaryAppLogs(Nullable<int> provider_id, Nullable<int> job_id, Nullable<System.DateTime> start_time, Nullable<System.DateTime> end_time)
@@ -4053,6 +4035,158 @@ namespace WorkDiaryRepository.Dbo
                 new ObjectParameter("Buyer_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_Offer_GetRejectedByBuyerId_Result>("Web_Offer_GetRejectedByBuyerId", buyer_idParameter);
+        }
+    
+        public virtual ObjectResult<Web_Classes_Result> Web_Classes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Web_Classes_Result>("Web_Classes");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_JobInsert(Nullable<int> uSER_ID, Nullable<int> jOB_STATUS_ID, string jOB_TITLE, Nullable<int> cLASS_ID, string dESCRIPTION, Nullable<int> cREATED_BY)
+        {
+            var uSER_IDParameter = uSER_ID.HasValue ?
+                new ObjectParameter("USER_ID", uSER_ID) :
+                new ObjectParameter("USER_ID", typeof(int));
+    
+            var jOB_STATUS_IDParameter = jOB_STATUS_ID.HasValue ?
+                new ObjectParameter("JOB_STATUS_ID", jOB_STATUS_ID) :
+                new ObjectParameter("JOB_STATUS_ID", typeof(int));
+    
+            var jOB_TITLEParameter = jOB_TITLE != null ?
+                new ObjectParameter("JOB_TITLE", jOB_TITLE) :
+                new ObjectParameter("JOB_TITLE", typeof(string));
+    
+            var cLASS_IDParameter = cLASS_ID.HasValue ?
+                new ObjectParameter("CLASS_ID", cLASS_ID) :
+                new ObjectParameter("CLASS_ID", typeof(int));
+    
+            var dESCRIPTIONParameter = dESCRIPTION != null ?
+                new ObjectParameter("DESCRIPTION", dESCRIPTION) :
+                new ObjectParameter("DESCRIPTION", typeof(string));
+    
+            var cREATED_BYParameter = cREATED_BY.HasValue ?
+                new ObjectParameter("CREATED_BY", cREATED_BY) :
+                new ObjectParameter("CREATED_BY", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_JobInsert", uSER_IDParameter, jOB_STATUS_IDParameter, jOB_TITLEParameter, cLASS_IDParameter, dESCRIPTIONParameter, cREATED_BYParameter);
+        }
+    
+        public virtual ObjectResult<GetJobsByBuyerId_Result> GetJobsByBuyerId(Nullable<int> buyer_Id)
+        {
+            var buyer_IdParameter = buyer_Id.HasValue ?
+                new ObjectParameter("Buyer_Id", buyer_Id) :
+                new ObjectParameter("Buyer_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetJobsByBuyerId_Result>("GetJobsByBuyerId", buyer_IdParameter);
+        }
+    
+        public virtual int Web_JobUpdate(Nullable<int> jOB_ID, Nullable<int> jOB_STATUS_ID, string jOB_TITLE, string dESCRIPTION, ObjectParameter updatedJobId)
+        {
+            var jOB_IDParameter = jOB_ID.HasValue ?
+                new ObjectParameter("JOB_ID", jOB_ID) :
+                new ObjectParameter("JOB_ID", typeof(int));
+    
+            var jOB_STATUS_IDParameter = jOB_STATUS_ID.HasValue ?
+                new ObjectParameter("JOB_STATUS_ID", jOB_STATUS_ID) :
+                new ObjectParameter("JOB_STATUS_ID", typeof(int));
+    
+            var jOB_TITLEParameter = jOB_TITLE != null ?
+                new ObjectParameter("JOB_TITLE", jOB_TITLE) :
+                new ObjectParameter("JOB_TITLE", typeof(string));
+    
+            var dESCRIPTIONParameter = dESCRIPTION != null ?
+                new ObjectParameter("DESCRIPTION", dESCRIPTION) :
+                new ObjectParameter("DESCRIPTION", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Web_JobUpdate", jOB_IDParameter, jOB_STATUS_IDParameter, jOB_TITLEParameter, dESCRIPTIONParameter, updatedJobId);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_UpdateSecurityQuestionAnswer(Nullable<int> uSER_ID, string sECURITY_QUESTION, string sECURITY_QUESTION_ANSWER, string pASSWORD)
+        {
+            var uSER_IDParameter = uSER_ID.HasValue ?
+                new ObjectParameter("USER_ID", uSER_ID) :
+                new ObjectParameter("USER_ID", typeof(int));
+    
+            var sECURITY_QUESTIONParameter = sECURITY_QUESTION != null ?
+                new ObjectParameter("SECURITY_QUESTION", sECURITY_QUESTION) :
+                new ObjectParameter("SECURITY_QUESTION", typeof(string));
+    
+            var sECURITY_QUESTION_ANSWERParameter = sECURITY_QUESTION_ANSWER != null ?
+                new ObjectParameter("SECURITY_QUESTION_ANSWER", sECURITY_QUESTION_ANSWER) :
+                new ObjectParameter("SECURITY_QUESTION_ANSWER", typeof(string));
+    
+            var pASSWORDParameter = pASSWORD != null ?
+                new ObjectParameter("PASSWORD", pASSWORD) :
+                new ObjectParameter("PASSWORD", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_UpdateSecurityQuestionAnswer", uSER_IDParameter, sECURITY_QUESTIONParameter, sECURITY_QUESTION_ANSWERParameter, pASSWORDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_ExistingPassword(Nullable<int> userId, string currentPassword, string newPassword)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var currentPasswordParameter = currentPassword != null ?
+                new ObjectParameter("CurrentPassword", currentPassword) :
+                new ObjectParameter("CurrentPassword", typeof(string));
+    
+            var newPasswordParameter = newPassword != null ?
+                new ObjectParameter("NewPassword", newPassword) :
+                new ObjectParameter("NewPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_ExistingPassword", userIdParameter, currentPasswordParameter, newPasswordParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Web_UpdateProfile(Nullable<int> uSERID, string fNAME, string mNAME, string lNAME, string eMAILADDRESS, string pRIMARYPHONE, string sECONDARYPHONE, string aDDRESS1, string aDDRESS2)
+        {
+            var uSERIDParameter = uSERID.HasValue ?
+                new ObjectParameter("USERID", uSERID) :
+                new ObjectParameter("USERID", typeof(int));
+    
+            var fNAMEParameter = fNAME != null ?
+                new ObjectParameter("FNAME", fNAME) :
+                new ObjectParameter("FNAME", typeof(string));
+    
+            var mNAMEParameter = mNAME != null ?
+                new ObjectParameter("MNAME", mNAME) :
+                new ObjectParameter("MNAME", typeof(string));
+    
+            var lNAMEParameter = lNAME != null ?
+                new ObjectParameter("LNAME", lNAME) :
+                new ObjectParameter("LNAME", typeof(string));
+    
+            var eMAILADDRESSParameter = eMAILADDRESS != null ?
+                new ObjectParameter("EMAILADDRESS", eMAILADDRESS) :
+                new ObjectParameter("EMAILADDRESS", typeof(string));
+    
+            var pRIMARYPHONEParameter = pRIMARYPHONE != null ?
+                new ObjectParameter("PRIMARYPHONE", pRIMARYPHONE) :
+                new ObjectParameter("PRIMARYPHONE", typeof(string));
+    
+            var sECONDARYPHONEParameter = sECONDARYPHONE != null ?
+                new ObjectParameter("SECONDARYPHONE", sECONDARYPHONE) :
+                new ObjectParameter("SECONDARYPHONE", typeof(string));
+    
+            var aDDRESS1Parameter = aDDRESS1 != null ?
+                new ObjectParameter("ADDRESS1", aDDRESS1) :
+                new ObjectParameter("ADDRESS1", typeof(string));
+    
+            var aDDRESS2Parameter = aDDRESS2 != null ?
+                new ObjectParameter("ADDRESS2", aDDRESS2) :
+                new ObjectParameter("ADDRESS2", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Web_UpdateProfile", uSERIDParameter, fNAMEParameter, mNAMEParameter, lNAMEParameter, eMAILADDRESSParameter, pRIMARYPHONEParameter, sECONDARYPHONEParameter, aDDRESS1Parameter, aDDRESS2Parameter);
+        }
+    
+        public virtual ObjectResult<UserInfoGetById_sp_Result> UserInfoGetById_sp(Nullable<int> uSER_ID)
+        {
+            var uSER_IDParameter = uSER_ID.HasValue ?
+                new ObjectParameter("USER_ID", uSER_ID) :
+                new ObjectParameter("USER_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserInfoGetById_sp_Result>("UserInfoGetById_sp", uSER_IDParameter);
         }
     }
 }

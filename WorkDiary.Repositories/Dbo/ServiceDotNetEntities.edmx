@@ -2890,8 +2890,14 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Parameter Name="NAME" Type="varchar" Mode="In" />
           <Parameter Name="EMAIL" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="Web_Classes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Web_DeleteProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PROJECT_TEAM_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_ExistingPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="CurrentPassword" Type="varchar" Mode="In" />
+          <Parameter Name="NewPassword" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Web_ForgotUserCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="USERNAME" Type="varchar" Mode="In" />
@@ -2915,9 +2921,24 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
           <Parameter Name="JOB_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Web_JobInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USER_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_STATUS_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_TITLE" Type="varchar" Mode="In" />
+          <Parameter Name="CLASS_ID" Type="int" Mode="In" />
+          <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+          <Parameter Name="CREATED_BY" Type="int" Mode="In" />
+        </Function>
         <Function Name="Web_JobsByStatusForProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
           <Parameter Name="Provider_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Web_JobUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="JOB_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_STATUS_ID" Type="int" Mode="In" />
+          <Parameter Name="JOB_TITLE" Type="varchar" Mode="In" />
+          <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+          <Parameter Name="UpdatedJobId" Type="int" Mode="InOut" />
         </Function>
         <Function Name="Web_Offer_AcceptOffer_AwardJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Web_Offer_AcceptOffer&amp;AwardJob">
           <Parameter Name="Job_Offer_Id" Type="int" Mode="In" />
@@ -3006,12 +3027,29 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
           <Parameter Name="Job_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="Web_UpdateProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USERID" Type="int" Mode="In" />
+          <Parameter Name="FNAME" Type="varchar" Mode="In" />
+          <Parameter Name="MNAME" Type="varchar" Mode="In" />
+          <Parameter Name="LNAME" Type="varchar" Mode="In" />
+          <Parameter Name="EMAILADDRESS" Type="varchar" Mode="In" />
+          <Parameter Name="PRIMARYPHONE" Type="varchar" Mode="In" />
+          <Parameter Name="SECONDARYPHONE" Type="varchar" Mode="In" />
+          <Parameter Name="ADDRESS1" Type="varchar" Mode="In" />
+          <Parameter Name="ADDRESS2" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Web_UpdateProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PROJECT_TEAM_ID" Type="int" Mode="In" />
           <Parameter Name="Job_id" Type="int" Mode="In" />
           <Parameter Name="Designation_Id" Type="int" Mode="In" />
           <Parameter Name="Name" Type="varchar" Mode="In" />
           <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Web_UpdateSecurityQuestionAnswer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USER_ID" Type="int" Mode="In" />
+          <Parameter Name="SECURITY_QUESTION" Type="varchar" Mode="In" />
+          <Parameter Name="SECURITY_QUESTION_ANSWER" Type="varchar" Mode="In" />
+          <Parameter Name="PASSWORD" Type="varchar" Mode="In" />
         </Function>
         <Function Name="WidgetBuyerBusinessInfo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BUYER_ID" Type="int" Mode="In" />
@@ -6163,9 +6201,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <FunctionImport Name="UserGetByEmail_sp" ReturnType="Collection(ServiceDotNet.UserGetByEmail_sp_Result)">
           <Parameter Name="EMAIL" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UserInfoGetById_sp" ReturnType="Collection(ServiceDotNet.UserInfoGetById_sp_Result)">
-          <Parameter Name="USER_ID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UserInsert_sp" ReturnType="Collection(Int32)">
             <Parameter Name="ROLE_ID" Mode="In" Type="Int32" />
             <Parameter Name="FULL_NAME" Mode="In" Type="String" />
@@ -6270,9 +6305,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <FunctionImport Name="GetProvidersByJobId" ReturnType="Collection(ServiceDotNet.GetProvidersByJobId_Result)">
             <Parameter Name="Job_Id" Mode="In" Type="Int32" />
             <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetJobsByBuyerId" ReturnType="Collection(ServiceDotNet.GetJobsByBuyerId_Result)">
-          <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_WorkDiaryAppLogs" ReturnType="Collection(ServiceDotNet.SP_WorkDiaryAppLogs_Result)">
             <Parameter Name="provider_id" Mode="In" Type="Int32" />
@@ -6434,10 +6466,54 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
             <Parameter Name="Provider_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Web_Offer_GetActiveByBuyerId" ReturnType="Collection(ServiceDotNet.Web_Offer_GetActiveByBuyerId_Result)">
-            <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+          <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Web_Offer_GetRejectedByBuyerId" ReturnType="Collection(ServiceDotNet.Web_Offer_GetRejectedByBuyerId_Result)">
-            <Parameter Name="Buyer_id" Mode="In" Type="Int32" />
+          <Parameter Name="Buyer_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_Classes" ReturnType="Collection(ServiceDotNet.Web_Classes_Result)" />
+          <FunctionImport Name="Web_JobInsert" ReturnType="Collection(Int32)">
+            <Parameter Name="USER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_STATUS_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_TITLE" Mode="In" Type="String" />
+            <Parameter Name="CLASS_ID" Mode="In" Type="Int32" />
+            <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+            <Parameter Name="CREATED_BY" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetJobsByBuyerId" ReturnType="Collection(ServiceDotNet.GetJobsByBuyerId_Result)">
+          <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_JobUpdate">
+            <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_STATUS_ID" Mode="In" Type="Int32" />
+            <Parameter Name="JOB_TITLE" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+            <Parameter Name="UpdatedJobId" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Web_UpdateSecurityQuestionAnswer" ReturnType="Collection(Int32)">
+            <Parameter Name="USER_ID" Mode="In" Type="Int32" />
+            <Parameter Name="SECURITY_QUESTION" Mode="In" Type="String" />
+            <Parameter Name="SECURITY_QUESTION_ANSWER" Mode="In" Type="String" />
+            <Parameter Name="PASSWORD" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Web_ExistingPassword" ReturnType="Collection(Int32)">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="CurrentPassword" Mode="In" Type="String" />
+            <Parameter Name="NewPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Web_UpdateProfile" ReturnType="Collection(Int32)">
+            <Parameter Name="USERID" Mode="In" Type="Int32" />
+            <Parameter Name="FNAME" Mode="In" Type="String" />
+            <Parameter Name="MNAME" Mode="In" Type="String" />
+            <Parameter Name="LNAME" Mode="In" Type="String" />
+            <Parameter Name="EMAILADDRESS" Mode="In" Type="String" />
+            <Parameter Name="PRIMARYPHONE" Mode="In" Type="String" />
+            <Parameter Name="SECONDARYPHONE" Mode="In" Type="String" />
+            <Parameter Name="ADDRESS1" Mode="In" Type="String" />
+            <Parameter Name="ADDRESS2" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserInfoGetById_sp" ReturnType="Collection(ServiceDotNet.UserInfoGetById_sp_Result)">
+            <Parameter Name="USER_ID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ActiveJobGetByJobId_sp_Result">
@@ -8335,40 +8411,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
           <Property Type="Int32" Name="PRIMARY_CONTACT_ID" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="UserInfoGetById_sp_Result">
-          <Property Type="Int32" Name="USER_ID" Nullable="false" />
-          <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
-          <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
-          <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
-          <Property Type="String" Name="NOTES" Nullable="true" />
-          <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
-          <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
-          <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
-          <Property Type="String" Name="CREATED_ON_DISPLAY" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
-          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
-          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
-          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
-          <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
-        </ComplexType>
         <ComplexType Name="UserLoginInfo_sp_Result">
           <Property Type="Int32" Name="USER_ID" Nullable="false" />
           <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
@@ -8577,12 +8619,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
         <ComplexType Name="GetProvidersByJobId_Result" >
           <Property Type="Int32" Name="USER_ID" Nullable="false" />
           <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="GetJobsByBuyerId_Result">
-          <Property Type="Int32" Name="JOB_ID" Nullable="false" />
-          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
-          <Property Type="String" Name="DESCRIPTION" Nullable="true" />
-          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="SP_WorkDiaryAppLogs_Result">
           <Property Type="Int32" Name="TotalTime" Nullable="true" />
@@ -9127,6 +9163,62 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
           <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
           <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Web_Classes_Result">
+          <Property Type="Int32" Name="CLASS_ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+          <Property Type="Int32" Name="CAT_ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetJobsByBuyerId_Result">
+          <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+          <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UserInfoGetById_sp_Result">
+          <Property Type="Int32" Name="USER_ID" Nullable="false" />
+          <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+          <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="NOTES" Nullable="true" />
+          <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
+          <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
+          <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+          <Property Type="String" Name="CREATED_ON_DISPLAY" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+          <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+          <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -12642,44 +12734,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UserInfoGetById_sp" FunctionName="ServiceDotNet.Store.UserInfoGetById_sp">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ServiceDotNet.UserInfoGetById_sp_Result">
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
-                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
-                <ScalarProperty Name="FNAME" ColumnName="FNAME" />
-                <ScalarProperty Name="LNAME" ColumnName="LNAME" />
-                <ScalarProperty Name="MNAME" ColumnName="MNAME" />
-                <ScalarProperty Name="INITIALS" ColumnName="INITIALS" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="PRIMARY_PHONE" ColumnName="PRIMARY_PHONE" />
-                <ScalarProperty Name="SECONDARY_PHONE" ColumnName="SECONDARY_PHONE" />
-                <ScalarProperty Name="OTHER_PHONE" ColumnName="OTHER_PHONE" />
-                <ScalarProperty Name="SECURITY_QUESTION" ColumnName="SECURITY_QUESTION" />
-                <ScalarProperty Name="SECURITY_QUESTION_ANSWER" ColumnName="SECURITY_QUESTION_ANSWER" />
-                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
-                <ScalarProperty Name="PWD_CHANGED_ON" ColumnName="PWD_CHANGED_ON" />
-                <ScalarProperty Name="LAST_LOGIN_DATE" ColumnName="LAST_LOGIN_DATE" />
-                <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
-                <ScalarProperty Name="NUM_FAILED_LOGIN" ColumnName="NUM_FAILED_LOGIN" />
-                <ScalarProperty Name="ACTIVATED_ON" ColumnName="ACTIVATED_ON" />
-                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
-                <ScalarProperty Name="CREATED_ON_DISPLAY" ColumnName="CREATED_ON_DISPLAY" />
-                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
-                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
-                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
-                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
-                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
-                <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
-                <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
-                <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
-                <ScalarProperty Name="PAYPAL_ACCOUNT_ID" ColumnName="PAYPAL_ACCOUNT_ID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UserInsert_sp" FunctionName="ServiceDotNet.Store.UserInsert_sp" />
           <FunctionImportMapping FunctionImportName="UserLoginInfo_sp" FunctionName="ServiceDotNet.Store.UserLoginInfo_sp">
             <ResultMapping>
@@ -12977,16 +13031,6 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
               <ComplexTypeMapping TypeName="ServiceDotNet.GetProvidersByJobId_Result">
                 <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
                 <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetJobsByBuyerId" FunctionName="ServiceDotNet.Store.GetJobsByBuyerId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ServiceDotNet.GetJobsByBuyerId_Result">
-                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
-                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -13547,6 +13591,79 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
                 <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
                 <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
                 <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_Classes" FunctionName="ServiceDotNet.Store.Web_Classes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.Web_Classes_Result">
+                <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CAT_ID" ColumnName="CAT_ID" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+                <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_JobInsert" FunctionName="ServiceDotNet.Store.Web_JobInsert" />
+          <FunctionImportMapping FunctionImportName="GetJobsByBuyerId" FunctionName="ServiceDotNet.Store.GetJobsByBuyerId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.GetJobsByBuyerId_Result">
+                <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+                <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Web_JobUpdate" FunctionName="ServiceDotNet.Store.Web_JobUpdate" />
+          <FunctionImportMapping FunctionImportName="Web_UpdateSecurityQuestionAnswer" FunctionName="ServiceDotNet.Store.Web_UpdateSecurityQuestionAnswer" />
+          <FunctionImportMapping FunctionImportName="Web_ExistingPassword" FunctionName="ServiceDotNet.Store.Web_ExistingPassword" />
+          <FunctionImportMapping FunctionImportName="Web_UpdateProfile" FunctionName="ServiceDotNet.Store.Web_UpdateProfile" />
+          <FunctionImportMapping FunctionImportName="UserInfoGetById_sp" FunctionName="ServiceDotNet.Store.UserInfoGetById_sp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ServiceDotNet.UserInfoGetById_sp_Result">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+                <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+                <ScalarProperty Name="MNAME" ColumnName="MNAME" />
+                <ScalarProperty Name="INITIALS" ColumnName="INITIALS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PRIMARY_PHONE" ColumnName="PRIMARY_PHONE" />
+                <ScalarProperty Name="SECONDARY_PHONE" ColumnName="SECONDARY_PHONE" />
+                <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
+                <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
+                <ScalarProperty Name="OTHER_PHONE" ColumnName="OTHER_PHONE" />
+                <ScalarProperty Name="SECURITY_QUESTION" ColumnName="SECURITY_QUESTION" />
+                <ScalarProperty Name="SECURITY_QUESTION_ANSWER" ColumnName="SECURITY_QUESTION_ANSWER" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+                <ScalarProperty Name="PWD_CHANGED_ON" ColumnName="PWD_CHANGED_ON" />
+                <ScalarProperty Name="LAST_LOGIN_DATE" ColumnName="LAST_LOGIN_DATE" />
+                <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
+                <ScalarProperty Name="NUM_FAILED_LOGIN" ColumnName="NUM_FAILED_LOGIN" />
+                <ScalarProperty Name="ACTIVATED_ON" ColumnName="ACTIVATED_ON" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_ON_DISPLAY" ColumnName="CREATED_ON_DISPLAY" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+                <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+                <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+                <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+                <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+                <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
+                <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
+                <ScalarProperty Name="PAYPAL_ACCOUNT_ID" ColumnName="PAYPAL_ACCOUNT_ID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

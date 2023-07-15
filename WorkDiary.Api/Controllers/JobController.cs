@@ -36,6 +36,15 @@ namespace ServiceDotNet.Api.Controllers
             return Job_Id;
         }
 
+        // Update Job
+        [Route("UpdateJob")]
+        [System.Web.Http.HttpPost]
+        public int? Put(Job job)
+        {
+            int? Job_Id = new JobService().UpdateJobs(job);
+            return Job_Id;
+        }
+
         // List of Providers 
         [Route("GetProviders")]
         [System.Web.Http.HttpGet]
@@ -58,6 +67,14 @@ namespace ServiceDotNet.Api.Controllers
         public List<Web_GetAllJobStatus_Result> GetAllJobStatus()
         {
             return new JobService().GetAllJobStatus();
+        }
+
+        // Get All Job Classes
+        [Route("GetJobClasses")]
+        [HttpGet]
+        public List<Web_Classes_Result> GetAllJobClasses()
+        {
+            return new JobService().GetAllJobClasses();
         }
 
         // Update Job Status

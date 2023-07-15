@@ -19,9 +19,9 @@ namespace exampleOfHangfire
             });
 
             HomeController homeController = new HomeController();
-            //RecurringJob.AddOrUpdate(() => homeController.SendDailyNotificationMail(), "30 16 * * *");
+            RecurringJob.AddOrUpdate(() => homeController.SendDailyNotificationMail(), "30 16 * * *");
             //RecurringJob.AddOrUpdate(() => homeController.SendDailyNotificationMail(), "47 22 * * *");  // UK 11:47 PM
-            RecurringJob.AddOrUpdate(() => homeController.SendDailyNotificationMail(), "57 23 * * *");  // UK 12:06 AM
+            //RecurringJob.AddOrUpdate(() => homeController.SendDailyNotificationMail(), "29 20 * * *");  // UK 12:06 AM
 
             //RecurringJob.AddOrUpdate(() => homeController.SendDailyNotificationMail(), "00 16 * * *");
             app.UseHangfireServer();

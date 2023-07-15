@@ -16,6 +16,7 @@ import { JobDetailsComponent } from './components/job-details/job-details.compon
 import { JobOffersComponent } from './components/job-offers/job-offers.component';
 import { ProjectTeamComponent } from './components/settings/ProjectTeam/ProjectTeam.component';
 import { SecurityQtnComponent } from './components/settings/securityQtn/securityQtn.component';
+import { AuthGuard } from '../Auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -24,39 +25,48 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent1
+        component: HomeComponent1,
+        canActivate: [AuthGuard]
       },
       {
         path: 'home',
-        component: HomeComponent1
+        component: HomeComponent1,
+        canActivate: [AuthGuard]
       },
       {
         path: 'jobs',
-        component: JobsComponent
+        component: JobsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'postjobs',
-        component: PostJobComponent
+        component: PostJobComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'providers',
-        component: ProvidersComponent
+        component: ProvidersComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'providercard',
-        component: ProviderCardComponent
+        component: ProviderCardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'offers',
-        component: JobOffersComponent
+        component: JobOffersComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'workdiary',
-        component: WorkdiaryComponent
+        component: WorkdiaryComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings',
         component: SettingsComponent,
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',

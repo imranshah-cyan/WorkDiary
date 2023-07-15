@@ -41,7 +41,7 @@ export class LoginComponent {
 
           // Route to the comp accoding to user_type
           if (response.ROLE_ID == 2)
-            this.router.navigate(['/providers']);
+            this.router.navigate(['/providers/logs']);
           else if (response.ROLE_ID == 3)
             this.router.navigate(['/buyers/home']);
           else

@@ -15,18 +15,18 @@
     <form #AddProjectTeamMemForm="ngForm" (ngSubmit)="AddProjectTeamMem(AddProjectTeamMemForm)" class="grid grid-cols-3 gap-2">
       <div>
         <label for="name">Job</label>
-        <select class="form-select" ngModel id="job" name="job">
+        <select class="form-select w-full p-2" ngModel id="job" name="job">
           <option value="">Choose a Job</option>
           <option value="{{job.JOB_ID}}" *ngFor="let job of Jobs">{{ job.JOB_TITLE }}</option>
         </select>
       </div>
       <div>
         <label for="name">Name</label>
-        <input type="text" ngModel id="Name" name="Name" class="form-control" />
+        <input type="text" ngModel id="Name" name="Name" class="w-full rounded p-2" />
       </div>
       <div>
         <label for="name">Email</label>
-        <input type="email" ngModel id="email" name="email" id="email" class="form-control" />
+        <input type="email" ngModel id="email" name="email" id="email" class="form-control rounded" />
       </div>
       <div class="col-span-3 ml-auto">
         <button type="submit" class="px-3 py-1 bg-green-500 text-white rounded">

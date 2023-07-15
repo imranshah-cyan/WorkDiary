@@ -32,6 +32,7 @@ import { ResetPasswordComponent } from './core/resetPassword/resetPassword.compo
 import { ToastrModule } from 'ngx-toastr';
 import { UpdatePasswordComponent } from './Shared/components/UpdatePassword/UpdatePassword.component';
 import { JobOffersComponent } from './providers/components/JobOffers/JobOffers.component';
+import { ProfileComponentComponent } from './Shared/components/profileComponent/profileComponent.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { JobOffersComponent } from './providers/components/JobOffers/JobOffers.c
     HeaderComponent,
     FooterComponent,
     UpdatePasswordComponent,
-    JobOffersComponent
+    JobOffersComponent,
+    ProfileComponentComponent
   ],
   imports: [
     BrowserModule,

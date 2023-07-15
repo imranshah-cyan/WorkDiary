@@ -8,6 +8,7 @@ namespace WorkDiaryRepository.Entities
 {
     public class Job
     {
+		public int JOB_ID { get; set; }
 		public int USER_ID { get; set; }
 	    public int JOB_TYPE_ID { get; set; }
 	    public int JOB_STATUS_ID { get; set; }

@@ -12,7 +12,9 @@ namespace WorkDiaryServices.Interfaces
     public interface IJobService
     {
         int? InsertJob(Job job);
+        int? UpdateJobs(Job job);
         List<Web_GetAllJobStatus_Result> GetAllJobStatuses();
+        List<Web_Classes_Result> GetAllJobClasses();
         int? TotalJobsByBuyer(int buyerId);
         List<GetProvidersByJobId_Result> GetProvidersByJobId(int Job_Id, int Buyer_Id);
         List<GetJobsByBuyerId_Result> GetJobsByBuyerId(int Buyer_Id);

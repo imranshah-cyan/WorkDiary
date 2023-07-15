@@ -35,6 +35,31 @@ namespace WorkDiaryRepository
             }
         }
 
+        public int? UpdateUser(User entity)
+        {
+            try
+            {
+                int? userId = 0;
+
+                userId = _db.Web_UpdateProfile(
+                                            entity.USER_ID,
+                                            entity.FNAME,
+                                            entity.MNAME,
+                                            entity.LNAME,
+                                            entity.EMAIL,
+                                            entity.PRIMARYPHONE,
+                                            entity.SECONDARYPHONE,
+                                            entity.ADDRESS1,
+                                            entity.ADDRESS2
+                                        ).FirstOrDefault();
+                return userId;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public UserValidateLogin_sp_Result ValidateUser(USER model)
         {
             var result =  _db.UserValidateLogin_sp(model.USER_NAME, model.PASSWORD).FirstOrDefault();
@@ -44,6 +69,21 @@ namespace WorkDiaryRepository
         public UserInfoGetById_sp_Result UserInfoGetById(int user_id)
         {
             return _db.UserInfoGetById_sp(user_id).FirstOrDefault();
+        }
+
+        public Nullable<int> UpdateSecurityQtn(int userId, string question, string answer, string password)
+        {
+            string pass = new Crypto().Encrypt(password);
+            var result = _db.Web_UpdateSecurityQuestionAnswer(userId, question, answer, pass).SingleOrDefault();
+            return result;
+        }
+
+        public Nullable<int> UpdateExistingPassword(int userId, string currentPass, string newPass)
+        {
+            string currPass = new Crypto().Encrypt(currentPass);
+            string NewPass = new Crypto().Encrypt(newPass);
+            var result = _db.Web_ExistingPassword(userId, currPass, NewPass).SingleOrDefault();
+            return result;
         }
 
         public UserGetByEmail_sp_Result UserGetByEmail(string email)

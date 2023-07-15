@@ -25,6 +25,8 @@ namespace WorkDiaryRepository.Dbo
         public string PASSWORD { get; set; }
         public string PRIMARY_PHONE { get; set; }
         public string SECONDARY_PHONE { get; set; }
+        public string ADDRESS_1 { get; set; }
+        public string ADDRESS_2 { get; set; }
         public string OTHER_PHONE { get; set; }
         public string SECURITY_QUESTION { get; set; }
         public string SECURITY_QUESTION_ANSWER { get; set; }

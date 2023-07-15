@@ -15,6 +15,7 @@ namespace WorkDiaryRepository.Dbo
     {
         public int JOB_ID { get; set; }
         public string JOB_TITLE { get; set; }
+        public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public Nullable<System.DateTime> CREATED_ON { get; set; }
     }

@@ -19,8 +19,18 @@ export class JobsService {
     return this.http.post(url, NewJob);
   }
 
+  UpdateJob(Job: any) {
+    const url = `${this.baseUrl}/job/UpdateJob`;
+    return this.http.post(url, Job);
+  }
+
   getJobStatus(): Observable<any> {
-    const url = `${this.baseUrl}/job/jobStatuses`;
+    const url = `${this.baseUrl}/job/GetJobStatuses`;
+    return this.http.get(url);
+  }
+
+  getJobClasses(): Observable<any> {
+    const url = `${this.baseUrl}/job/GetJobClasses`;
     return this.http.get(url);
   }
 

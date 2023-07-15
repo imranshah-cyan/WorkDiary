@@ -30,6 +30,8 @@ export class JobService {
       Currency_Id: 1
     };
 
+    console.log(data);
+
     return this.http.post(url, data);
   }
 

@@ -11,15 +11,24 @@ import { Router } from '@angular/router';
 })
 export class JobsComponent implements OnInit {
 
-  public jobs:any = [];
+  public jobs: any = [];
   providers: { [key: number]: Provider[] } = {};
+  JobStatusTypes: any;
+  CurrentUserId:number = 0;
 
-  constructor(private jobsService:JobsService,
-              private router: Router) { }
+  Updated: boolean = false;
+  Alert: boolean = false;
+  Result: string = '';
+
+  constructor(private jobsService: JobsService,
+    private router: Router) { }
 
   ngOnInit() {
     const currentUser = this.getObjectFromLocalStorage('User');
+    this.CurrentUserId = currentUser.USER_ID;
+
     this.getJobs(currentUser.USER_ID);
+    this.getJobStatuses();
   }
 
   JobDetails(Job_Id: number) {
@@ -47,9 +56,22 @@ export class JobsComponent implements OnInit {
       });
   }
 
+  getJobStatuses() {
+    this.jobsService.getJobStatus()
+      .subscribe(
+        (response: any) => {
+          this.JobStatusTypes = response;
+          // console.log(response);
+        },
+        (error: any) => {
+          // console.log(error);
+        }
+      );
+  }
+
   getProvByJobId(jobId: number, buyerId: number) {
     this.jobsService.getProvidersByJob(jobId, buyerId).subscribe(
-      (response:any[]) => {
+      (response: any[]) => {
         if (response != null) {
           this.providers[jobId] = response;
         }
@@ -78,6 +100,34 @@ export class JobsComponent implements OnInit {
 
   saveJob(item: any): void {
     item.editing = false;
+
+    var Job = {
+      JOB_ID: item.JOB_ID,
+      JOB_STATUS_ID: item.JOB_STATUS_ID,
+      JOB_TITLE: item.JOB_TITLE,
+      DESCRIPTION: item.DESCRIPTION
+    };
+
+    console.log(Job);
+
+    this.jobsService.UpdateJob(Job).subscribe(
+      (response: any) => {
+        if(response > 0) {
+          this.Result = "Job updated successfully";
+          this.Alert = false;
+          this.Updated = true;
+          this.getJobs(this.CurrentUserId);
+        }
+        else {
+          this.Result = "Failed to update the";
+          this.Alert = true;
+          this.Updated = true;
+        }
+      },
+      (error: any) => {
+
+      }
+    )
   }
 
 }

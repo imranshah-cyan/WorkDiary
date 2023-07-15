@@ -22,6 +22,7 @@ constructor() { }
 
   clear(): void {
     localStorage.clear();
+    sessionStorage.clear();
   }
 
 }

@@ -28,7 +28,7 @@ namespace Email.Controllers
 
             DateTime date = DateTime.Now;
             TimeZoneInfo ukTimeZone = TimeZoneInfo.FindSystemTimeZoneById("GMT Standard Time");
-            DateTime ukDateTime = TimeZoneInfo.ConvertTime(date, ukTimeZone);
+            date = TimeZoneInfo.ConvertTime(date, ukTimeZone);
 
             var isSent = false;
             //var logFilePath = @"G:\ServiceDotNet-master\ServiceDotNet-master\EmailPlugin\ErrorLog\Externallogsworkdiary.txt";
@@ -40,7 +40,7 @@ namespace Email.Controllers
                 var userRepo = new UserRepository();
                 var jobRepo = new JobRepository();
 
-                var timeLog = userRepo.GetTodayTimeLog(ukDateTime);
+                var timeLog = userRepo.GetTodayTimeLog(date);
 
                 var body = string.Empty;
                 var headerModel = new vmViewData();
@@ -72,7 +72,7 @@ namespace Email.Controllers
                                     hours += (int)log.TODAYS_HOURS;
 
                                 User = log.PROVIDER_FULL_NAME;
-
+                                //hours = 1;
                                 var model = new vmDailyWork();
                                 model.Log = userRepo.GetTodayWorkSummaryByProvider(Convert.ToDateTime(date), log.PROVIDER_ID, log.JOB_ID);
                                 if (model.Log != null)

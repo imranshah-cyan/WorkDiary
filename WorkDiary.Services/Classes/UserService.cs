@@ -14,6 +14,10 @@ namespace WorkDiaryServices
             return new UserRepository().InsertUser(entity);
         }
 
+        public int? UpdateUser(User entity)
+        {
+            return new UserRepository().UpdateUser(entity);
+        }
         public UserValidateLogin_sp_Result ValidateUser(USER model)
         {
             return new UserRepository().ValidateUser(model);
@@ -22,6 +26,16 @@ namespace WorkDiaryServices
         public UserInfoGetById_sp_Result UserInfoGetById(int User_id)
         {
             return new UserRepository().UserInfoGetById(User_id);
+        }
+
+        public int? UpdateSecurityQtn(int userId, string question, string answer, string password)
+        {
+            return new UserRepository().UpdateSecurityQtn(userId, question, answer, password);
+        }
+
+        public int? UpdateExistingPassword(int userId, string currentPass, string newPass)
+        {
+            return new UserRepository().UpdateExistingPassword(userId, currentPass, newPass);
         }
 
         public UserGetByEmail_sp_Result UserGetByEmail(string Email)

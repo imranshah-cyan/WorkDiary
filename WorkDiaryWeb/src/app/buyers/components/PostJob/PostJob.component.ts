@@ -13,6 +13,7 @@ import { CacheStorageService } from 'src/app/Shared/services/CacheStorage.servic
 export class PostJobComponent implements OnInit {
 
   JobStatusTypes: JobStatusType[] = [];
+  JobClasses: any[] = [];
 
   CurrentUserId: number = 0;
   showErrorMessage: boolean = false;
@@ -21,16 +22,11 @@ export class PostJobComponent implements OnInit {
 
   AddNewJob: NewJob = {
     USER_ID: 0,
-    JOB_TYPE_ID: 2,
     JOB_STATUS_ID: 0,
     JOB_TITLE: '',
     CLASS_ID: 0,
     DESCRIPTION: '',
-    JOB_VIEW_IS_PUBLIC: true,
-    CREATED_BY: 0,
-    CURRENCY_ID: 1,
-    RATE_TYPE_ID: 1,
-    RATE: 1
+    CREATED_BY: 0
   };
 
   constructor(private jobService: JobsService,
@@ -41,17 +37,20 @@ export class PostJobComponent implements OnInit {
 
   ngOnInit() {
     this.getJobStatuses();
+    this.getJobClasses();
   }
 
   AddJob(form: NgForm) {
     if (!this.areFieldsEmpty(form)) {
-      // console.log('Form values:', form.value);
 
       this.AddNewJob.USER_ID = this.CurrentUserId;
+      this.AddNewJob.JOB_STATUS_ID = form.value.jobStatus;
       this.AddNewJob.JOB_TITLE = form.value.JobTitle;
       this.AddNewJob.DESCRIPTION = form.value.JobDescription;
-      this.AddNewJob.JOB_STATUS_ID = form.value.JobStatusType;
+      this.AddNewJob.CLASS_ID = form.value.JobStatusClass;
+      this.AddNewJob.CREATED_BY = this.CurrentUserId;
 
+      console.log(form.value);
       this.jobService.AddNewJob(this.AddNewJob)
         .subscribe(
           (response: any) => {
@@ -78,6 +77,7 @@ export class PostJobComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.JobStatusTypes = response;
+          // console.log(response);
         },
         (error: any) => {
           // console.log(error);
@@ -85,6 +85,17 @@ export class PostJobComponent implements OnInit {
       );
   }
 
+  getJobClasses() {
+    this.jobService.getJobClasses()
+      .subscribe(
+        (response: any) => {
+          this.JobClasses = response;
+        },
+        (error: any) => {
+          // console.log(error);
+        }
+      );
+  }
 
   areFieldsEmpty(form: NgForm): boolean {
     for (const control in form.controls) {

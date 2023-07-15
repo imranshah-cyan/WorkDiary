@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using WorkDiaryRepository.Dbo;
 using WorkDiaryRepository.Entities;
@@ -14,32 +16,13 @@ namespace WorkDiaryRepository
             try
             {
                 int? Job_Id = 0;
-                Job_Id = _db.JobInsert_sp(
-                    job.USER_ID,
-                    job.JOB_TYPE_ID,
-                    job.JOB_STATUS_ID,
-                    job.JOB_TITLE,
-                    job.CLASS_ID,
-                    job.DESCRIPTION,
-                    job.APPROXIMATE_DURATION,
-                    job.APPROXIMATE_BUDGET,
-                    job.DURATION,
-                    job.HOURLY_RATE,
-                    job.HOURS_PER_WEEK,
-                    job.ON_SITE_WORK,
-                    job.SITE_LOCATION_REGION_ID,
-                    job.SITE_LOCATION_CITY_ID,
-                    job.SITE_LOCATION_POSTCODE,
-                    job.OFFER_SUBMIT_DAYS,
-                    job.WORK_START,
-                    job.WORK_START_IMMIDIATELY,
-                    job.WORK_START_ON_DATE,
-                    job.JOB_VIEW_IS_PUBLIC,
-                    job.OFFER_AMOUNT_IS_PUBLIC,
-                    job.CREATED_BY,
-                    job.CURRENCY_ID,        
-                    job.RATE_TYPE_ID,        
-                    job.RATE           
+                Job_Id = _db.Web_JobInsert(
+                        job.USER_ID,
+                        job.JOB_STATUS_ID,
+                        job.JOB_TITLE,
+                        job.CLASS_ID,
+                        job.DESCRIPTION,
+                        job.CREATED_BY
                     ).FirstOrDefault();
                 return Job_Id;
             }
@@ -48,11 +31,59 @@ namespace WorkDiaryRepository
                 throw e;
             }
         }
+
+        public int? UpdateJobs(Job job)
+        {
+            try
+            {
+                int? jobId = null;
+                var updatedJobIdParam = new SqlParameter
+                {
+                    ParameterName = "@UpdatedJobId",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+
+                _db.Database.ExecuteSqlCommand(
+                    "EXEC [dbo].[Web_JobUpdate] @JOB_ID, @JOB_STATUS_ID, @JOB_TITLE, @DESCRIPTION, @UpdatedJobId OUT",
+                    new SqlParameter("@JOB_ID", job.JOB_ID),
+                    new SqlParameter("@JOB_STATUS_ID", job.JOB_STATUS_ID),
+                    new SqlParameter("@JOB_TITLE", job.JOB_TITLE),
+                    new SqlParameter("@DESCRIPTION", job.DESCRIPTION),
+                    updatedJobIdParam
+                );
+
+                if (updatedJobIdParam.Value != DBNull.Value)
+                {
+                    jobId = (int)updatedJobIdParam.Value;
+                }
+
+                return jobId;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
         public List<Web_GetAllJobStatus_Result> GetAllJobStatuses()
         {
             try
             {
                 return _db.Web_GetAllJobStatus().ToList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public List<Web_Classes_Result> GetAllJobClasses()
+        {
+            try
+            {
+                return _db.Web_Classes().ToList();
             }
             catch
             {

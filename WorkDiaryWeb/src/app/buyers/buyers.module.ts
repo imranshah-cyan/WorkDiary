@@ -8,7 +8,6 @@ import { BuyersComponent } from './buyers.component';
 import { ProviderCardComponent } from './components/provider-card/provider-card.component';
 
 import { MatMenuModule } from '@angular/material/menu';
-import { SettingsComponent } from './components/settings/settings.component';
 import { AppLogSessionComponent } from './components/app-log-session/app-log-session.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +23,7 @@ import { PostJobComponent } from './components/PostJob/PostJob.component';
 import { ProjectTeamComponent } from './components/settings/ProjectTeam/ProjectTeam.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SecurityQtnComponent } from './components/settings/securityQtn/securityQtn.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { SecurityQtnComponent } from './components/settings/securityQtn/security
     WorkdiaryComponent,
     PostJobComponent,
     ProjectTeamComponent,
-    SecurityQtnComponent
+    SecurityQtnComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

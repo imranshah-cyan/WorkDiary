@@ -11,8 +11,11 @@ namespace WorkDiaryRepository.Interfaces
     public interface IUserRepository
     {
         int? InsertUser(User entity);
+        int? UpdateUser(User entity);
         UserValidateLogin_sp_Result ValidateUser(USER entity);
         UserInfoGetById_sp_Result UserInfoGetById(int user_id);
+        int? UpdateSecurityQtn(int userId, string question, string answer, string password);
+        int? UpdateExistingPassword(int userId, string currentPass, string newPass);
         UserGetByEmail_sp_Result UserGetByEmail(string email);
         Web_ForgotUserCheck_Result Web_ForgotUserCheck(User entity);
         GetTodayWorkSummaryByProvider_Result GetTodayWorkSummaryByProvider(int userId, int currentJobId, DateTime dateTime);

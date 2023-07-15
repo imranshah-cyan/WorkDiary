@@ -2885,8 +2885,14 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <Parameter Name="NAME" Type="varchar" Mode="In" />
     <Parameter Name="EMAIL" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="Web_Classes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Web_DeleteProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PROJECT_TEAM_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_ExistingPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="CurrentPassword" Type="varchar" Mode="In" />
+    <Parameter Name="NewPassword" Type="varchar" Mode="In" />
   </Function>
   <Function Name="Web_ForgotUserCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="USERNAME" Type="varchar" Mode="In" />
@@ -2910,9 +2916,24 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <Parameter Name="PROVIDER_ID" Type="int" Mode="In" />
     <Parameter Name="JOB_ID" Type="int" Mode="In" />
   </Function>
+  <Function Name="Web_JobInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_STATUS_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_TITLE" Type="varchar" Mode="In" />
+    <Parameter Name="CLASS_ID" Type="int" Mode="In" />
+    <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+    <Parameter Name="CREATED_BY" Type="int" Mode="In" />
+  </Function>
   <Function Name="Web_JobsByStatusForProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
     <Parameter Name="Provider_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Web_JobUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="JOB_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_STATUS_ID" Type="int" Mode="In" />
+    <Parameter Name="JOB_TITLE" Type="varchar" Mode="In" />
+    <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+    <Parameter Name="UpdatedJobId" Type="int" Mode="InOut" />
   </Function>
   <Function Name="Web_Offer_AcceptOffer_AwardJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Web_Offer_AcceptOffer&amp;AwardJob">
     <Parameter Name="Job_Offer_Id" Type="int" Mode="In" />
@@ -3001,12 +3022,29 @@ warning 6002: The table/view 'ServiceDotNet.dbo.CHAT_USER' does not have a prima
     <Parameter Name="Job_Status_Id" Type="int" Mode="In" />
     <Parameter Name="Job_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="Web_UpdateProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERID" Type="int" Mode="In" />
+    <Parameter Name="FNAME" Type="varchar" Mode="In" />
+    <Parameter Name="MNAME" Type="varchar" Mode="In" />
+    <Parameter Name="LNAME" Type="varchar" Mode="In" />
+    <Parameter Name="EMAILADDRESS" Type="varchar" Mode="In" />
+    <Parameter Name="PRIMARYPHONE" Type="varchar" Mode="In" />
+    <Parameter Name="SECONDARYPHONE" Type="varchar" Mode="In" />
+    <Parameter Name="ADDRESS1" Type="varchar" Mode="In" />
+    <Parameter Name="ADDRESS2" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="Web_UpdateProjectTeamMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PROJECT_TEAM_ID" Type="int" Mode="In" />
     <Parameter Name="Job_id" Type="int" Mode="In" />
     <Parameter Name="Designation_Id" Type="int" Mode="In" />
     <Parameter Name="Name" Type="varchar" Mode="In" />
     <Parameter Name="Email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Web_UpdateSecurityQuestionAnswer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER_ID" Type="int" Mode="In" />
+    <Parameter Name="SECURITY_QUESTION" Type="varchar" Mode="In" />
+    <Parameter Name="SECURITY_QUESTION_ANSWER" Type="varchar" Mode="In" />
+    <Parameter Name="PASSWORD" Type="varchar" Mode="In" />
   </Function>
   <Function Name="WidgetBuyerBusinessInfo_sp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="BUYER_ID" Type="int" Mode="In" />

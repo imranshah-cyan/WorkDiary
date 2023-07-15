@@ -3509,44 +3509,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UserInfoGetById_sp" FunctionName="ServiceDotNet.Store.UserInfoGetById_sp">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ServiceDotNet.UserInfoGetById_sp_Result">
-          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
-          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
-          <ScalarProperty Name="FNAME" ColumnName="FNAME" />
-          <ScalarProperty Name="LNAME" ColumnName="LNAME" />
-          <ScalarProperty Name="MNAME" ColumnName="MNAME" />
-          <ScalarProperty Name="INITIALS" ColumnName="INITIALS" />
-          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
-          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-          <ScalarProperty Name="PRIMARY_PHONE" ColumnName="PRIMARY_PHONE" />
-          <ScalarProperty Name="SECONDARY_PHONE" ColumnName="SECONDARY_PHONE" />
-          <ScalarProperty Name="OTHER_PHONE" ColumnName="OTHER_PHONE" />
-          <ScalarProperty Name="SECURITY_QUESTION" ColumnName="SECURITY_QUESTION" />
-          <ScalarProperty Name="SECURITY_QUESTION_ANSWER" ColumnName="SECURITY_QUESTION_ANSWER" />
-          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
-          <ScalarProperty Name="PWD_CHANGED_ON" ColumnName="PWD_CHANGED_ON" />
-          <ScalarProperty Name="LAST_LOGIN_DATE" ColumnName="LAST_LOGIN_DATE" />
-          <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
-          <ScalarProperty Name="NUM_FAILED_LOGIN" ColumnName="NUM_FAILED_LOGIN" />
-          <ScalarProperty Name="ACTIVATED_ON" ColumnName="ACTIVATED_ON" />
-          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
-          <ScalarProperty Name="CREATED_ON_DISPLAY" ColumnName="CREATED_ON_DISPLAY" />
-          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
-          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
-          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
-          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
-          <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
-          <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
-          <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
-          <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
-          <ScalarProperty Name="PAYPAL_ACCOUNT_ID" ColumnName="PAYPAL_ACCOUNT_ID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UserInsert_sp" FunctionName="ServiceDotNet.Store.UserInsert_sp" />
     <FunctionImportMapping FunctionImportName="UserLoginInfo_sp" FunctionName="ServiceDotNet.Store.UserLoginInfo_sp">
       <ResultMapping>
@@ -3844,16 +3806,6 @@
         <ComplexTypeMapping TypeName="ServiceDotNet.GetProvidersByJobId_Result">
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
           <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetJobsByBuyerId" FunctionName="ServiceDotNet.Store.GetJobsByBuyerId">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ServiceDotNet.GetJobsByBuyerId_Result">
-          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
-          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
-          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -4414,6 +4366,79 @@
           <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
           <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
           <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_Classes" FunctionName="ServiceDotNet.Store.Web_Classes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.Web_Classes_Result">
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CAT_ID" ColumnName="CAT_ID" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+          <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_JobInsert" FunctionName="ServiceDotNet.Store.Web_JobInsert" />
+    <FunctionImportMapping FunctionImportName="GetJobsByBuyerId" FunctionName="ServiceDotNet.Store.GetJobsByBuyerId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.GetJobsByBuyerId_Result">
+          <ScalarProperty Name="JOB_ID" ColumnName="JOB_ID" />
+          <ScalarProperty Name="JOB_TITLE" ColumnName="JOB_TITLE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Web_JobUpdate" FunctionName="ServiceDotNet.Store.Web_JobUpdate" />
+    <FunctionImportMapping FunctionImportName="Web_UpdateSecurityQuestionAnswer" FunctionName="ServiceDotNet.Store.Web_UpdateSecurityQuestionAnswer" />
+    <FunctionImportMapping FunctionImportName="Web_ExistingPassword" FunctionName="ServiceDotNet.Store.Web_ExistingPassword" />
+    <FunctionImportMapping FunctionImportName="Web_UpdateProfile" FunctionName="ServiceDotNet.Store.Web_UpdateProfile" />
+    <FunctionImportMapping FunctionImportName="UserInfoGetById_sp" FunctionName="ServiceDotNet.Store.UserInfoGetById_sp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ServiceDotNet.UserInfoGetById_sp_Result">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+          <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+          <ScalarProperty Name="MNAME" ColumnName="MNAME" />
+          <ScalarProperty Name="INITIALS" ColumnName="INITIALS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="PRIMARY_PHONE" ColumnName="PRIMARY_PHONE" />
+          <ScalarProperty Name="SECONDARY_PHONE" ColumnName="SECONDARY_PHONE" />
+          <ScalarProperty Name="ADDRESS_1" ColumnName="ADDRESS_1" />
+          <ScalarProperty Name="ADDRESS_2" ColumnName="ADDRESS_2" />
+          <ScalarProperty Name="OTHER_PHONE" ColumnName="OTHER_PHONE" />
+          <ScalarProperty Name="SECURITY_QUESTION" ColumnName="SECURITY_QUESTION" />
+          <ScalarProperty Name="SECURITY_QUESTION_ANSWER" ColumnName="SECURITY_QUESTION_ANSWER" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="PWD_CHANGED_ON" ColumnName="PWD_CHANGED_ON" />
+          <ScalarProperty Name="LAST_LOGIN_DATE" ColumnName="LAST_LOGIN_DATE" />
+          <ScalarProperty Name="IS_LOCKED" ColumnName="IS_LOCKED" />
+          <ScalarProperty Name="NUM_FAILED_LOGIN" ColumnName="NUM_FAILED_LOGIN" />
+          <ScalarProperty Name="ACTIVATED_ON" ColumnName="ACTIVATED_ON" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_ON_DISPLAY" ColumnName="CREATED_ON_DISPLAY" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="IS_ARCHIVED" ColumnName="IS_ARCHIVED" />
+          <ScalarProperty Name="ARCHIVED_ON" ColumnName="ARCHIVED_ON" />
+          <ScalarProperty Name="ARCHIVED_BY" ColumnName="ARCHIVED_BY" />
+          <ScalarProperty Name="MATTERMOST_USER_ID" ColumnName="MATTERMOST_USER_ID" />
+          <ScalarProperty Name="MATTERMOST_ACCESS_TOKEN" ColumnName="MATTERMOST_ACCESS_TOKEN" />
+          <ScalarProperty Name="PAYPAL_ACCOUNT_ID" ColumnName="PAYPAL_ACCOUNT_ID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

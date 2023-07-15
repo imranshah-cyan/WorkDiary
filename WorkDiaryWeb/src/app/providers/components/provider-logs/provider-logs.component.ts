@@ -5,6 +5,7 @@ import { Logs, WebLogs } from '../../models/WorkDiaryLogs';
 import { DatePipe } from '@angular/common';
 import { Jobs } from '../../models/Jobs';
 import { CacheStorageService } from 'src/app/Shared/services/CacheStorage.service';
+import { TotalScreenLogs } from '../../models/TotalScreenLogs';
 
 @Component({
   selector: 'app-provider-logs',
@@ -20,7 +21,10 @@ export class ProviderLogsComponent {
   EndDate: string | undefined;
   HourLogs: Logs[] = [];
   Jobs: Jobs[] = [];
+
+  TotalScreenLogs: TotalScreenLogs[] = [];
   LogsFound: boolean = false;
+  TotalScreenLogsFound: boolean = false;
 
   TotalTime: string = "0h 0m 00s";
   TotalLogs = {
@@ -48,8 +52,20 @@ export class ProviderLogsComponent {
   }
 
   search(form:NgForm) {
+    this.TotalScreenLogs = [];
+    this.TotalTime = "0h 0m 00s";
+    this.HourLogs = [];
+    this.TotalLogs = {
+      Total_Key_Strokes: 0,
+      Total_Mouse_Clicks: 0,
+      Total_Windows_Switched: 0,
+      image_count: 0
+    };
+    this.LogsFound = false;
+
     this.getTotalLogs(this.CurrentUserId, form.value.jobId, form.value.duration);
     this.getTotalTimeinSecs(this.CurrentUserId, form.value.jobId, form.value.duration);
+    this.getTotalScreenLogs(this.CurrentUserId, form.value.jobId, form.value.duration);
     this.getWorkDiaryLogs(this.CurrentUserId, form.value.jobId, form.value.duration);
     console.log(form.value);
   }
@@ -62,9 +78,10 @@ export class ProviderLogsComponent {
           const formattedTime = this.convertSecondsToTime(response);
           // console.log(formattedTime); // Output: "1h 1m 5s"
           this.TotalTime = formattedTime;
+
         },
         (error: any) => {
-          console.log(error);
+          // console.log(error);
         }
       );
   }
@@ -80,6 +97,52 @@ export class ProviderLogsComponent {
           console.log(error);
         }
       );
+  }
+
+  getTotalScreenLogs(providerId: number, jobId: number, period: number) {
+    this.workDiaryLogsService.getTotalScreenLogs(providerId, jobId, period)
+      .subscribe(
+        (response: any) => {
+          this.TotalScreenLogsFound = true;
+
+          // GetTotalTime
+          this.getTotalTimeinSecs1(providerId, jobId, period).then((timeInSecs) => {
+            var total = 0;
+            const logs: TotalScreenLogs[] = [];
+            for (const res of response) {
+              const Time = this.convertSecondsToTime(res.TIME_SPENT);
+              const log: TotalScreenLogs = {
+                PROVIDER_ID: res.PROVIDER_ID,
+                JOB_ID: res.JOB_ID,
+                CLASS_DESCRIPTION: res.CLASS_DESCRIPTION,
+                TIME_SPENT: Time,
+                PercentSpent: Number((res.TIME_SPENT * 100 / timeInSecs).toFixed(2))
+              };
+              logs.push(log);
+              total += log.PercentSpent;
+            }
+            this.TotalScreenLogs = logs;
+            console.log(total);
+          }).catch((error) => {
+            // Handle error here
+            console.error(error);
+          });
+
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      )
+  }
+
+  async getTotalTimeinSecs1(providerId: number, jobId: number, period: number): Promise<any> {
+    try {
+      const response: any = await this.workDiaryLogsService.getTotalTime(providerId, jobId, period).toPromise();
+      return response;
+    } catch (error) {
+      // Handle error here
+      throw error;
+    }
   }
 
   getWorkDiaryLogs(providerId: number, job_id: number, period: number) {

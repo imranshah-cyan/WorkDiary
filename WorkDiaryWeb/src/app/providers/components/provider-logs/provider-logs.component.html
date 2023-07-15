@@ -66,6 +66,7 @@
   </div>
 
   <!-- Logged Details -->
+  <!-- Logged Details -->
   <div class="px-5">
     <div class="grid grid-cols-4 gap-3 mb-3">
       <div class="bg-light flex items-center p-4 rounded-lg border border-gray-600 shadow-sm">
@@ -83,26 +84,20 @@
           <p><b>Windows Switched:</b> {{ this.TotalLogs.Total_Windows_Switched }}</p>
         </div>
       </div>
-      <!-- <div class="bg-light flex items-center p-4 rounded-lg border border-gray-600 shadow-sm">
-        <div>
-          <h4 class="">Average time per day</h4>
-          <p class="text-3xl">2 Hours 10 mins</p>
-        </div>
-      </div>
-      <div class="bg-light flex items-center p-4 rounded-lg border border-gray-600 shadow-sm">
-        <div>
-          <h4 class="">Average Logs per day</h4>
-          <p><b>Key strokes:</b> 13450</p>
-          <p><b>Screenshots:</b> 14</p>
-          <p><b>Mouse Clicks:</b> 2000</p>
-          <p><b>Windows Switched:</b> 20</p>
-        </div>
-      </div> -->
     </div>
   </div>
 
-  <!-- Logs -->
-  <p class="mt-3 px-5"><b>Details: </b>{{ StartDate }} <b>to</b> {{ EndDate }}</p>
+
+  <!-- Screen Logs -->
+  <ng-container *ngIf="TotalScreenLogsFound">
+    <div class="grid grid-cols-4 gap-2 px-5">
+      <div *ngFor="let screenlogs of TotalScreenLogs" class="m-0 p-0 pb-2 border-b-2">
+        <p class="font-bold py-0 my-0">{{ screenlogs.CLASS_DESCRIPTION }}</p>
+        <p class="font-bold py-0 my-0 text-blue-500">{{ screenlogs.TIME_SPENT }}</p>
+        <p class="font-bold py-0 my-0 text-red-500">{{ screenlogs.PercentSpent }} %</p>
+      </div>
+    </div>
+  </ng-container>
 
   <ng-container *ngIf="LogsFound">
     <div *ngFor="let logs of HourLogs">

@@ -12,6 +12,7 @@ namespace WorkDiaryRepository.Interfaces
     {
         int? InsertJob(Job job);
         List<Web_GetAllJobStatus_Result> GetAllJobStatuses();
+        List<Web_Classes_Result> GetAllJobClasses();
         int? TotalJobsByBuyer(int buyerId);
         List<GetProvidersByJobId_Result> GetProviderByJobId(int Job_Id, int Buyer_Id);
         List<GetJobsByBuyerId_Result> GetJobsByBuyerId(int Buyer_Id);

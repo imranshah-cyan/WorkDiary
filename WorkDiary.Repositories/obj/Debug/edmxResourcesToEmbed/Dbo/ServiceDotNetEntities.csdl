@@ -2789,9 +2789,6 @@
     <FunctionImport Name="UserGetByEmail_sp" ReturnType="Collection(ServiceDotNet.UserGetByEmail_sp_Result)">
       <Parameter Name="EMAIL" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UserInfoGetById_sp" ReturnType="Collection(ServiceDotNet.UserInfoGetById_sp_Result)">
-      <Parameter Name="USER_ID" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UserInsert_sp" ReturnType="Collection(Int32)">
       <Parameter Name="ROLE_ID" Mode="In" Type="Int32" />
       <Parameter Name="FULL_NAME" Mode="In" Type="String" />
@@ -2895,9 +2892,6 @@
     </FunctionImport>
     <FunctionImport Name="GetProvidersByJobId" ReturnType="Collection(ServiceDotNet.GetProvidersByJobId_Result)">
       <Parameter Name="Job_Id" Mode="In" Type="Int32" />
-      <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="GetJobsByBuyerId" ReturnType="Collection(ServiceDotNet.GetJobsByBuyerId_Result)">
       <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_WorkDiaryAppLogs" ReturnType="Collection(ServiceDotNet.SP_WorkDiaryAppLogs_Result)">
@@ -3064,6 +3058,50 @@
     </FunctionImport>
     <FunctionImport Name="Web_Offer_GetRejectedByBuyerId" ReturnType="Collection(ServiceDotNet.Web_Offer_GetRejectedByBuyerId_Result)">
       <Parameter Name="Buyer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_Classes" ReturnType="Collection(ServiceDotNet.Web_Classes_Result)" />
+    <FunctionImport Name="Web_JobInsert" ReturnType="Collection(Int32)">
+      <Parameter Name="USER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_STATUS_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_TITLE" Mode="In" Type="String" />
+      <Parameter Name="CLASS_ID" Mode="In" Type="Int32" />
+      <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="CREATED_BY" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetJobsByBuyerId" ReturnType="Collection(ServiceDotNet.GetJobsByBuyerId_Result)">
+      <Parameter Name="Buyer_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_JobUpdate">
+      <Parameter Name="JOB_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_STATUS_ID" Mode="In" Type="Int32" />
+      <Parameter Name="JOB_TITLE" Mode="In" Type="String" />
+      <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="UpdatedJobId" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Web_UpdateSecurityQuestionAnswer" ReturnType="Collection(Int32)">
+      <Parameter Name="USER_ID" Mode="In" Type="Int32" />
+      <Parameter Name="SECURITY_QUESTION" Mode="In" Type="String" />
+      <Parameter Name="SECURITY_QUESTION_ANSWER" Mode="In" Type="String" />
+      <Parameter Name="PASSWORD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Web_ExistingPassword" ReturnType="Collection(Int32)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="CurrentPassword" Mode="In" Type="String" />
+      <Parameter Name="NewPassword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Web_UpdateProfile" ReturnType="Collection(Int32)">
+      <Parameter Name="USERID" Mode="In" Type="Int32" />
+      <Parameter Name="FNAME" Mode="In" Type="String" />
+      <Parameter Name="MNAME" Mode="In" Type="String" />
+      <Parameter Name="LNAME" Mode="In" Type="String" />
+      <Parameter Name="EMAILADDRESS" Mode="In" Type="String" />
+      <Parameter Name="PRIMARYPHONE" Mode="In" Type="String" />
+      <Parameter Name="SECONDARYPHONE" Mode="In" Type="String" />
+      <Parameter Name="ADDRESS1" Mode="In" Type="String" />
+      <Parameter Name="ADDRESS2" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UserInfoGetById_sp" ReturnType="Collection(ServiceDotNet.UserInfoGetById_sp_Result)">
+      <Parameter Name="USER_ID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ActiveJobGetByJobId_sp_Result">
@@ -4961,40 +4999,6 @@
     <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
     <Property Type="Int32" Name="PRIMARY_CONTACT_ID" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="UserInfoGetById_sp_Result">
-    <Property Type="Int32" Name="USER_ID" Nullable="false" />
-    <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
-    <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
-    <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
-    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
-    <Property Type="String" Name="NOTES" Nullable="true" />
-    <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
-    <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
-    <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
-    <Property Type="String" Name="CREATED_ON_DISPLAY" Nullable="true" MaxLength="10" />
-    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
-    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
-    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
-    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
-    <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
-    <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
-  </ComplexType>
   <ComplexType Name="UserLoginInfo_sp_Result">
     <Property Type="Int32" Name="USER_ID" Nullable="false" />
     <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
@@ -5203,12 +5207,6 @@
   <ComplexType Name="GetProvidersByJobId_Result">
     <Property Type="Int32" Name="USER_ID" Nullable="false" />
     <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
-  </ComplexType>
-  <ComplexType Name="GetJobsByBuyerId_Result">
-    <Property Type="Int32" Name="JOB_ID" Nullable="false" />
-    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
-    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
-    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
   </ComplexType>
   <ComplexType Name="SP_WorkDiaryAppLogs_Result">
     <Property Type="Int32" Name="TotalTime" Nullable="true" />
@@ -5753,5 +5751,61 @@
     <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="true" />
     <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Web_Classes_Result">
+    <Property Type="Int32" Name="CLASS_ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="Int32" Name="CAT_ID" Nullable="false" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetJobsByBuyerId_Result">
+    <Property Type="Int32" Name="JOB_ID" Nullable="false" />
+    <Property Type="String" Name="JOB_TITLE" Nullable="true" MaxLength="1500" />
+    <Property Type="String" Name="NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UserInfoGetById_sp_Result">
+    <Property Type="Int32" Name="USER_ID" Nullable="false" />
+    <Property Type="Int32" Name="ROLE_ID" Nullable="false" />
+    <Property Type="String" Name="FULL_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="FNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="INITIALS" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="PRIMARY_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SECONDARY_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ADDRESS_1" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ADDRESS_2" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="OTHER_PHONE" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SECURITY_QUESTION" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SECURITY_QUESTION_ANSWER" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="NOTES" Nullable="true" />
+    <Property Type="DateTime" Name="PWD_CHANGED_ON" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="LAST_LOGIN_DATE" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IS_LOCKED" Nullable="false" />
+    <Property Type="Int32" Name="NUM_FAILED_LOGIN" Nullable="true" />
+    <Property Type="DateTime" Name="ACTIVATED_ON" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="CREATED_ON" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CREATED_ON_DISPLAY" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+    <Property Type="DateTime" Name="MODIFIED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MODIFIED_BY" Nullable="true" />
+    <Property Type="Boolean" Name="IS_ARCHIVED" Nullable="false" />
+    <Property Type="DateTime" Name="ARCHIVED_ON" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="ARCHIVED_BY" Nullable="true" />
+    <Property Type="String" Name="MATTERMOST_USER_ID" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="MATTERMOST_ACCESS_TOKEN" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PAYPAL_ACCOUNT_ID" Nullable="true" MaxLength="500" />
   </ComplexType>
 </Schema>

@@ -6,6 +6,7 @@ F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\EntityFramework.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\EntityFramework.SqlServer.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\Hangfire.Core.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\Hangfire.SqlServer.dll
+F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\log4net.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\Microsoft.AspNet.Identity.Core.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -31,6 +32,7 @@ F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\System.Web.WebPages.Razor.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\WebGrease.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\Hangfire.Core.xml
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\Hangfire.SqlServer.xml
+F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\log4net.xml
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\System.Web.Helpers.xml
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\System.Web.Mvc.xml
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\System.Web.Optimization.xml
@@ -61,5 +63,3 @@ F:\Github\WorkDiary\WorkDiary.EmailPlugin\obj\Debug\WorkDiary.EmailPlugin.csproj
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\obj\Debug\WorkDiary.EmailPlugin.csproj.CopyComplete
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\obj\Debug\exampleOfHangfire.dll
 F:\Github\WorkDiary\WorkDiary.EmailPlugin\obj\Debug\exampleOfHangfire.pdb
-F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\log4net.dll
-F:\Github\WorkDiary\WorkDiary.EmailPlugin\bin\log4net.xml

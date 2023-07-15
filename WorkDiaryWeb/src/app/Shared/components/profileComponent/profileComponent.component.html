@@ -1,89 +1,133 @@
-<form>
-  <div class="space-y-12">
-    <div class="">
-      <h2 class="text-base font-semibold leading-7 text-gray-900">Profile</h2>
-      <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you
-        share.</p>
+<div class="bg-white p-8">
+  <div class="">
+    <div>
+      <h1 class="text-base font-semibold leading-7 text-gray-900">Profile</h1>
+      <p class="mt-1 text-sm text-gray-600">This information will be displayed publicly so be careful what you share.
+      </p>
+
+
+      <form class="my-2" #profileform="ngForm" (submit)="update(profileform)">
+        <div class="flex flex-col space-y-5 w-full">
+
+          <p class="alert p-2 mb-0" [ngClass]="{'alert-danger': Alert, 'alert-success': !Alert}" *ngIf="Updated">{{Result}}</p>
+
+          <div class="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+            <div class="sm:col-span-2">
+              <label for="first-name" class="block text-sm">First name</label>
+              <div class="mt-2">
+                <input [(ngModel)]="User.FNAME" type="text" name="firstName"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="first-name" class="block text-sm">Middle name</label>
+              <div class="mt-2">
+                <input [(ngModel)]="User.MNAME" type="text" name="MiddleName" id="first-name" autocomplete="given-name"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="first-name" class="block text-sm">Last name</label>
+              <div class="mt-2">
+                <input [(ngModel)]="User.LNAME" type="text" name="lastName" id="first-name" autocomplete="given-name"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <div class="sm:col-span-6">
+              <label for="first-name" class="block text-sm">Email Address</label>
+              <div class="mt-2">
+                <input [(ngModel)]="User.EMAIL" type="text" name="emailAddress" id="first-name" autocomplete="given-name"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="first-name" class="block text-sm">Primary Phone</label>
+              <div class="mt-2">
+                <input [(ngModel)]="User.PRIMARY_PHONE" type="text" name="PrimaryPhone" id="first-name" autocomplete="given-name"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="first-name" class="block text-sm">Secondary Phone</label>
+              <div class="mt-2">
+                <input [(ngModel)]="User.SECONDARY_PHONE" type="text" name="SecondaryPhone" id="first-name" autocomplete="given-name"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <!-- <div class="sm:col-span-3">
+              <label for="country" class="block text-sm">Country</label>
+              <div class="mt-2">
+                <select ngModel class="form-select border-gray-400 shadow-xs rounded" ngModel id="country" name="country">
+                  <option value="">Select the country</option>
+                  <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                  <option value="What is the name of your first pet?">What is the name of your first pet?</option>
+                  <option value="In what city were you born?">In what city were you born?</option>
+                  <option value="What is your favorite movie or book?">What is your favorite movie or book?</option>
+                  <option value="What was the name of your first school?">What was the name of your first school?
+                  </option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="sm:col-span-2 sm:col-start-1">
+              <label for="city" class="block text-sm">City</label>
+              <div class="mt-2">
+                <input ngModel type="text" name="city" id="city" autocomplete="address-level2"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="region" class="block text-sm">State / Province</label>
+              <div class="mt-2">
+                <input ngModel type="text" name="state" id="state" autocomplete="address-level1"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label for="postal-code" class="block text-sm">ZIP / Postal
+                code</label>
+              <div class="mt-2">
+                <input ngModel type="text" name="postalCode" id="postal-code" autocomplete="postal-code"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div> -->
+
+            <div class="sm:col-span-6">
+              <label for="first-name" class="block text-sm">Address 1</label>
+              <div class="mt-2">
+                <input [(ngModel)]="User.ADDRESS_1" type="text" name="Address1" id="first-name" autocomplete="given-name"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+            <div class="sm:col-span-6">
+              <label for="first-name" class="block text-sm">Address 2</label>
+              <div class="mt-2">
+                <input [(ngModel)]="User.ADDRESS_2" type="text" name="Address2" id="first-name" autocomplete="given-name"
+                  class="form-control text-sm border-gray-400 shadow-xs rounded">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center justify-end gap-x-6">
+          <button type="submit"
+            class="bg-blue-500 text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Update Profile
+          </button>
+        </div>
+      </form>
     </div>
-
-    <div class="">
-
-      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div class="sm:col-span-3">
-          <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
-          <div class="mt-2">
-            <input type="text" name="first-name" id="first-name" autocomplete="given-name"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
-
-        <div class="sm:col-span-3">
-          <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
-          <div class="mt-2">
-            <input type="text" name="last-name" id="last-name" autocomplete="family-name"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
-
-        <div class="sm:col-span-4">
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-          <div class="mt-2">
-            <input id="email" name="email" type="email" autocomplete="email"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
-
-        <div class="sm:col-span-3">
-          <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
-          <div class="mt-2">
-            <select id="country" name="country" autocomplete="country-name"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street address</label>
-          <div class="mt-2">
-            <input type="text" name="street-address" id="street-address" autocomplete="street-address"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
-
-        <div class="sm:col-span-2 sm:col-start-1">
-          <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
-          <div class="mt-2">
-            <input type="text" name="city" id="city" autocomplete="address-level2"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
-
-        <div class="sm:col-span-2">
-          <label for="region" class="block text-sm font-medium leading-6 text-gray-900">State / Province</label>
-          <div class="mt-2">
-            <input type="text" name="region" id="region" autocomplete="address-level1"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
-
-        <div class="sm:col-span-2">
-          <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</label>
-          <div class="mt-2">
-            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code"
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-
-  <div class="mt-6 flex items-center justify-end gap-x-6">
-    <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-    <button type="submit"
-      class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
-  </div>
-</form>
+</div>

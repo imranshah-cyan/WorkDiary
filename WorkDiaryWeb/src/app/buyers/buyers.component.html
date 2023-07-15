@@ -12,7 +12,7 @@
     </ol>
   </div>
   <div class="col-span-1 w-full flex items-start justify-end">
-    <button mat-button [matMenuTriggerFor]="belowMenu" class="flex items-center font-bold">
+    <button mat-button [matMenuTriggerFor]="belowMenu" class="flex items-center">
       {{ currentUserName }}
       <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
@@ -22,9 +22,12 @@
     </button>
     <mat-menu #belowMenu="matMenu" yPosition="below">
       <button mat-menu-item routerLink="settings">Settings</button>
-      <button mat-menu-item>About Work Diary</button>
-      <button mat-menu-item routerLink="">Logout</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
+
+
   </div>
 </section>
+
+
 <router-outlet></router-outlet>

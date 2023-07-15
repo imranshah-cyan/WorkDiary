@@ -12,8 +12,11 @@ namespace WorkDiaryServices.Interfaces
     public interface IUserService
     {
         int? InsertUser(User entity);
+        int? UpdateUser(User entity);
         UserValidateLogin_sp_Result ValidateUser(USER model);
         UserInfoGetById_sp_Result UserInfoGetById(int User_id);
+        int? UpdateSecurityQtn(int userId, string question, string answer, string password);
+        int? UpdateExistingPassword(int userId, string currentPass, string newPass);
         UserGetByEmail_sp_Result UserGetByEmail(string Email);
         Web_ForgotUserCheck_Result Web_ForgotUserCheck(User user);
         bool UserExists(string altCandidate);
